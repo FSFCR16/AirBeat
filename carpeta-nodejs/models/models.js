@@ -1,28 +1,44 @@
-import mongoose from 'mongoose';//importamos mongoose
+import mongoose from 'mongoose';
 
 const colaboracionSchema = new mongoose.Schema({
     numero_colaboradores: {
         type: Number,
     },
     nombre_colaborador: {
-        type: [String], // Si esperas una lista de nombres de colaboradores
+        type: [String],
+        required: true,
     }
 }, { _id: false });
 
-const SongsSchema = new mongoose.Schema({
-    name_album:{
+const albumSchema = new mongoose.Schema({
+
+    track_number: {
+        type: Number,
+        required: true,
+    },
+
+    name_album: {
         type: String,
         required: true,
     },
-    track_number:{
-        type:Number,
+
+
+}, { _id: false });
+
+const SongsSchema = new mongoose.Schema({
+
+album: albumSchema,
+
+    name_track: {
+        type: String,
+        required: true,
     },
-    
+
     release_date: {
         type: Date,
         required: true,
     },
-    colaboracion: colaboracionSchema, // Usar el subesquema de colaboracion
+    colaboracion: colaboracionSchema,
     artist: {
         type: String,
     },
@@ -48,16 +64,9 @@ const SongsSchema = new mongoose.Schema({
             required: true,
         },
     },
-    name_track: {
-        type: String,
-        required: true,
-    },
     preview_url: {
         type: String,
         required: true,
     },
 });
-export const Music = mongoose.model('Songs', SongsSchema);//exportamos el modelo de la base de datos
-
-
-
+export const Music = mongoose.model('Songs', SongsSchema);
