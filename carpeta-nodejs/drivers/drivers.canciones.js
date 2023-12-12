@@ -11,7 +11,6 @@ export const SongsPost = async (req, res) => {
   }
 };
 
-
 export const SongsGet = async (req, res) => {
   try {
     const Songs = await Music.find();
@@ -29,7 +28,7 @@ export const findSongByName = async (req, res) => {
     if (song) {
       res.json(song);
     } else {
-      res.status(404).json({ error: 'Canción no encontrada' });
+      res.status(404).json({ error: `No se han encontrado resultados para (${name_track})` });
     }
   } catch (error) {
     console.error(error);
@@ -37,18 +36,14 @@ export const findSongByName = async (req, res) => {
   }
 };
 export const findSongsByAlbum = async (req, res) => {// no funciona 
-    try {
-      const name_album = req.params.name_album;
-      // const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
-      const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
-      const Album = await Music.find({ 'album.name_album': albumDecodificado}); // se iria album decodificado y cambiaria por el nombre traido desde el body
-
-    
-
+  try {
+    const name_album = req.params.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
+    const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
+    const Album = await Music.find({ 'album.name_album': albumDecodificado }); // se iria album decodificado y cambiaria por el nombre traido desde el body
     if (Album) {
       res.json(Album);
     } else {
-      res.status(404).json({ error: 'No se encontro el album' });
+      res.status(404).json({ error: `No se han encontrado resultados para (${Album})` });
     }
   } catch (error) {
     console.error(error);
@@ -65,7 +60,7 @@ export const SongsDelete = async (req, res) => {
       await Music.findByIdAndDelete(_id);
       res.json({ message: 'Canción eliminada correctamente' });
     } else {
-      res.status(404).json({ error: 'No se encontró la canción' });
+      res.status(404).json({ error: `No se han encontrado resultados para (${cancion})` });
     }
   } catch (error) {
     console.error('Error:', error);
@@ -81,11 +76,72 @@ export const SongsDeletename = async (req, res) => {
       await Music.findOneAndDelete({ name_track });
       res.json({ message: 'Canción eliminada correctamente' });
     } else {
-      res.status(404).json({ error: 'No se encontró la canción' });
+      res.status(404).json({ error: `No se han encontrado resultados para (${cancion})` });
     }
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Error al eliminar la canción' });
   }
 };
+
+export const findSongsByExplicit = async (req, res) => {
+  try {
+    const { explicit } = req.params;
+    const sexplicit = await Music.find({ explicit });
+    if (sexplicit) {
+      res.json(sexplicit);
+    } else {
+      res.status(404).json({ error: `No se han encontrado resultados para (${explicit})` });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
+export const findSongsByArtist = async (req, res) => {
+  try {
+    const { name } = req.params;
+    console.log(name);
+    const songs = await Music.find({
+      $or: [
+        { artist: { $eq: name } },
+        { 'colaboracion.nombre_colaborador': { $eq: name } }
+      ]
+    });
+    if (songs.length > 0) {
+      res.json(songs);
+    } else {
+      res.status(404).json({ error: `No se han encontrado resultados para (${name})` });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
+export const findgeneral = async (req, res) => {
+  try {
+    const { general } = req.params;
+    console.log(general);
+    const contenido = await Music.find({
+      $or: [
+        { artist: { $regex: new RegExp(general, 'i') } },
+        { 'colaboracion.nombre_colaborador':  { $regex: new RegExp(general, 'i') } },
+        { 'album.name_album':  { $regex: new RegExp(general, 'i') }},
+        { name_track: { $regex: new RegExp(general, 'i') }}
+      ]
+    });
+    if (contenido.length > 0) {
+      res.json(contenido);
+    } else {
+      res.status(404).json({ error: `No se han encontrado resultados para (${general})` });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
+
 

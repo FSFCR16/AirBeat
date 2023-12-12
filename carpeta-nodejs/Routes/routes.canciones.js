@@ -5,7 +5,10 @@ import {
     SongsDelete,
     findSongByName,
     findSongsByAlbum,
-    SongsDeletename
+    SongsDeletename,
+    findSongsByExplicit,
+    findSongsByArtist,
+    findgeneral
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
 
 import {
@@ -16,9 +19,12 @@ const router = express.Router();
 router.post('/postsongs', songIn, SongsPost);
 router.get('/getsongsmassive', SongsGet);
 router.get('/getsongsforname', findSongByName);
-router.get('/getlbum/:name_album', findSongsByAlbum); // no funciona
+router.get('/getlbum/:name_album', findSongsByAlbum); 
+router.get('/getsongs/:name', findSongsByArtist); 
+router.get('/search/:general', findgeneral);
+router.get('/Songsexplicit/:explicit', findSongsByExplicit);
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
-//filtro de explicit,busqueda por artista,genero
+
 
 export default router;
