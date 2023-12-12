@@ -1,0 +1,22 @@
+.label-c input{
+    width: 80%;
+    border: none;
+    border-radius: 4px;
+    background-color:#f3f3f4;
+    padding: 8px 16px;
+    transition: background-color 0.2s, border 0.2s, box-shadow 0.2s;
+}
+
+.label-c input:hover{
+    background-color: white;
+    border: solid 2 px #f3f3f4;
+    box-shadow: 0 0 5px #372A8C;
+}
+
+.label-c input:focus{
+    background-color: white;
+    border: solid 2 px #f3f3f4;
+    box-shadow: 0 0 5px #372A8C;
+    outline: none;
+}
+
