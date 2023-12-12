@@ -17,6 +17,7 @@ export class MusicplayerComponent {
 
   playMusic(){
     this.sound.play()
+    
   }
 
   stopMusic(){
