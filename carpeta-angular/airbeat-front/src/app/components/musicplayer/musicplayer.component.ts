@@ -15,7 +15,11 @@ export class MusicplayerComponent {
     src: ['../../assets/music.mp3']
   })
 
-  reproducirCancion(){
+  playMusic(){
     this.sound.play()
+  }
+
+  stopMusic(){
+    this.sound.pause()
   }
 }
