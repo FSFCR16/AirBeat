@@ -16,15 +16,17 @@ import {
 } from '../middleware/cancionExiste.middelwere.js';
 
 const router = express.Router();
-router.post('/postsongs', songIn, SongsPost);
-router.get('/getsongsmassive', SongsGet);
-router.get('/getsongsforname', findSongByName);
-router.get('/getlbum/:name_album', findSongsByAlbum); 
+router.post('/postsongs', songIn, SongsPost);//listo 
+router.get('/getsongsmassive', SongsGet);//listo
+router.get('/getsongsforname', findSongByName);//listo
+router.get('/getalbum', findSongsByAlbum); //listo
 router.get('/getsongs/:name', findSongsByArtist); 
 router.get('/search/:general', findgeneral);
 router.get('/Songsexplicit/:explicit', findSongsByExplicit);
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
+//editar
+
 
 
 export default router;

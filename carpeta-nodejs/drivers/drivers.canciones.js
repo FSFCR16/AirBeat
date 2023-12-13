@@ -37,7 +37,7 @@ export const findSongByName = async (req, res) => {
 };
 export const findSongsByAlbum = async (req, res) => {// no funciona 
   try {
-    const name_album = req.params.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
+    const name_album = req.body.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
     const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
     const Album = await Music.find({ 'album.name_album': albumDecodificado }); // se iria album decodificado y cambiaria por el nombre traido desde el body
     if (Album) {

@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const colaboracionSchema = new mongoose.Schema({
-    numero_colaboradores: {
+    number_collaborators: {
         type: Number,
     },
-    nombre_colaborador: {
+    collaborators_name: {
         type: [String],
         required: true,
     }
@@ -47,7 +47,7 @@ const SongsSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    colaboracion: colaboracionSchema,
+    collaboration: colaboracionSchema,
     artist: {
         type: String,
     },
@@ -77,6 +77,8 @@ const SongsSchema = new mongoose.Schema({
     preview_url: {
         type: String,
         required: true,
+        unique: true,
+        
     },
 });
 export const Music = mongoose.model('Songs', SongsSchema);
