@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,5 +15,10 @@ export class InputsComponent {
   @Input() nameText:String = ""
   @Input() placeholder:String = ""
   @Input() typeText:String = ""
-  @Input() value:String = ""
+  //@Input() value:String = ""
+  @Output() valueChanged = new EventEmitter<string>();
+
+  onInputChange(event: any) {
+    this.valueChanged.emit(event.target.value);
+  }
 }

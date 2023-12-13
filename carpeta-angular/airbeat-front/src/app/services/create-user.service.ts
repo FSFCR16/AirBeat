@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 export interface User{
   email: string,
-  nombre: string,
-  apellido: string,
+  name: string,
+  lastname: string,
   telefono: string,
   password: string,
   confirmPass: string,
@@ -15,11 +15,12 @@ export interface User{
 })
 export class CreateUserService {
 
-  private apiUrl = 'http://127.0.0.1:3000/songs/login';
+  private apiUrl = 'http://127.0.0.1:3000/user';
 
   constructor(private http: HttpClient) {}
 
-  crearUsuario(usuario: User): Observable<any> {
-    return this.http.post<any>(this.apiUrl, usuario);
+  crearUsuario(user: User): Observable<User> {
+    const headers = new HttpHeaders({"Content-Type": "application/json"})
+    return this.http.post<User>(`${this.apiUrl}/login`,JSON.stringify({user}),{headers});
   }
 }

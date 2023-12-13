@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { InputsComponent } from './inputs/inputs.component';
 import { CreateUserService } from '../../services/create-user.service';
 import { User } from '../../services/create-user.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [CommonModule, InputsComponent],
+  imports: [CommonModule, InputsComponent, FormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
@@ -15,8 +16,8 @@ export class RegistroComponent {
 
   usuario: User = {
     email: "",
-    nombre: "",
-    apellido: "",
+    name: "",
+    lastname: "",
     telefono: "",
     password: "",
     confirmPass: "",
