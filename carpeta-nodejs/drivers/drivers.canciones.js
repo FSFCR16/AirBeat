@@ -23,8 +23,9 @@ export const SongsGet = async (req, res) => {
 
 export const findSongByName = async (req, res) => {
   try {
-    const { name_track } = req.body;
-    const song = await Music.findOne({ name_track });
+    const {name_track} = req.params;
+    console.log(name_track)
+    const song = await Music.findOne({ name_track: name_track });
     console.log(song);
     if (song) {
       res.json(song);

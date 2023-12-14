@@ -15,7 +15,7 @@ import {
 const router = express.Router();
 router.post('/postsongs', songIn, SongsPost);
 router.get('/getsongsmassive', SongsGet);
-router.get('/getsongsforname', findSongByName);
+router.get('/getsongsforname/:name_track', findSongByName);
 router.get('/getlbum/:name_album', findSongsByAlbum); // no funciona
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
