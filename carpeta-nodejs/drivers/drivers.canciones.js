@@ -56,11 +56,12 @@ export const SongsDelete = async (req, res) => {
   try {
     const { _id } = req.body;
     const cancion = await Music.findById(_id);
+
     if (cancion) {
       await Music.findByIdAndDelete(_id);
       res.json({ message: 'Canción eliminada correctamente' });
     } else {
-      res.status(404).json({ error: `No se han encontrado resultados para (${cancion})` });
+      res.status(404).json({ error: `No se han encontrado resultados para (${_id})` });
     }
   } catch (error) {
     console.error('Error:', error);
@@ -70,13 +71,14 @@ export const SongsDelete = async (req, res) => {
 
 export const SongsDeletename = async (req, res) => {
   try {
-    const { name_track } = req.body;
+    const { name_track } = req.params;
     const cancion = await Music.findOne({ name_track });
+    console.log(cancion);
     if (cancion) {
       await Music.findOneAndDelete({ name_track });
       res.json({ message: 'Canción eliminada correctamente' });
     } else {
-      res.status(404).json({ error: `No se han encontrado resultados para (${cancion})` });
+      res.status(404).json({ error: `No se han encontrado resultados para (${name_track})` });
     }
   } catch (error) {
     console.error('Error:', error);
@@ -101,17 +103,18 @@ export const findSongsByExplicit = async (req, res) => {
 
 export const findSongsByArtist = async (req, res) => {
   try {
-    const { name } = req.params;
+    const { name } = req.body;
     console.log(name);
     const songs = await Music.find({
       $or: [
-        { artist: { $eq: name } },
-        { 'colaboracion.nombre_colaborador': { $eq: name } }
+        { artist: { $regex: new RegExp(name, 'i') } },
+        { 'colaboracion.nombre_colaborador': { $regex: new RegExp(name, 'i') } },
       ]
     });
     if (songs.length > 0) {
       res.json(songs);
     } else {
+      console.log(songs);
       res.status(404).json({ error: `No se han encontrado resultados para (${name})` });
     }
   } catch (error) {
@@ -120,6 +123,7 @@ export const findSongsByArtist = async (req, res) => {
   }
 };
 
+
 export const findgeneral = async (req, res) => {
   try {
     const { general } = req.params;
@@ -127,9 +131,9 @@ export const findgeneral = async (req, res) => {
     const contenido = await Music.find({
       $or: [
         { artist: { $regex: new RegExp(general, 'i') } },
-        { 'colaboracion.nombre_colaborador':  { $regex: new RegExp(general, 'i') } },
-        { 'album.name_album':  { $regex: new RegExp(general, 'i') }},
-        { name_track: { $regex: new RegExp(general, 'i') }}
+        { 'colaboracion.nombre_colaborador': { $regex: new RegExp(general, 'i') } },
+        { 'album.name_album': { $regex: new RegExp(general, 'i') } },
+        { name_track: { $regex: new RegExp(general, 'i') } }
       ]
     });
     if (contenido.length > 0) {
@@ -145,3 +149,23 @@ export const findgeneral = async (req, res) => {
 
 
 
+export const editSongById = async (req, res) => {
+  try {
+    const _id = req.params;
+
+    const existingSong = await Music.findByIdAndUpdate(
+      _id,
+      { $set: req.body },
+      { new: true },
+    );
+
+    if (!existingSong) {
+      return res.status(404).json({ error: 'No se encontró la canción' });
+    }
+
+    res.json(existingSong);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Error al editar la canción' });
+  }
+};

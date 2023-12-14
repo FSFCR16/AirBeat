@@ -8,7 +8,8 @@ import {
     SongsDeletename,
     findSongsByExplicit,
     findSongsByArtist,
-    findgeneral
+    findgeneral,
+    editSongById
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
 
 import {
@@ -20,13 +21,11 @@ router.post('/postsongs', songIn, SongsPost);//listo
 router.get('/getsongsmassive', SongsGet);//listo
 router.get('/getsongsforname', findSongByName);//listo
 router.get('/getalbum', findSongsByAlbum); //listo
-router.get('/getsongs/:name', findSongsByArtist); 
-router.get('/search/:general', findgeneral);
-router.get('/Songsexplicit/:explicit', findSongsByExplicit);
-router.delete('/deletesongsforname', SongsDeletename);
-router.delete('/deletesongsforid', SongsDelete);
-//editar
-
-
+router.get('/getsongsartist', findSongsByArtist); //listo
+router.get('/search/:general', findgeneral);//listo
+router.get('/Songsexplicit/:explicit', findSongsByExplicit);//listo
+router.delete('/deletesongsforname/:name_track', SongsDeletename);//listo
+router.delete('/deletesongsforid', SongsDelete);// listo
+router.put('/editsongs/:_id', editSongById);
 
 export default router;
