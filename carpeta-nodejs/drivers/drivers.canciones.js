@@ -35,6 +35,23 @@ export const findSongByName = async (req, res) => {
     res.status(500).json({ error: 'Error en el servidor' });
   }
 };
+
+export const findSongByID = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const song = await Music.findById(_id);
+    console.log(song);
+    if (song) {
+      res.json(song);
+    } else {
+      res.status(404).json({ error: `No se han encontrado resultados para (${_id})` });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+};
+
 export const findSongsByAlbum = async (req, res) => {// no funciona 
   try {
     const name_album = req.body.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
@@ -155,8 +172,7 @@ export const editSongById = async (req, res) => {
 
     const existingSong = await Music.findByIdAndUpdate(
       _id,
-      { $set: req.body },
-      { new: true },
+      req.body,
     );
 
     if (!existingSong) {
