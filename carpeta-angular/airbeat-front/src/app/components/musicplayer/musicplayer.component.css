@@ -13,7 +13,7 @@
   }
   .slider {
     -webkit-appearance: none;
-    width: 90%;
+    width: 96%;
     height: 15px;
     background: #022626;
     outline: none;
@@ -145,7 +145,7 @@
   
   .timetext {
     color: white;
-    font-size: 1px;
+    font-size: 15px;
     position: absolute;
   }
   

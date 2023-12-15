@@ -1,4 +1,4 @@
-<div class="position-relative" style="">
+<div class="position-relative">
   <div class="z-3 position-absolute bottom-0 start-50 translate-middle-x" style="width: 100%;">
     <ul class="nav justify-content-center">
       <li class="nav-item">
@@ -38,10 +38,10 @@
                 fill-rule="evenodd"></path>
             </svg>
 <!-- Play and Pause-->
-            <svg #btnPause (click)="playMusic()" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+            <svg [class.d-none]="displayNone==true" #btnPause  (click)="playMusic()" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5"/>
             </svg>
-            <svg #btnPlay (click)="stopMusic()" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
+            <svg [class.d-none]="displayNone==false" #btnPlay (click)="stopMusic()" xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5"/>
             </svg>
             
@@ -63,7 +63,7 @@
             <input type="range" min="1" max="100" value="50" class="slider position-absolute top-50 start-50 translate-middle" id="myRange">
           </div>
           <p class="timetext time_now">1:31</p>
-          <p class="timetext time_full">3:46</p>
+          <p class="timetext time_full">{{duracion}}</p>
         </div>
         <!--<audio src="" controls></audio>-->
       </li>
