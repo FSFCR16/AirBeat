@@ -27,9 +27,7 @@ router.get('/getsongsartist', findSongsByArtist); //listo
 router.get('/search/:general', findgeneral);//listo
 router.get('/Songsexplicit/:explicit', findSongsByExplicit);//listo
 router.delete('/deletesongsforname/:name_track', SongsDeletename);//listo
-router.delete('/deletesongsforid', SongsDelete);// listo
-router.put('/editsongs/:_id', editSongById);//pendiente
-
-//preguntar url o body
+router.delete('/deletesongsforid', SongsDelete);// listo params
+router.put('/editsongs/:_id', editSongById);// listo
 
 export default router;

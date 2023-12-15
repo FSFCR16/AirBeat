@@ -169,16 +169,12 @@ export const findgeneral = async (req, res) => {
 export const editSongById = async (req, res) => {
   try {
     const _id = req.params;
-
-    const existingSong = await Music.findByIdAndUpdate(
-      _id,
-      req.body,
-    );
-
+    const updatedate = req.body;
+    console.log(updatedate)
+    const existingSong = await Music.findOneAndUpdate({ _id: _id }, updatedate,{new:true});
     if (!existingSong) {
       return res.status(404).json({ error: 'No se encontró la canción' });
     }
-
     res.json(existingSong);
   } catch (error) {
     console.error('Error:', error);
