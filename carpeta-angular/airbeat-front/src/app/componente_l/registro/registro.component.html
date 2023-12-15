@@ -1,0 +1,30 @@
+<section #infoRegistro class="infoRegistro">
+    <form (submit)="usuarioCrear()" style="display: grid; grid-template-columns: 50% 50%; row-gap: 22px;" action="">
+        <app-inputs text="Nombre"  typeText="text" textFor="Nombre" idText="Nombre"
+            nameText="Nombre" placeholder="Email"></app-inputs>
+        <app-inputs text="Apellido"  typeText="text" textFor="Apellido" idText="Apellido"
+            nameText="Apellido" placeholder="Apellido"></app-inputs>
+        <app-inputs text="Telefono"  typeText="text" textFor="Telefono" idText="Telefono"
+            nameText="Telefono" placeholder="Telefono"></app-inputs>
+        <app-inputs text="Email"  typeText="email" textFor="Email" idText="Email"
+            nameText="Email" placeholder="Email"></app-inputs>
+        <app-inputs text="Contraseña"  typeText="password" textFor="Contraseña"
+            idText="Contraseña" nameText="Contraseña" placeholder="Contraseña"></app-inputs>
+        <app-inputs text="Confirmar Contraseña" typeText="password"
+            textFor="Confirmar Contraseña" idText="Confirmar Contraseña" nameText="Confirmar Contraseña"
+            placeholder="Contraseña"></app-inputs>
+        <button type="submit">Registrase</button>
+    </form>
+    <div style="display: flex; flex-direction: column;">
+        <label for="checkbox" class="checkbox-label">
+            <input type="checkbox" id="checkbox">
+            <span>Acepto las condiciones y el aviso legal</span>
+        </label>
+        <label for="checkbox" class="checkbox-label">
+            <input type="checkbox" id="checkbox">
+            <span>Acepto las condiciones y el aviso legal</span>
+        </label>
+    </div>
+
+
+</section>
