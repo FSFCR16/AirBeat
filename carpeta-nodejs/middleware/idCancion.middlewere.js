@@ -8,9 +8,8 @@ export const cancionEnLaBase= async (req, res, next)=>{
         const cancionExist= await busquedaSchema.findOne({cancionId: body})
         
         if(cancionExist){
-            const borrarDoc= await busquedaSchema.deleteOne({cancionId:body})
+            await busquedaSchema.deleteOne({cancionId:body})
             next()
-            // return res.status(409).json({message: "La cancion ya esta guardada"})
         }else{
             next()
         }

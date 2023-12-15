@@ -19,6 +19,7 @@ export const authVerification = (request, response, next) => {
 
         let decode = jwt.verify(token, process.env.JWT_KEY);
         request.user = decode
+        console.log(request.user)
 
         next()
 
