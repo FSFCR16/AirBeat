@@ -53,7 +53,7 @@ export class MusicplayerComponent implements OnInit {
     this.displayNone = !this.displayNone;
     setInterval(() => {
       this.step();
-    }, 1000);
+    }, 1);
   }
 
   stopMusic(){
