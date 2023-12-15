@@ -4,7 +4,8 @@ import jwt from 'jsonwebtoken'
 
 export const postUser= async (req, res)=>{
     try{
-        let user= req.body
+        let user= req.body.user
+        console.log(user)
 
         user.password = bcrypt.hashSync(user.password, parseInt(process.env.SALTROUNDS))
         user.confirmPass= bcrypt.hashSync(user.confirmPass, parseInt(process.env.SALTROUNDS))
@@ -23,6 +24,33 @@ export const postUser= async (req, res)=>{
 
     }catch(errord){
         res.status(500).json({ error: 'Error al crear un nuevo usuario', errorDOS: errord});
+    }
+}
+export const login=async(req, rest)=>{
+    try {
+        let body = req.body 
+        let userExist = await User.findOne({
+            email: body.email
+        })
+        console.log(userExist)
+        console.log(body.password)
+        console.log(body)
+        if(!userExist){
+            return rest.json({error:"No existe un usuario con este Email"})
+            
+        }
+        const claveValidada = bcrypt.compareSync(body.password, userExist.password)
+        if(claveValidada){
+            const payload={_id:userExist._id}
+            const token = jwt.sign(payload, process.env.JWT_KEY)
+            
+            const userData = {token,userExist}
+            return rest.send(userData)
+        } else {
+            return rest.send({error:"credenciales incorrectas"})
+        }
+    } catch (error){
+        return rest.send(error)
     }
 }
 

@@ -21,6 +21,14 @@ export class CreateUserService {
 
   crearUsuario(user: User): Observable<User> {
     const headers = new HttpHeaders({"Content-Type": "application/json"})
-    return this.http.post<User>(`${this.apiUrl}/login`,JSON.stringify({user}),{headers});
+    return this.http.post<User>(`${this.apiUrl}/registrate`,JSON.stringify({user}),{headers});
   }
+
+  inicarSesion(email:string, password:string):Observable<any>{
+    const headers = new HttpHeaders({"Content-Type": "application/json"})
+    return this.http.post<User>(`${this.apiUrl}/login`,JSON.stringify({email,password}),{headers});
+  }
+
+  
 }
+

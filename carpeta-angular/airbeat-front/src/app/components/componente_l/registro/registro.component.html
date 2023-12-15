@@ -1,4 +1,4 @@
-<section #infoRegistro class="infoRegistro">
+<section hidden #infoRegistro class="infoRegistro">
     <form (submit)="usuarioCrear()" style="display: grid; grid-template-columns: 50% 50%; row-gap: 22px;" action="">
         <app-inputs (valueChanged)="usuario.name = $event" text="Nombre"  typeText="text" textFor="Nombre" idText="Nombre"
             nameText="Nombre" placeholder="Email"></app-inputs>

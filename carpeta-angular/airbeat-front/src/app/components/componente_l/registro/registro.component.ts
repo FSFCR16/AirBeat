@@ -1,8 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputsComponent } from './inputs/inputs.component';
-import { CreateUserService } from '../../services/create-user.service';
-import { User } from '../../services/create-user.service';
+import { CreateUserService } from '../../../services/create-user.service';
+import { User } from '../../../services/create-user.service';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-registro',

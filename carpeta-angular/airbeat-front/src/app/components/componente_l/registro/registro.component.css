@@ -1,5 +1,5 @@
 .infoRegistro{
-    display: none; row-gap: 20px;
+    display: grid; row-gap: 20px;
 }
 
 .label-c input{
@@ -29,15 +29,6 @@
     width: 20px;
 }
 
-.displayInicio{
-    display: grid;
-    
+[hidden]{
+    display: none !important;
 }
-
-.displayInicioNone{
-    display: none;
-}
-
-.displayRegistro{
-    display: grid; 
-} 
