@@ -71,7 +71,7 @@ export const findSongsByAlbum = async (req, res) => {// no funciona
 
 export const SongsDelete = async (req, res) => {
   try {
-    const { _id } = req.body;
+    const { _id } = req.params;
     const cancion = await Music.findById(_id);
 
     if (cancion) {
