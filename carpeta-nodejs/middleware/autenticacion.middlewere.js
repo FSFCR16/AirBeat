@@ -11,13 +11,15 @@ export const authVerification = (request, response, next) => {
 
         if (request.headers.authorization.includes('key')) {
             token = request.headers.authorization.split(' ')[1]
+
         } else {
             return response.json({ error: 'El formato del token es incorrecto' })
         }
 
-        let decode = jwt.verify(token, process.env.JWT_KEY);
 
-        req.user = decode
+        let decode = jwt.verify(token, process.env.JWT_KEY);
+        request.user = decode
+
         next()
 
     } catch (e) {

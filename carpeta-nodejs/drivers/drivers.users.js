@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 export const postUser= async (req, res)=>{
     try{
-        let user= req.body
+        let user= req.body.user
 
         user.password = bcrypt.hashSync(user.password, parseInt(process.env.SALTROUNDS))
         user.confirmPass= bcrypt.hashSync(user.confirmPass, parseInt(process.env.SALTROUNDS))
