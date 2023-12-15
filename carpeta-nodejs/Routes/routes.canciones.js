@@ -8,15 +8,16 @@ import {
     SongsDeletename
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
 
-import {
-    songIn
-} from '../middleware/cancionExiste.middelwere.js';
+import {songIn} from '../middleware/cancionExiste.middelwere.js';
+import { authVerification } from '../middleware/autenticacion.middlewere.js';
+import { historial } from '../drivers/drivers.busqueda.js';
+import { cancionEnLaBase } from '../middleware/idCancion.middlewere.js';
 
 const router = express.Router();
 router.post('/postsongs', songIn, SongsPost);
-router.get('/getsongsmassive', SongsGet);
-router.get('/getsongsforname', findSongByName);
-router.get('/getlbum/:name_album', findSongsByAlbum); // no funciona
+router.get('/getsongsmassive',SongsGet);
+router.get('/getsongsforname/:name_track/:_id', findSongByName);
+router.get('/getlbum/:name_album/:_id',authVerification, cancionEnLaBase ,historial, findSongsByAlbum ); // no funciona
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
 //filtro de explicit,busqueda por artista,genero

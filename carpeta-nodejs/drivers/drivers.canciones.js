@@ -23,8 +23,9 @@ export const SongsGet = async (req, res) => {
 
 export const findSongByName = async (req, res) => {
   try {
-    const { name_track } = req.body;
-    const song = await Music.findOne({ name_track });
+    const {name_track} = req.params;
+    console.log(name_track)
+    const song = await Music.findOne({ name_track: name_track });
     console.log(song);
     if (song) {
       res.json(song);
@@ -39,16 +40,18 @@ export const findSongByName = async (req, res) => {
 export const findSongsByAlbum = async (req, res) => {// no funciona 
     try {
       const name_album = req.params.name_album;
+      console.log(name_album)
       // const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
       const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
       const Album = await Music.find({ 'album.name_album': albumDecodificado}); // se iria album decodificado y cambiaria por el nombre traido desde el body
 
-    
-
+    if(Album.length === 0){
+      return res.json({error: "Album no encontrado"})
+    }
     if (Album) {
-      res.json(Album);
+      return res.json(Album);
     } else {
-      res.status(404).json({ error: 'No se encontro el album' });
+      return res.status(404).json({ error: 'No se encontro el album' });
     }
   } catch (error) {
     console.error(error);

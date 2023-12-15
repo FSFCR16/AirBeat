@@ -25,8 +25,13 @@ export class RegistroComponent {
 
   constructor(private usuarioService:CreateUserService){}
 
+<<<<<<< HEAD
+  async usuarioCrear(){
+    const respuesta= await this.usuarioService.crearUsuario(this.usuario).subscribe(
+=======
   usuarioCrear(){
     this.usuarioService.crearUsuario(this.usuario).subscribe(
+>>>>>>> 7aeef5cc4635b3bd32e642e89e61802681600483
       response => {
         console.log('Usuario creado exitosamente:', response);
         // Puedes realizar acciones adicionales después de crear el usuario
