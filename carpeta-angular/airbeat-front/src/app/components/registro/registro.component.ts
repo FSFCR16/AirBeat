@@ -4,6 +4,8 @@ import { InputsComponent } from './inputs/inputs.component';
 import { CreateUserService } from '../../services/create-user.service';
 import { User } from '../../services/create-user.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -23,23 +25,22 @@ export class RegistroComponent {
     confirmPass: "",
   }
 
-  constructor(private usuarioService:CreateUserService){}
+  constructor(private usuarioService:CreateUserService,private router:Router){}
 
-<<<<<<< HEAD
   async usuarioCrear(){
-    const respuesta= await this.usuarioService.crearUsuario(this.usuario).subscribe(
-=======
-  usuarioCrear(){
-    this.usuarioService.crearUsuario(this.usuario).subscribe(
->>>>>>> 7aeef5cc4635b3bd32e642e89e61802681600483
-      response => {
-        console.log('Usuario creado exitosamente:', response);
+    const respuesta= await this.usuarioService.crearUsuario(this.usuario).subscribe({
+      next: (token)=> {
+        console.log('Usuario creado exitosamente:', this.usuario);
         // Puedes realizar acciones adicionales después de crear el usuario
+        this.usuarioService.saveToken(token)
+        this.router.navigate(['/home']);
       },
-      error => {
+      error:(error)=> {
         console.error('Error al crear usuario:', error);
         // Maneja errores según tus necesidades
       }
+    }
+
     );
   }
 

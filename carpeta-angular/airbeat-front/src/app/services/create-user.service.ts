@@ -14,13 +14,23 @@ export interface User{
   providedIn: 'root'
 })
 export class CreateUserService {
-
+  token="key"
   private apiUrl = 'http://127.0.0.1:3000/user';
 
   constructor(private http: HttpClient) {}
 
   crearUsuario(user: User): Observable<User> {
     const headers = new HttpHeaders({"Content-Type": "application/json"})
-    return this.http.post<User>(`${this.apiUrl}/login`,JSON.stringify({user}),{headers});
+    return this.http.post<User>(`${this.apiUrl}/registrate`,JSON.stringify({user}),{headers});
+  }
+
+  inicarSesion(email:string, password:string):Observable<any>{
+    const headers = new HttpHeaders({"Content-Type": "application/json"})
+    return this.http.post<User>(`${this.apiUrl}/login`,JSON.stringify({email,password}),{headers});
+  }
+
+  saveToken(token:any){
+    localStorage.setItem(this.token,token.token)
   }
 }
+
