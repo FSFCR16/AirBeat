@@ -18,16 +18,19 @@ import {
 } from '../middleware/cancionExiste.middelwere.js';
 
 const router = express.Router();
-router.post('/postsongs', songIn, SongsPost);//listo 
-router.get('/getsongsmassive', SongsGet);//listo
-router.get('/getsongsforname', findSongByName);//listo
-router.get('/getsongsforID/:_id', findSongByID);//listo
-router.get('/getalbum', findSongsByAlbum); //listo
-router.get('/getsongsartist', findSongsByArtist); //listo
-router.get('/search/:general', findgeneral);//listo
-router.get('/Songsexplicit/:explicit', findSongsByExplicit);//listo
-router.delete('/deletesongsforname/:name_track', SongsDeletename);//listo
-router.delete('/deletesongsid/:_id', SongsDelete);// listo params
-router.put('/editsongs/:_id', editSongById);// listo
+//rutas para usuarios 
+router.get('/search/track/:name_track', findSongByName);
+router.get('/search/id/:_id', findSongByID);
+router.get('/search/album/:name_album', findSongsByAlbum); 
+router.get('/search/artist/:name', findSongsByArtist); 
+router.get('/search/:general', findgeneral);
+router.get('/explicit/:explicit', findSongsByExplicit);
+router.get('/all', SongsGet);
+//rutas para admin
+router.delete('/delete/name/:name_track', SongsDeletename);
+router.delete('/delete/id/:_id', SongsDelete); 
+router.put('/songs/edit:_id', editSongById);
+router.post('/postsongs', songIn, SongsPost);
+
 
 export default router;

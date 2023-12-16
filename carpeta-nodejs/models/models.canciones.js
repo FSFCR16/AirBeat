@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const colaboracionSchema = new mongoose.Schema({
+const  collaborationSchema = new mongoose.Schema({
     number_collaborators: {
         type: Number,
     },
@@ -47,7 +47,7 @@ const SongsSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    collaboration: colaboracionSchema,
+    collaboration:  collaborationSchema,
     artist: {
         type: String,
     },
