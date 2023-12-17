@@ -37,7 +37,7 @@ export const login =async (req, rest)=>{
         console.log(body.password)
         console.log(body)
         if(!userExist){
-            return rest.json({error:"No existe un usuario con este Email"})
+            return rest.status(404).json({error:"No existe un usuario con este Email"})
 
         }
         const claveValidada = bcrypt.compareSync(body.password, userExist.password)
@@ -48,7 +48,7 @@ export const login =async (req, rest)=>{
             const userData = {token,userExist}
             return rest.send(userData)
         } else {
-            return rest.send({error:"credenciales incorrectas"})
+            return rest.status(409).send({error:"credenciales incorrectas"})
         }
     } catch (error){
         return rest.send(error)

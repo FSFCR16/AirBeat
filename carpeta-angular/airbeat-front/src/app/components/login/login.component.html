@@ -34,23 +34,23 @@
                         <hr>
                     </article>
                 </section>
-                <form style="display: flex; flex-direction: column;" action="">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;" action="">
                     <div class="label-c" style="display: flex; flex-direction: column; row-gap: 10px">
                         <label for="email">
                             Email
                         </label>
-                        <input id="email" name="email" placeholder="Email">
+                        <input formControlName="email" id="email" name="email" placeholder="Email">
                         <label for="password">
                             Contraseña
                         </label>
-                        <input id="password" name="password" placeholder="Contraseña">
+                        <input formControlName="password" id="password" name="password" placeholder="Contraseña">
                     </div>
+                    <article
+                        style="display: grid; justify-content: center; gap: 15px; margin-top: 15px; margin-bottom: 30px; width: 100%; text-align: center;">
+                        <a class="a-pass" href="">¿Olvidaste tu contraseña?</a>
+                        <button type="submit" class="btn-submit">Iniciar Sesion</button>
+                    </article>
                 </form>
-                <article
-                    style="display: grid; justify-content: center; gap: 15px; margin-top: 15px; margin-bottom: 30px; width: 100%; text-align: center;">
-                    <a class="a-pass" href="">¿Olvidaste tu contraseña?</a>
-                    <button type="submit" class="btn-submit">Iniciar Sesion</button>
-                </article>
             </article>
         </section>
         <section class="logo-c" style="background:linear-gradient(to bottom right, #372A8C, #1f073a ,  #022626); ">

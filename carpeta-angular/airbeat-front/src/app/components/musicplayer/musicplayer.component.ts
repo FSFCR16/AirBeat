@@ -21,10 +21,8 @@ export class MusicplayerComponent implements OnInit {
   valuetest:number | undefined;
   public displayNone = false
   sound= new Howler.Howl({
-    src: ['../../assets/music.mp3'],
-    onplay: function(){
-      
-    }
+    src: ['https://p.scdn.co/mp3-preview/d7fc61d223ebd1a29138956f512fd24301ea9ebb?cid=a6414b779b224dd792a7db2096907732'],
+    format: ['mpeg']
   })
 
   formatTime(secs:number) {
