@@ -38,12 +38,11 @@ export class LoginComponent {
         if (token) {
           this.userService.saveToken(token);
           this.router.navigate(['/home']);
-          console.log(token)
         }
 
       },
       error:(error) => {
-        console.log(error)
+
         console.log('Ocurrió un error:', error.error.error);
         if (error.error.error === 'credenciales incorrectas') {
           alert('Credenciales incorrectas. Verifique nuevamente.');
