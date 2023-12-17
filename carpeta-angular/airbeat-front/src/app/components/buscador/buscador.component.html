@@ -1,0 +1,16 @@
+<main class="cont_padre">
+    @for(cancion of datos ; track cancion._id){
+        <section class="contenedorCarta">
+            <img class="img_card" src="{{cancion.img_urls.img_url_300}}" alt="Imagen_cancion">
+            <article class="cont_text">
+                <p class="name_song" style="font-size: 16px; font-weight: bold;" >{{cancion.name_track}}</p>
+                <p class="name_card" style="font-size: 13px;" >Doble Porcion</p>
+
+            </article>
+            <button class="btn_play" #btnEscuchar (click)="cargarCancion(cancion.preview_url)"><svg xmlns="http://www.w3.org/2000/svg" height="17px" width="13px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#000000" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
+        </section>      
+    }
+</main>
+
+
+<router-outlet></router-outlet>

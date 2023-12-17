@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '../../componente_l/login/login.component';
-import { RegistroComponent } from '../../componente_l/registro/registro.component';
+import { LoginComponent } from '../../components/login/login.component';
+import { RegistroComponent } from '../../components/registro/registro.component';
 @Component({
   selector: 'app-login-page',
   standalone: true,
