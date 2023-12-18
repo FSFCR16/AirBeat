@@ -1,54 +1,88 @@
-.cont_padre{
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-    column-gap: 20px;
-
-}
 p{
     margin: 0;
 }
-.contenedorCarta{
+
+.search-cont{
     display: grid;
-    justify-content: center;
-    padding: 8px;
-    height: auto;
-    width: 10rem;
-    border-radius: 10px;
-    background-color: #121212;
-    position: relative;
-    row-gap: 5px;
-    
-
-}
-.img_card{
-
-    justify-self: center;
-    border-radius: 4px;
+    grid-template-rows: 9% 30% auto;
     width: 100%;
     height: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.cont_text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 5px;
-    color: white;
+
 }
 
-.btn_play{
+.cont__header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px
+}
+
+.cont__arrows{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.cont__btn{
+    display: flex;
+    column-gap: 4px;
+}
+
+.btn__in{
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50px;
+    height: 2.2rem;
+    width: 2.2rem;
     border: none;
     outline: none;
-    position: absolute;
-    transform: translate(105px, 105px);
-    height: 2.5rem;
-    width: 2.5rem;
-    background-color: #22c428;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background-color:#022626;
+}
+.btn__in:hover{
+    background-color: #032020;
+}
 
+
+.cont__input{
+    display: flex;
+    align-items:center ;
+    column-gap: 10px;
+    height: 100%;
+    width: 25rem;
+    padding: 15px;
+    background-color:#022626; ;
+    border-radius: 25px;
+}
+
+.input__in__cont{
+    height: 2rem;
+    width: 17rem;
+    overflow: hidden;
+    white-space: nowrap;
+    color: aliceblue;
+    background-color: #022626;
+    border: none;
+    outline: none;
+    font-size: 17px;
+}
+
+.input__in__cont::placeholder{
+    color: aliceblue;
+}
+
+.cont__user{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 6px;
+    column-gap: 2px;
+    border-radius: 30px;
+    background-color: #022626;
+    padding: 10px;
+    padding-right: 20px;
+    height: 2.6rem;
+    cursor: pointer;
+}
+
+.cont__user:hover{
+    background-color: #032020;
 }

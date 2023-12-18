@@ -1,7 +1,7 @@
 .container{
     width: 100%;
-    height: 99.8%;
-    margin: 0;
+    height: 98.7%;
+    margin: 7px;
     padding: 0;
     border-radius: 7px;
 
@@ -25,7 +25,8 @@ p{
     padding: 0 15px;
     flex-direction: column;
     justify-content: center;
-    background-color: #022626;
+    align-items: center;
+    background-color: #063131;
     border-radius: 7px;
     row-gap: 20px;
 }
@@ -33,19 +34,20 @@ p{
 .cont__input{
 
     display: flex;
+    width: 100%;
     align-items: center;
     height: 2.5rem;
     column-gap: 10px;
     cursor: pointer;
     border-radius: 5px;
     padding: 0 10px;
-    background-color: #063131;
+    background-color: #022626;
 }
 
 .inpu__in{
     height: 2.5rem;
     color: aliceblue;
-    background-color: #063131;
+    background-color: #022626;
     border: none;
     outline: none;
 
@@ -60,9 +62,12 @@ p{
 .btn__cont{
     display: flex;
     height: 2.3rem;
+    width: 10rem;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
     column-gap: 5px;
+    background-color: #022626;
 
 }
 .button{
@@ -80,7 +85,7 @@ p{
     display: grid;
     grid-template-rows: 13% auto;
     border-radius: 7px;
-    background-color: #022626;
+    background-color: #063131;
     padding: 15px;
 }
 .categorias{
@@ -95,17 +100,24 @@ p{
     cursor:default;
 
 }
+
+.cont__gen_opcion{
+    background-color: #022626;
+    padding: 10px;
+    border-radius: 7px;
+}
 .cont_opciones{
     display: flex;
-    column-gap: 13px;
+    column-gap: 8px;
     align-items: center;
     color: aliceblue;
+
 }
 .cont__categorias{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #063131;
+    background-color: #022626;
     border-radius: 20px;
     height: 2rem;
     width: 5rem;
@@ -113,7 +125,7 @@ p{
 
 }
 .cont__categorias:hover{
-    background-color: #0b3a3a;
+    background-color: #032020;
 }
 
 .cont__input__dos{
@@ -142,7 +154,7 @@ p{
 
 }
 .contendor__card:hover{
-    background-color: #0b3a3a ;
+    background-color: #032020;
 }
 
 p{

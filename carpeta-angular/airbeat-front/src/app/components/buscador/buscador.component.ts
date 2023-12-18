@@ -18,6 +18,7 @@ export class BuscadorComponent implements OnInit {
   enlacesCanciones: string[] = [];
   sound: Howl | undefined;
   datos: any;
+  isFocused: boolean = false;
 
   constructor(private buscador: BucadorServiciosService) { }
 
@@ -47,6 +48,12 @@ export class BuscadorComponent implements OnInit {
     });
     this.sound.play();
   }
+
+  changeColorInput(status: boolean) {
+    this.isFocused = status;
+    console.log(this.isFocused)
+  }
+
 }
 
 

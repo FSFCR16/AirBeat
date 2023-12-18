@@ -1,16 +1,35 @@
-<main class="cont_padre">
-    @for(cancion of datos ; track cancion._id){
-        <section class="contenedorCarta">
-            <img class="img_card" src="{{cancion.img_urls.img_url_300}}" alt="Imagen_cancion">
-            <article class="cont_text">
-                <p class="name_song" style="font-size: 16px; font-weight: bold;" >{{cancion.name_track}}</p>
-                <p class="name_card" style="font-size: 13px;" >Doble Porcion</p>
+<section class="search-cont">
+    <header class="cont__header">
+        <article class="cont__arrows">
+            <section class="cont__btn">
+                <button class="btn__in">
+                    <i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>
+                </button>
+                <button class="btn__in">
+                    <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i>
+                </button>
+            </section>
+            <section class="cont__input" [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                <input class="input__in__cont" (focus)="changeColorInput(true)" (blur)="changeColorInput(false)" type="text" placeholder="¿Que deseas escuchar?">
+            </section>
+        </article>
+        <article class="cont__user">
+            <button class="btn__in" style="background-color:#022626;">
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/></svg>
+            </button>
+            <p style="color: #ffffff;">Name User</p>
+        </article>
+    </header>
+    <section>
+        <article>
+            <h3></h3>
+            <p></p>
+        </article>
+        <article>
+            <section>
 
-            </article>
-            <button class="btn_play" #btnEscuchar (click)="cargarCancion(cancion.preview_url)"><svg xmlns="http://www.w3.org/2000/svg" height="17px" width="13px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#000000" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
-        </section>      
-    }
-</main>
-
-
-<router-outlet></router-outlet>
+            </section>
+        </article>
+    </section>
+</section>
