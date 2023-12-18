@@ -4,6 +4,10 @@ import { RegistroComponent } from '../registro/registro.component';
 import { FormControl,ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CreateUserService } from '../../services/create-user.service';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
+=======
+import { Console, error } from 'console';
+>>>>>>> c34de5990250f4c6ee06a7031fb64d46677af333
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -28,10 +32,15 @@ export class LoginComponent {
     const email = this.loginForm.value.email;
 
     const password = this.loginForm.value.password;
+<<<<<<< HEAD
+=======
+
+>>>>>>> c34de5990250f4c6ee06a7031fb64d46677af333
     if(!this.loginForm.valid){
       return;
     }
     this.userService.inicarSesion(email, password).subscribe({
+<<<<<<< HEAD
       next: (token)=>{
         this.userService.saveToken(token)
         this.router.navigate(["/home"])
@@ -40,6 +49,31 @@ export class LoginComponent {
       error: (error)=>{
         console.log(error)}
     })
+=======
+      next: (token) => {
+        if (token) {
+          this.userService.saveToken(token);
+          this.router.navigate(['/home']);
+          console.log(token)
+        }
+
+      },
+      error:(error) => {
+        console.log(error)
+        console.log('Ocurrió un error:', error.error.error);
+        if (error.error.error === 'credenciales incorrectas') {
+          alert('Credenciales incorrectas. Verifique nuevamente.');
+          this.router.navigate(['/login-page']);
+        } else if (error.error.error=== 'No existe un usuario con este Email') {
+          alert('No existe un usuario con este Email.');
+          this.router.navigate(['/login-page']);
+        } else {
+          console.log('Error desconocido:', error);
+          // Si hay un error desconocido, decide si redirigir o realizar alguna otra acción
+        }
+      }
+  });
+>>>>>>> c34de5990250f4c6ee06a7031fb64d46677af333
   }
   ngAfterViewInit(){
     this.render.addClass(this.btnIniciar.nativeElement, "colorMorado")

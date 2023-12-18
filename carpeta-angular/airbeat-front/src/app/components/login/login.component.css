@@ -147,6 +147,37 @@ p{
     display: grid;
 } 
 
+@media screen and (min-width:1780px) and (max-width:1920px) {
+    .logo-c{
+        padding-bottom: 10px;
+        position: relative;
+    }
+    .ul{
+        position: absolute !important;
+        transform: translateY(19.6rem) ;
+        right: 42% !important;
+    }
+    
+
+
+}
+
+
+@media screen and (min-width:1580px) and (max-width:1780px) {
+    .logo-c{
+        padding-bottom: 10px;
+        position: relative;
+    }
+    .ul{
+        position: absolute !important;
+        transform: translateY(19.6rem) ;
+        right: 42% !important;
+    }
+
+
+}
+
+
 
 
 @media screen and (min-width:961px) and (max-width:1130px) {
@@ -179,30 +210,7 @@ p{
     }
 }
 
-@media screen and (min-width:700px) and (max-width:800px){
-    .parrafo{
-        font-size: 12px !important ;
-        position: relative;
-        top: 15px;
-    }
-    .redes{
-        position: relative;
-        top: 3.5rem !important;
-    }
-    .iconos-redes{
-        width: 1rem !important;
-        height: 1rem !important;
-    }
-    .ul{
-        padding: 0;
-        width: 6rem !important;
-        left: 4px;
-    }
-}
-
-
-
-@media screen and (min-width:300px) and (max-width:700px){
+@media screen and (min-width:400px) and (max-width:800px){
     .logo-c{
         display: none;
     }
@@ -211,6 +219,9 @@ p{
         grid-template-columns:100% ;
     }
 }
+
+
+
 
 
 
