@@ -1,7 +1,7 @@
 .cont__gen{
     display: grid;
     height: 100vh;
-    grid-template-columns: 17% auto;
+    grid-template-columns: 18.5% auto;
     grid-template-rows: 87.5% auto;
 }
 .footer{

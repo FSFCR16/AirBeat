@@ -33,7 +33,7 @@ export const createPlaylist = async (req, res) => {
 
 export const postPlaylist = async (req, res) => {
     try {
-        const idUser = req.user._id
+        const _id = req.params._id
         const song = req.body._id
 
         const songPush = await Music.findOne({
@@ -47,7 +47,7 @@ export const postPlaylist = async (req, res) => {
         }
 
         const playlist = await playlists.findOneAndUpdate({
-            userId: idUser
+            _id: _id
         }, {
             $push: {
                 songs: songPush

@@ -8,7 +8,7 @@ const routerTres= express.Router()
 
 routerTres.post("/createPlylist",authVerification,verificarName,createPlaylist)
 routerTres.get("/getPlaylist", authVerification, traerPlaylistId )
-routerTres.put("/updatePlaylist", authVerification, postPlaylist)
+routerTres.put("/updatePlaylist/:_id", authVerification, postPlaylist)
 routerTres.delete("/deletePlaylist/:_id", authVerification, deletePlaylist )
 routerTres.get("/deleteSongPalylist/:_id", authVerification, deleteSongPlaylist)
 routerTres.put("/changeName/:_id", authVerification, changeName)
