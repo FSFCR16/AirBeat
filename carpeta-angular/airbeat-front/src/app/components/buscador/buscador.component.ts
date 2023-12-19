@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
 import { Howl, Howler } from "howler";
+import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
 
 
@@ -16,8 +17,9 @@ import { Router } from '@angular/router';
 export class BuscadorComponent implements OnInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
   enlacesCanciones: string[] = [];
+  valorInput:string=""
   sound: Howl | undefined;
-  datos: any;
+  datos: songs[]= [];
   busqueda: string = '';
   isFocused: boolean = false;
 
@@ -45,23 +47,30 @@ export class BuscadorComponent implements OnInit {
   }
 
   inputChanged(event: Event) {
-    const valorInput = (event.target as HTMLInputElement).value;
-    if(valorInput !== ""){
-      this.buscador.catchSongs(valorInput).subscribe({
-        next: (data: any) => {
+    this.valorInput = (event.target as HTMLInputElement).value;
+    this.router.navigateByUrl(`/search/${encodeURIComponent(this.valorInput)}`);
+
+    if(this.valorInput !== ""){
+      this.buscador.catchSongs(this.valorInput).subscribe({
+        next: (data: songs) => {
           console.log(data)
-          this.datos
-        },
+            if(this.datos.length <= 1){
+              this.datos.pop()
+              this.datos.push(data)
+            }
+          },
         error: (error) => {
           console.log(error);
         },
       });
     }
+    console.log(this.datos)
+
   }
 
   changeColorInput(status: boolean) {
     this.isFocused = status;
-    console.log(this.isFocused)
+
   }
 
 }

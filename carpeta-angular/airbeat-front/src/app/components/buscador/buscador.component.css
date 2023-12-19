@@ -127,3 +127,57 @@ p{
 .text__card{
     color: aliceblue;
 }
+.cont__resultado{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.resultado{
+    display: flex;
+    flex-direction: column;
+    row-gap:20px ;
+    color: aliceblue;
+}
+
+.card__resultado{
+    display: flex;
+    position: relative;
+    width: 60%;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #022626;
+}
+
+.btn_info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #063131;
+    border: none;
+    outline: none;
+    position: absolute;
+    padding: 10px;
+    width: auto;
+    height: 2rem;
+    border-radius: 50px;
+    color: aliceblue;
+    top:45%;
+    left: 33%;
+}
+
+.btn__play{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a7575;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    top: 60%;
+    right: 10%;
+    
+}
