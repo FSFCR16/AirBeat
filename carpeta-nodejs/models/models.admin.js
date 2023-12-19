@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const  collaborationSchema = new mongoose.Schema({
+const colaboracionSchema = new mongoose.Schema({
     number_collaborators: {
         type: Number,
     },
@@ -12,42 +12,16 @@ const  collaborationSchema = new mongoose.Schema({
     _id: false
 });
 
-const albumSchema = new mongoose.Schema({
-
-    track_number: {
-        type: Number,
-        required: true,
-    },
-
-    name_album: {
-        type: String,
-        required: true,
-    },
-    
-    // name_track: {
-    //     type: String,
-    //     required: true,
-    // }
-
-
-}, {
-    _id: false
-});
-
-const SongsSchema = new mongoose.Schema({
-
-    album: albumSchema,
-
+const songSchema = new mongoose.Schema({
     name_track: {
         type: String,
         required: true,
     },
-
     release_date: {
         type: Date,
         required: true,
     },
-    collaboration:  collaborationSchema,
+    collaboration: colaboracionSchema,
     artist: {
         type: String,
     },
@@ -72,13 +46,44 @@ const SongsSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        _id: false
     },
     preview_url: {
         type: String,
         required: true,
         unique: true,
-        
     },
 });
-export const Music = mongoose.model('Songs', SongsSchema);
+
+const albumSchema = new mongoose.Schema({
+    name_album: {
+        type: String,
+        required: true,
+    },
+    release_date: {
+        type: Date,
+        required: true,
+    },
+    explicit: {
+        type: Boolean,
+        required: true,
+    },
+    img_urls: {
+        img_url_640: {
+            type: String,
+            required: true,
+        },
+        img_url_300: {
+            type: String,
+            required: true,
+        },
+        img_url_64: {
+            type: String,
+            required: true,
+        },
+    },
+    songs: [songSchema],
+}, {
+    _id: false
+});
+
+export const Album = mongoose.model('Album', albumSchema);
