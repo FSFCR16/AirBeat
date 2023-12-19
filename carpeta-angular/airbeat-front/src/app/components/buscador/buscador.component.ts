@@ -9,10 +9,11 @@ import { getEnabledCategories } from 'trace_events';
 @Component({
   selector: 'app-buscador',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet,],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css'
 })
+
 export class BuscadorComponent implements OnInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
   enlacesCanciones: string[] = [];
