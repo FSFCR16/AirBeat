@@ -35,8 +35,13 @@ export interface busqueda{
   _id: string,
   userId: string,
   cancionId: string,
+  songArtist:string,
   songName:string,
-  songImage: [string],
+  songImage: [{
+    img_url_64:string,
+    img_url_300:string,
+    img_url_640:string,
+  }],
   date:Date
 }
 @Injectable({
@@ -69,12 +74,22 @@ export class BucadorServiciosService {
 
   saveSongs(songId: string ):Observable<busqueda>{
     const token = localStorage.getItem("key")
-    console.log(token)
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
     return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`,{}, {headers})
   }
-  
+
+  traerHistorial():Observable<[]>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<[]>(`${this.url}historial/traerCanciones`, {headers})
+  }
+
+
+
 }

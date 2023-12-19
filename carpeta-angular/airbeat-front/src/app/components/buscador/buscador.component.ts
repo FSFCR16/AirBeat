@@ -5,7 +5,7 @@ import { BucadorServiciosService } from '../../services/bucador.servicios.servic
 import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
-import { error } from 'console';
+import { busqueda } from '../../services/bucador.servicios.service';
 
 
 @Component({
@@ -23,12 +23,21 @@ export class BuscadorComponent implements OnInit {
   datos: songs[]= [];
   busqueda: string = '';
   isFocused: boolean = false;
+  historial: busqueda[]=[]
 
   constructor(private buscador: BucadorServiciosService, private router: Router) {
   }
 
   ngOnInit(): void {
-
+    this.buscador.traerHistorial().subscribe({
+      next:(data:any)=>{
+        this.historial = data.historial
+        console.log(this.historial)
+      },
+      error: (error)=>{
+        return error
+      }
+    })
   }
 
 
@@ -74,8 +83,8 @@ export class BuscadorComponent implements OnInit {
     this.sound.play();
   }
 
-  async saveHistorial(idSong:string){
-    (await this.buscador.saveSongs(idSong)).subscribe({
+  saveHistorial(idSong:string){
+    this.buscador.saveSongs(idSong).subscribe({
       next: (data)=>{
         console.log(data)
       },
@@ -84,6 +93,8 @@ export class BuscadorComponent implements OnInit {
       }
     })
   }
+
+
 
 }
 
