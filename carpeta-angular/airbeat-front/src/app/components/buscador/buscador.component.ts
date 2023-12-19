@@ -5,6 +5,7 @@ import { BucadorServiciosService } from '../../services/bucador.servicios.servic
 import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
+import { error } from 'console';
 
 
 @Component({
@@ -30,21 +31,6 @@ export class BuscadorComponent implements OnInit {
 
   }
 
-  cargarCancion(url: string): void {
-
-    if (this.sound) {
-      this.sound.stop();
-      this.sound.unload();
-    }
-
-    this.sound = new Howl({
-      src: [url],
-      format: ['mpeg'],
-      preload: true,
-
-    });
-    this.sound.play();
-  }
 
   inputChanged(event: Event) {
     this.valorInput = (event.target as HTMLInputElement).value;
@@ -53,7 +39,6 @@ export class BuscadorComponent implements OnInit {
     if(this.valorInput !== ""){
       this.buscador.catchSongs(this.valorInput).subscribe({
         next: (data: songs) => {
-          console.log(data)
             if(this.datos.length <= 1){
               this.datos.pop()
               this.datos.push(data)
@@ -71,6 +56,33 @@ export class BuscadorComponent implements OnInit {
   changeColorInput(status: boolean) {
     this.isFocused = status;
 
+  }
+
+  cargarCancion(url: string): void {
+
+    if (this.sound) {
+      this.sound.stop();
+      this.sound.unload();
+    }
+
+    this.sound = new Howl({
+      src: [url],
+      format: ['mpeg'],
+      preload: true,
+
+    });
+    this.sound.play();
+  }
+
+  async saveHistorial(idSong:string){
+    (await this.buscador.saveSongs(idSong)).subscribe({
+      next: (data)=>{
+        console.log(data)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
   }
 
 }

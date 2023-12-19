@@ -4,6 +4,7 @@ import dotenv from 'dotenv';  // se llama dotenv que es un modulo que permite us
 import songsrouter from './Routes/routes.canciones.js'; // se llama el archivo de rutas y se importan las funciones
 import userRouter from './Routes/routes.user.js'
 import updateRouter from './Routes/routes.playlists.js'
+import historialRouter from './Routes/routes.busuqedas.js'
 import cors from "cors"
 
 
@@ -16,6 +17,7 @@ app.use(express.json());  // se usa la funcion json de express
 app.use("/songs", songsrouter);  // se usa la funcion use de express para que el servidor use las rutas del archivo de rutas")
 app.use("/user", userRouter )
 app.use("/update", updateRouter)
+app.use("/historial", historialRouter)
 
 
 app.listen(PORT, () => {

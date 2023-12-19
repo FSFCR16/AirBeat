@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { json } from 'stream/consumers';
 
 export interface songs{
   album:{
@@ -29,6 +30,15 @@ interface PlaylistResponse {
   songs: []; // Tipo de datos de las canciones (puede ser más específico)
 }
 
+
+export interface busqueda{
+  _id: string,
+  userId: string,
+  cancionId: string,
+  songName:string,
+  songImage: [string],
+  date:Date
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -55,6 +65,16 @@ export class BucadorServiciosService {
     });
     return this.http.get<any>(`${this.url}songs/getsongsforname/${name_track}`, {headers})
 
+  }
+
+  saveSongs(songId: string ):Observable<busqueda>{
+    const token = localStorage.getItem("key")
+    console.log(token)
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`,{}, {headers})
   }
   
 }

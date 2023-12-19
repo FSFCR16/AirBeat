@@ -11,25 +11,29 @@ const busquedaUser =new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Songs",
         require: true,
-        unique:true
+        unique:false
 
     },
     songName:{
         type: String,
-        require: true
+        require: true,
+        unique:false
     },
     songImage:{
         type: Array,
-        require: true
+        require: true,
+        unique:false
     },
     songArtist:{
         type: String,
         require: true,
-        default: "Unknown"
+        default: "Unknown",
+        unique:false
     },
     date: {
         type:Date,
-        default: Date.now
+        default: Date.now,
+        unique:false
     }
 
 })
