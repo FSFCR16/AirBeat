@@ -4,7 +4,9 @@ p{
 
 .search-cont{
     display: grid;
-    grid-template-rows: 9% 30% auto;
+    grid-template-rows: 9% 34% auto;
+    row-gap: 10px;
+    padding: 10px 20px;
     width: 100%;
     height: 100%;
 
@@ -13,7 +15,8 @@ p{
 .cont__header{
     display: flex;
     justify-content: space-between;
-    padding: 10px
+    align-items: center;
+    height: auto;
 }
 
 .cont__arrows{
@@ -46,7 +49,7 @@ p{
     display: flex;
     align-items:center ;
     column-gap: 10px;
-    height: 100%;
+    height: 3.3rem;
     width: 25rem;
     padding: 15px;
     background-color:#022626; ;
@@ -85,4 +88,42 @@ p{
 
 .cont__user:hover{
     background-color: #032020;
+}
+
+.cont__recientes{
+    display: grid;
+    grid-template-rows: 12% auto;
+    row-gap: 7px;
+    padding:0 22px;
+    padding-right: 30px;
+}
+
+.text_opciones__recientes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
+}
+
+.mostartodo:hover{
+    text-decoration: underline;
+}
+.cont__cards{
+    display: grid;
+    grid-template-columns: repeat(6, 16.7%);
+    background-color: #022626;
+    border-radius: 8px;
+}
+
+.cards{
+    display: grid;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #063131;    
+    row-gap: 10px;
+}
+.text__card{
+    color: aliceblue;
 }

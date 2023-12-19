@@ -15,26 +15,29 @@ export const SongsPost = async (req, res) => {
 export const SongsGet = async (req, res) => {
   try {
     const Songs = await Music.find();
-    res.json(Songs);
+     return res.json(Songs);
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener la lista de canciones' });
+    return res.status(500).json({ error: 'Error al obtener la lista de canciones' });
   }
 };
 
 export const findSongByName = async (req, res) => {
   try {
-    const {name_track} = req.params;
+    const name_track = req.params.name_track;
     console.log(name_track)
-    const song = await Music.findOne({ name_track: name_track });
-    console.log(song);
+    const regex = new RegExp(name_track, 'i');
+    console.log(regex)
+    const song = await Music.findOne({ name_track: { $regex: regex } });
+
+
     if (song) {
-      res.json(song);
+      return res.status(200).json(song);
     } else {
-      res.status(404).json({ error: 'Canción no encontrada' });
+      return res.status(404).json({ error: 'Canción no encontrada' });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error en el servidor' });
+
+    return res.status(500).json({ error: 'Error en el servidor' });
   }
 };
 export const findSongsByAlbum = async (req, res) => {// no funciona 

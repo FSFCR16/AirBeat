@@ -11,7 +11,7 @@
             </section>
             <section class="cont__input" [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }">
                 <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-                <input class="input__in__cont" (focus)="changeColorInput(true)" (blur)="changeColorInput(false)" type="text" placeholder="¿Que deseas escuchar?">
+                <input class="input__in__cont" [value]="busqueda" (keyup)="inputChanged($event)" (focus)="changeColorInput(true)" (blur)="changeColorInput(false)" type="text" placeholder="¿Que deseas escuchar?">
             </section>
         </article>
         <article class="cont__user">
@@ -21,14 +21,18 @@
             <p style="color: #ffffff;">Name User</p>
         </article>
     </header>
-    <section>
-        <article>
-            <h3></h3>
-            <p></p>
+    <section class="cont__recientes">
+        <article class="text_opciones__recientes">
+            <h4 style="cursor: default;">Busquedas recientes</h4>
+            <p class="mostartodo" style="cursor: pointer;">Mostrar todo</p>
         </article>
-        <article>
-            <section>
-
+        <article class="cont__cards">
+            <section class="cards">
+                <img style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="https://i1.sndcdn.com/artworks-RbWV7gC4Iv71-0-t500x500.jpg" alt="">
+                <article class="text__card">
+                    <p style="font-size: 19px; font-weight: bold;">Monaco</p>
+                    <p style="font-size:14px ;">bad bunny</p>
+                </article>
             </section>
         </article>
     </section>

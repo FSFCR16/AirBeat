@@ -13,7 +13,7 @@ interface PlaylistResponse {
 export class BucadorServiciosService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://127.0.0.1:3000/update'
+  private url = 'http://127.0.0.1:3000/'
 
   traerCanciones():Observable<PlaylistResponse>{
     const token = localStorage.getItem("key")
@@ -22,6 +22,17 @@ export class BucadorServiciosService {
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.get<PlaylistResponse>(`${this.url}/getPlaylist`, {headers})
+    return this.http.get<PlaylistResponse>(`${this.url}update/getPlaylist`, {headers})
   }
+
+  catchSongs(name_track: string):Observable<any>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<any>(`${this.url}songs/getsongsforname/${name_track}`, {headers})
+
+  }
+  
 }

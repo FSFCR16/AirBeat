@@ -24,7 +24,8 @@ const busquedaUser =new mongoose.Schema({
     },
     songArtist:{
         type: String,
-        require: true
+        require: true,
+        default: "Unknown"
     },
     date: {
         type:Date,

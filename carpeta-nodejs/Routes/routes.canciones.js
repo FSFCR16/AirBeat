@@ -15,8 +15,8 @@ import { cancionEnLaBase } from '../middleware/idCancion.middlewere.js';
 
 const router = express.Router();
 router.post('/postsongs', songIn, SongsPost);
-router.get('/getsongsmassive',SongsGet);
-router.get('/getsongsforname/:name_track/:_id', findSongByName);
+router.get('/getsongsmassive',authVerification,SongsGet);
+router.get('/getsongsforname/:name_track', findSongByName);
 router.get('/getlbum/:name_album/:_id',authVerification, cancionEnLaBase ,historial, findSongsByAlbum ); // no funciona
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
