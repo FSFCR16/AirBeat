@@ -28,7 +28,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #063131;
+  background-color: #262473;
   border-radius: 7px;
   row-gap: 20px;
 }
@@ -43,13 +43,13 @@ p {
   cursor: pointer;
   border-radius: 5px;
   padding: 0 10px;
-  background-color: #022626;
+  background-color: #393785;
 }
 
 .inpu__in {
   height: 2.5rem;
   color: aliceblue;
-  background-color: #022626;
+  background-color: #393785;
   border: none;
   outline: none;
 
@@ -69,13 +69,13 @@ p {
   justify-content: center;
   align-items: center;
   column-gap: 5px;
-  background-color: #022626;
+  background-color: #393785;
 
 }
 
 .button {
   font-size: 19px;
-  background-color: #022626;
+  background-color: #393785;
   color: aliceblue;
   border: none;
   outline: none;
@@ -88,7 +88,7 @@ p {
   display: grid;
   grid-template-rows: 13% auto;
   border-radius: 7px;
-  background-color: #063131;
+  background-color: #262473;
   padding: 15px;
 }
 
@@ -108,7 +108,7 @@ p {
 }
 
 .cont__gen_opcion {
-  background-color: #022626;
+  background-color: #393785;
   padding: 10px;
   border-radius: 7px;
 }
@@ -125,7 +125,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #022626;
+  background-color: #393785;
   border-radius: 20px;
   height: 2rem;
   width: 5rem;
@@ -134,7 +134,7 @@ p {
 }
 
 .cont__categorias:hover {
-  background-color: #032020;
+  background-color: #1c1a4d;
 }
 
 .cont__input__dos {
@@ -165,7 +165,7 @@ p {
 }
 
 .contendor__card:hover {
-  background-color: #032020;
+  background-color: #1c1a4d;
 }
 
 p {
@@ -214,4 +214,3 @@ p {
       row-gap: 5px;
     }
   }
-  

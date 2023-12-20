@@ -11,10 +11,11 @@ import { busqueda } from '../../services/bucador.servicios.service';
 @Component({
   selector: 'app-buscador',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet,],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css'
 })
+
 export class BuscadorComponent implements OnInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
   enlacesCanciones: string[] = [];
@@ -47,7 +48,7 @@ export class BuscadorComponent implements OnInit {
 
     if(this.valorInput !== ""){
       this.buscador.catchSongs(this.valorInput).subscribe({
-        next: (data: songs) => {
+        next: (data: any) => {
             if(this.datos.length <= 1){
               this.datos.pop()
               this.datos.push(data)

@@ -11,6 +11,11 @@ p{
     height: 100%;
 
 }
+.cont{
+    display: flex;
+    align-items: center;
+
+}
 
 .cont__header{
     display: flex;
@@ -38,10 +43,10 @@ p{
     width: 2.2rem;
     border: none;
     outline: none;
-    background-color:#022626;
+    background-color:#393785;
 }
 .btn__in:hover{
-    background-color: #032020;
+    background-color: #1f1e47;
 }
 
 
@@ -52,7 +57,7 @@ p{
     height: 3.3rem;
     width: 25rem;
     padding: 15px;
-    background-color:#022626; ;
+    background-color:#393785; 
     border-radius: 25px;
 }
 
@@ -62,7 +67,7 @@ p{
     overflow: hidden;
     white-space: nowrap;
     color: aliceblue;
-    background-color: #022626;
+    background-color: #393785;
     border: none;
     outline: none;
     font-size: 17px;
@@ -79,7 +84,7 @@ p{
     top: 6px;
     column-gap: 2px;
     border-radius: 30px;
-    background-color: #022626;
+    background-color: #393785;
     padding: 10px;
     padding-right: 20px;
     height: 2.6rem;
@@ -87,7 +92,7 @@ p{
 }
 
 .cont__user:hover{
-    background-color: #032020;
+    background-color: #1f1e47;
 }
 
 .cont__recientes{
@@ -111,7 +116,7 @@ p{
 .cont__cards{
     display: grid;
     grid-template-columns: repeat(6, 16.7%);
-    background-color: #022626;
+    background-color: #393785;
     border-radius: 8px;
     
 
@@ -124,7 +129,7 @@ p{
     padding: 10px;
     margin: 10px;
     width: 90%;
-    background-color: #063131;    
+    background-color: #262473;    
     row-gap: 10px;
 }
 .text__card{
@@ -149,14 +154,14 @@ p{
     flex-direction: column;
     padding: 20px;
     border-radius: 10px;
-    background-color: #022626;
+    background-color: #393785;
 }
 
 .btn_info{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #063131;
+    background-color: #262473;
     border: none;
     outline: none;
     position: absolute;
@@ -174,7 +179,7 @@ p{
     position: absolute;
     justify-content: center;
     align-items: center;
-    background-color: #0a7575;
+    background-color: #121050;
     width: 3rem;
     height: 3rem;
     border-radius: 50px;

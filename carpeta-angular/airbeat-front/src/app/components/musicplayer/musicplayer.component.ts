@@ -19,10 +19,13 @@ export class MusicplayerComponent implements OnInit {
   duracion:string | undefined;
   duracionseg:number | undefined;
   valuetest:number | undefined;
+  songName:string="Titi Me Pregunto";
+  public artista:string="Bad Bunny";
   public displayNone = false
   sound= new Howler.Howl({
-    src: ['https://p.scdn.co/mp3-preview/d7fc61d223ebd1a29138956f512fd24301ea9ebb?cid=a6414b779b224dd792a7db2096907732'],
-    format: ['mpeg']
+    src: ['https://p.scdn.co/mp3-preview/53a6217761f8fdfcff92189cafbbd1cc21fdb813?cid=a6414b779b224dd792a7db2096907732'],
+    format: ['mpeg'],
+    volume: 0.4
   })
 
   formatTime(secs:number) {
@@ -51,7 +54,7 @@ export class MusicplayerComponent implements OnInit {
     this.displayNone = !this.displayNone;
     setInterval(() => {
       this.step();
-    }, 1);
+    }, 10);
   }
 
   stopMusic(){
