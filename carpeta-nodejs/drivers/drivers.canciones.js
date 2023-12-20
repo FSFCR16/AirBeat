@@ -157,7 +157,7 @@ export const findgeneral = async (req, res) => {
         { 'album.name_album': { $regex: new RegExp(general, 'i') } },
         { name_track: { $regex: new RegExp(general, 'i') } }
       ]
-    });
+    }).limit(4);
     if (contenido.length > 0) {
       return res.json(contenido);
     } else {
