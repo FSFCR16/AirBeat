@@ -6,6 +6,7 @@ import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
 import { busqueda } from '../../services/bucador.servicios.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,10 +19,12 @@ import { busqueda } from '../../services/bucador.servicios.service';
 
 export class BuscadorComponent implements OnInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
+  private busquedaSubscription: Subscription | undefined;
   enlacesCanciones: string[] = [];
   valorInput:string=""
   sound: Howl | undefined;
   datos: songs[]= [];
+  secundarias :songs[] =[]
   busqueda: string = '';
   isFocused: boolean = false;
   historial: busqueda[]=[]
@@ -46,20 +49,25 @@ export class BuscadorComponent implements OnInit {
     this.valorInput = (event.target as HTMLInputElement).value;
     this.router.navigateByUrl(`/search/${encodeURIComponent(this.valorInput)}`);
 
-    if(this.valorInput !== ""){
-      this.buscador.catchSongs(this.valorInput).subscribe({
-        next: (data: any) => {
-            if(this.datos.length <= 1){
-              this.datos.pop()
-              this.datos.push(data)
-            }
-          },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+    if (this.busquedaSubscription) {
+      this.busquedaSubscription.unsubscribe();
     }
-    console.log(this.datos)
+
+    // Realizar la búsqueda después de 500ms de inactividad del usuario
+    setTimeout(() => {
+      if (this.valorInput !== '') {
+        this.busquedaSubscription = this.buscador.catchSongs(this.valorInput).subscribe({
+          next: (data: any) => {
+            this.datos = [data[0]];
+            this.secundarias = data
+            console.log(this.datos, this.secundarias)
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
+      }
+    }, 500);
 
   }
 
