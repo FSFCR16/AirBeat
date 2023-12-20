@@ -8,77 +8,18 @@
     background: #001c43;
     overflow-x: hidden;
 }
-p{
-    margin: 0;
-}
 .search-cont{
     background-color:#393785 ;
-    display: grid;
-    grid-template-rows: 7% auto;
     margin-top: 7px;
     margin-right: 14px;
     border-radius: 10px;
     row-gap: 10px;
     width: auto;
-    padding: 18px;
     height: 86.3vh;
 
 }
-.cont{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
 
-}
-
-.cont__header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: auto;
-}
-
-.cont__arrows{
-    display: flex;
-    column-gap: 10px;
-    align-items: center;
-}
-.cont__btn{
-    display: flex;
-    column-gap: 4px;
-}
-
-.btn__in{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    height: 2.2rem;
-    width: 2.2rem;
-    border: none;
-    outline: none;
-    background-color:#18165f;
-}
-.btn__in:hover{
-    background-color: #1f1e47;
-}
-.cont__user{
-    display: flex;
-    align-items: center;
-    position: relative;
-    column-gap: 2px;
-    border-radius: 30px;
-    background-color: #141249;
-    padding: 10px;
-    padding-right: 20px;
-    height: 2.6rem;
-    cursor: pointer;
-}
-
-.cont__user:hover{
-    background-color: #1f1e47;
-}
 .contendor__navbar{
     width: auto;
     height: 86.3vh;
