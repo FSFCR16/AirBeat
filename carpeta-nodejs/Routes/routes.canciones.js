@@ -33,7 +33,7 @@ router.delete('/delete/id/:_id', SongsDelete);
 router.put('/songs/edit:_id', editSongById);
 router.post('/postsongs', songIn, SongsPost);
 router.get('/getsongsmassive',authVerification,SongsGet);
-router.get('/getsongsforname/:name_track', findSongByName);
+router.get('/getsongsforname/:name_track', authVerification, findSongByName);
 router.get('/getlbum/:name_album/:_id',authVerification, cancionEnLaBase ,historial, findSongsByAlbum ); // no funciona
 router.delete('/deletesongsforname', SongsDeletename);
 router.delete('/deletesongsforid', SongsDelete);
