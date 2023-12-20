@@ -2,12 +2,21 @@
     display: grid;
     height: 100vh;
     padding-right: 7px;
-    column-gap: 11px;
-    grid-template-columns: 18.5% auto;
+    grid-template-columns: 19.5% auto;
     grid-template-rows: 87.5% auto;
+    column-gap: 8px;
     background-color: #022626;
+    overflow-x: hidden;
+}
+
+.contendor__navbar{
+    width: auto;
+    height: 86.3vh;
 }
 .footer{
     grid-row: 2/3;
     grid-column: 1/3;
 }
+
+
+
