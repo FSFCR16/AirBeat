@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 export const authVerification = (request, response, next) => {
 
     try {
+        console.log(request.headers.authorization)
         if (!request.headers.authorization) {
             return response.json({ error: 'Debes enviar un token de autenticación' })
         }

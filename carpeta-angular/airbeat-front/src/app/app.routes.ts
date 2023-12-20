@@ -11,6 +11,7 @@ import { AlbumPageComponent } from './pages/album-page/album-page.component';
 export const routes: Routes = [
     {path: "login-page", component: LoginPageComponent},
     {path: "search", component: BuscadorPageComponent},
+    {path: 'search/:cancion', component: BuscadorPageComponent},
     {path: "playlist", component: PlaylistPageComponent},
     {path: "admin", component: VistaAdminPageComponent},
     {path: "home", component: VistaPrincipalPageComponent},

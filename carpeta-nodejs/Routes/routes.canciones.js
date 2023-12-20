@@ -32,6 +32,11 @@ router.delete('/delete/name/:name_track', SongsDeletename);
 router.delete('/delete/id/:_id', SongsDelete); 
 router.put('/songs/edit:_id', editSongById);
 router.post('/postsongs', songIn, SongsPost);
-
+router.get('/getsongsmassive',authVerification,SongsGet);
+router.get('/getsongsforname/:name_track', findSongByName);
+router.get('/getlbum/:name_album/:_id',authVerification, cancionEnLaBase ,historial, findSongsByAlbum ); // no funciona
+router.delete('/deletesongsforname', SongsDeletename);
+router.delete('/deletesongsforid', SongsDelete);
+//filtro de explicit,busqueda por artista,genero
 
 export default router;

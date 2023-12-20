@@ -17,7 +17,7 @@ export const createPlaylist = async (req, res) => {
 
         const playlist = new playlists({
             userId,
-            namePlaylist:body
+            namePlaylist: body
         });
         console.log()
 
@@ -33,7 +33,7 @@ export const createPlaylist = async (req, res) => {
 
 export const postPlaylist = async (req, res) => {
     try {
-        const idUser = req.user._id
+        const _id = req.params._id
         const song = req.body._id
 
         const songPush = await Music.findOne({
@@ -47,7 +47,7 @@ export const postPlaylist = async (req, res) => {
         }
 
         const playlist = await playlists.findOneAndUpdate({
-            userId: idUser
+            _id: _id
         }, {
             $push: {
                 songs: songPush
@@ -76,14 +76,20 @@ export const traerPlaylistIdUser = async (req, res) => {
             idUser: idUser,
         })
 
-        if(!playlist){
-            return res.status(404).json({error: "Esta persona no tiene ninguna playlist"})
+        if (!playlist) {
+            return res.status(404).json({
+                error: "Esta persona no tiene ninguna playlist"
+            })
         }
 
-        return res.status(200).json({message: playlist})
+        return res.status(200).json({
+            message: playlist
+        })
 
-    }catch(e){
-        res.status(500).json({err: e})
+    } catch (e) {
+        res.status(500).json({
+            err: e
+        })
     }
 
 }
@@ -92,16 +98,22 @@ export const traerPlaylistId = async (req, res) => {
     try {
         const idUser = req.user._id
 
-        const playlist =await playlists.find({userId: idUser})
+        const playlist = await playlists.find({
+            userId: idUser
+        })
 
-        if(!playlist){
-            return res.status(404).json({error: "Playlist no encontarda"})
+        if (!playlist) {
+            return res.status(404).json({
+                error: "Playlist no encontarda"
+            })
         }
 
         return res.status(200).json(playlist)
 
-    }catch(e){
-        res.status(500).json({err: e})
+    } catch (e) {
+        res.status(500).json({
+            err: e
+        })
     }
 
 }
@@ -166,4 +178,35 @@ export const deleteSongPlaylist = async (req, res) => {
             error: e
         })
     }
+}
+
+export const changeName = async (req, res) => {
+    try {
+        const idPlaylist = req.params._id
+        const newName = req.body.namePlaylist
+
+        const newNamePlaylist = await playlists.findOneAndUpdate({
+            _id: idPlaylist
+        }, {
+            namePlaylist: newName
+        }, {
+            new: true,
+        })
+
+        if (newNamePlaylist) {
+            return res.status(200).json({
+                message: "Nombre actulizado"
+            })
+        }else{
+            return res.status(409).json({message: "No se encontro ninguna playlist"})
+        }
+
+    }catch(e){
+
+        if(e.codeName == "DuplicateKey"){
+            return res.status(500).json({error:e.codeName, message: "Ya tienes una playlist con este nombre, intenta algo nuevo"})
+        }
+
+    }
+
 }
