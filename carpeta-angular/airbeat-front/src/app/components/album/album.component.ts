@@ -9,5 +9,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './album.component.css'
 })
 export class AlbumComponent {
-
+  albumImg = "https://i.scdn.co/image/ab67616d0000b27328f61734580994bdf0819891"
+  tracks=[
+    {
+      name:"Whatever",
+      artist:"Test Artist",
+    },{
+      name:"Chasing The Drum",
+      artist:"Yussef Dayes",
+    },{
+      name:"Whatever",
+      artist:"Test Artist",
+    }
+  ]
 }
