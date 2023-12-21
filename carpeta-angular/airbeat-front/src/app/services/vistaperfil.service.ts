@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './create-user.service';
 
 @Injectable({
@@ -11,13 +11,14 @@ export class usuarioService {
   constructor(private http: HttpClient) { }
   private apiUrl = 'http://127.0.0.1:3000/user'
 
-  obtenerUsuario(_id:string): Observable<any> {
+  obtenerUsuario(): Observable<any> {
     const token = localStorage.getItem('key');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `key ${token}`
+      'Authorization': `key ${token}`,
     });
-    return this.http.get<any>(`${this.apiUrl}/getuser/${_id}`, { headers });
+
+    return this.http.get<any>(`${this.apiUrl}/getuser`, { headers });
   }
 
   editUser(userFormData: User): Observable<any> {
@@ -27,7 +28,7 @@ export class usuarioService {
       'Authorization': `key ${token}`
     });
 
-    return this.http.put<any>(`${this.apiUrl}/editUser`,JSON.stringify({userFormData}), { headers });
+    return this.http.put<any>(`${this.apiUrl}/editUser`, JSON.stringify({ userFormData }), { headers });
   }
 }
 

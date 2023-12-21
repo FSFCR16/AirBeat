@@ -5,6 +5,7 @@ import { InputsComponent } from './inputs/inputs.component';
 import { usuarioService } from '../../services/vistaperfil.service';
 import { User } from '../../services/create-user.service';
 import { FormControl, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { response } from 'express';
 
 @Component({
   selector: 'app-perfil',
@@ -13,7 +14,8 @@ import { FormControl, ReactiveFormsModule, FormGroup, FormBuilder } from '@angul
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
-export class PerfilComponent  {
+export class PerfilComponent implements OnInit {
+  usuario: any = {};
 
   @ViewChild("infoRegistro") infoRegistro!: ElementRef
 
@@ -29,9 +31,34 @@ export class PerfilComponent  {
       password: [{ value: '', disabled: this.formularioDesactivado }],
     });
   }
+  ngOnInit(): void {
+    this.obtenerUsuario();
+  }
+
+  obtenerUsuario(): void {
+    this.usuarioService.obtenerUsuario().subscribe(
+      (data) => {
+        this.usuario = data;
+        console.log(data)
+        
+      },
+      (error) => {
+        if (error.status === 404) {
+         
+          console.error('Usuario no encontrado:', error);
+        } else if (error.status === 500) {
+         
+          console.error('Error del servidor:', error);
+        } else {
+        
+          console.error('Error al obtener usuario:', error);
+        }
+      }
+    );
+  }
 
   editarUsuario() {
-  
+
     this.formularioDesactivado = !this.formularioDesactivado;
     if (this.formularioDesactivado) {
       this.updateForm.disable();
@@ -47,11 +74,11 @@ export class PerfilComponent  {
       next: (user) => {
         console.log(user);
         console.log('edición exitosa:');
-        
+
       },
       error: (error) => {
         console.error('Error al editar usuario:', error);
-      
+
       }
     });
   }
@@ -65,4 +92,7 @@ export class PerfilComponent  {
     }
     return camposLlenos;
   }
+
+
+
 }

@@ -10,7 +10,7 @@ routerUser.get("/getUserByEmail/:email", authVerification, getUserByEmail)
 routerUser.get("/getUserByUsername/:userName", getUserByUsername)
 routerUser.delete("/deleteUser/:_id", deleteUserById)
 routerUser.put("/editUser",authVerification, edituserById)
-routerUser.get("/getuser/:_id", finduserByID)
+routerUser.get("/getuser", authVerification, finduserByID)
 
 
 export default routerUser

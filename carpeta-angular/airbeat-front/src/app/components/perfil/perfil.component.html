@@ -4,16 +4,16 @@
             <img class="imgperfil"
                 src="https://static.vecteezy.com/system/resources/previews/009/734/564/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"
                 alt="foto de perfil ">
-            <h1 style="color: #fff;"> Hola! user1233455</h1>
+            <h1 style="color: #fff;"> Hola! {{ usuario.name }}</h1>
         </section>
         <section class="datousuario">
             <div class="column grow">
-                <p> <strong>Nombre:</strong> {{ updateForm.get('name')?.value }}</p>
-                <p> <strong>Apellido:</strong> {{ updateForm.get('lastname')?.value }} </p>
+                <p> Nombre: {{ usuario.name }}</p>
+                <p> Apellido: {{ usuario.lastname }} </p>
             </div>
             <div class="column grow">
-                <p> <strong>Teléfono:</strong> {{ updateForm.get('telefono')?.value }} </p>
-                <p> <strong>Correo:</strong> {{ updateForm.get('email')?.value }}</p>
+                <p> Teléfono: {{ usuario.telefono }}</p>
+                <p> Correo:{{ usuario.email }}</p>
             </div>
             <div style="display: flex;" class="olumn shrink">
                 <button (click)="editarUsuario()" style="justify-content: center; align-items: center; border: none;
