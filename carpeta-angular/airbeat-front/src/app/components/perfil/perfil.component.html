@@ -1,26 +1,49 @@
 <section class="contedorperfil">
+    <section style="display: flex; border-bottom: 2px solid #022626">
+        <section class=" perfilup">
+            <img class="imgperfil"
+                src="https://static.vecteezy.com/system/resources/previews/009/734/564/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+                alt="foto de perfil ">
+            <h1 style="color: #fff;"> Hola! user1233455</h1>
+        </section>
+        <section class="datousuario">
+            <div class="column grow">
+                <p> <strong>Nombre:</strong> {{ updateForm.get('name')?.value }}</p>
+                <p> <strong>Apellido:</strong> {{ updateForm.get('lastname')?.value }} </p>
+            </div>
+            <div class="column grow">
+                <p> <strong>Teléfono:</strong> {{ updateForm.get('telefono')?.value }} </p>
+                <p> <strong>Correo:</strong> {{ updateForm.get('email')?.value }}</p>
+            </div>
+            <div style="display: flex;" class="olumn shrink">
+                <button (click)="editarUsuario()" style="justify-content: center; align-items: center; border: none;
+                outline: none;
+                border-radius: 15px;
+                width: 100%;
+                height: 5vh;
+                color: #fff;
+                font-size: 16px;
+                transform: .3s ease;
+                margin: 2px;
+                background-color: #00bfff;">Editar</button>
+            </div>
 
-    <section class=" perfilup">
-        <img class="imgperfil" src="https://static.vecteezy.com/system/resources/previews/009/734/564/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt="foto de perfil ">
-        <h1 style="color: #fff;">user1233455</h1>
+        </section>
+
+
     </section>
     <section class="secdw">
-        <form class="form">
-            <h3 class="message">Edita tus datos facilmente. </h3>
-            <label for="recipient-name">Nombre:</label>
-            <input type="text" name="nombre" value="Juan Pérez">
-            <label for="recipient-name">Apelldo:</label>
-            <input type="text" name="apellido" value="García">
-            <label for="recipient-name">Correo:</label>
-            <input type="email" name="correo" value="juan.perez@example.com">
-            <label for="recipient-name">Nueva contraseña:</label>
-            <input type="password" name="contraseña" value="123456">
-            <section style="display: flex; margin-top: 8px;">
-                <button class="submit">Aceptar Cambios </button>
-                <button class="submit">Descartar </button>
-            </section>
 
+        <form [formGroup]="updateForm" (submit)="editarusuario()">
+            <h2 class="message">Edita tus datos Facilmente </h2>
+            <input class="input" type="text" placeholder="Nombre" formControlName="name">
+            <input class="input" type="text" placeholder="Apellido" formControlName="lastname">
+            <input class="input" type="text" placeholder="Telefono" formControlName="telefono">
+            <input class="input" type="text" placeholder="Email" formControlName="email">
+            <input class="input" type="text" placeholder="Password" formControlName="password">
+            <button class="submit" type="submit" [disabled]="formularioDesactivado">Registrase </button>
         </form>
+
         <section class="temasderecha">
             <h2>Preguntas frecuentes </h2>
             <ul>
