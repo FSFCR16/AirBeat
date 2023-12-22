@@ -16,6 +16,8 @@ import { response } from 'express';
 })
 export class PerfilComponent implements OnInit {
   usuario: any = {};
+  alert: boolean = false;
+  alerterror: boolean = false;
 
   @ViewChild("infoRegistro") infoRegistro!: ElementRef
 
@@ -40,17 +42,17 @@ export class PerfilComponent implements OnInit {
       (data) => {
         this.usuario = data;
         console.log(data)
-        
+
       },
       (error) => {
         if (error.status === 404) {
-         
+
           console.error('Usuario no encontrado:', error);
         } else if (error.status === 500) {
-         
+
           console.error('Error del servidor:', error);
         } else {
-        
+
           console.error('Error al obtener usuario:', error);
         }
       }
@@ -68,15 +70,18 @@ export class PerfilComponent implements OnInit {
   }
 
   async editarusuario() {
+
     const camposLlenos = this.obtenerCamposLlenos(this.updateForm.value);
 
     const respuesta = await this.usuarioService.editUser(camposLlenos).subscribe({
       next: (user) => {
         console.log(user);
-        console.log('edición exitosa:');
-
+        this.alert = true;
+        setTimeout(()=>{this.alert = false;},1900);
       },
       error: (error) => {
+        this.alerterror = true;
+        setTimeout(()=>{this.alerterror = false;},1900);
         console.error('Error al editar usuario:', error);
 
       }
