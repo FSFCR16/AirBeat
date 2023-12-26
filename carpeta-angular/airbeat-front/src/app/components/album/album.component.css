@@ -2,7 +2,10 @@
     background-color: #262473;
     padding: 10px;
     border-radius: 5px;
+    height: 70vh;
+    overflow-x: hidden;
 }
+
 .list-group-item{
     background-color:transparent;
     color: white;

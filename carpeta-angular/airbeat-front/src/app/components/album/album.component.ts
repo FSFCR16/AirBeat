@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
 
 @Component({
   selector: 'app-album',
@@ -8,18 +9,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './album.component.html',
   styleUrl: './album.component.css'
 })
-export class AlbumComponent {
-  albumImg = "https://i.scdn.co/image/ab67616d0000b27328f61734580994bdf0819891"
-  tracks=[
-    {
-      name:"Whatever",
-      artist:"Test Artist",
-    },{
-      name:"Chasing The Drum",
-      artist:"Yussef Dayes",
-    },{
-      name:"Whatever",
-      artist:"Test Artist",
-    }
-  ]
+export class AlbumComponent implements OnInit {
+  tracks:songs[]=[]
+  imgAlb:string=""
+  constructor(private album:BucadorServiciosService){
+
+  }
+  
+  ngOnInit(): void {
+    const nomAlbum="Manzanas a la Vuelta"
+    this.album.getAlbum(nomAlbum).subscribe({
+      next:(data)=>{
+        this.tracks=data
+        this.imgAlb=data[0].img_urls.img_url_300
+        console.log(this.tracks)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+  }
 }
