@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { json } from 'stream/consumers';
 
 export interface songs{
@@ -52,6 +52,7 @@ export class BucadorServiciosService {
 
   constructor(private http: HttpClient) { }
   private url = 'http://127.0.0.1:3000/'
+  private informacionCompartidaSubject = new Subject<any>();
 
   traerCanciones():Observable<PlaylistResponse>{
     const token = localStorage.getItem("key")
@@ -89,6 +90,14 @@ export class BucadorServiciosService {
       "authorization": `key ${token}`
     });
     return this.http.get<[]>(`${this.url}historial/traerCanciones`, {headers})
+  }
+
+  guardarInformacion(cancion: any) {
+    this.informacionCompartidaSubject.next(cancion);
+  }
+
+  obtenerInformacion(): Observable<any> {
+    return this.informacionCompartidaSubject.asObservable();
   }
 
 

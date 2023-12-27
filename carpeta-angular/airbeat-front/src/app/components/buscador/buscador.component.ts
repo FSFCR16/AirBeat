@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
@@ -60,7 +60,6 @@ export class BuscadorComponent implements OnInit {
           next: (data: any) => {
             this.datos = [data[0]];
             this.secundarias = data
-            console.log(this.datos, this.secundarias)
           },
           error: (error) => {
             console.log(error);
@@ -76,20 +75,8 @@ export class BuscadorComponent implements OnInit {
 
   }
 
-  cargarCancion(url: string): void {
-
-    if (this.sound) {
-      this.sound.stop();
-      this.sound.unload();
-    }
-
-    this.sound = new Howl({
-      src: [url],
-      format: ['mpeg'],
-      preload: true,
-
-    });
-    this.sound.play();
+  cargarCancion(url: any): void {
+    this.buscador.guardarInformacion(url);
   }
 
   saveHistorial(idSong:string){
