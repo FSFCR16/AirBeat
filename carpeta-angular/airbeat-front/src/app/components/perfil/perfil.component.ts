@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit {
   usuario: any = {};
   alert: boolean = false;
   alerterror: boolean = false;
+  alertgeneral: boolean = false;
 
   @ViewChild("infoRegistro") infoRegistro!: ElementRef
 
@@ -42,17 +43,16 @@ export class PerfilComponent implements OnInit {
       (data) => {
         this.usuario = data;
         console.log(data)
-
       },
       (error) => {
         if (error.status === 404) {
-
-          console.error('Usuario no encontrado:', error);
+          this.alertgeneral = true;
+          console.error('Usuario no encontrado 404:', error);
         } else if (error.status === 500) {
-
-          console.error('Error del servidor:', error);
+          this.alertgeneral = true;
+          console.error('Error del servidor 500:', error);
         } else {
-
+          this.alertgeneral = true;
           console.error('Error al obtener usuario:', error);
         }
       }
@@ -60,7 +60,6 @@ export class PerfilComponent implements OnInit {
   }
 
   editarUsuario() {
-
     this.formularioDesactivado = !this.formularioDesactivado;
     if (this.formularioDesactivado) {
       this.updateForm.disable();
@@ -68,11 +67,8 @@ export class PerfilComponent implements OnInit {
       this.updateForm.enable();
     }
   }
-
   async editarusuario() {
-
     const camposLlenos = this.obtenerCamposLlenos(this.updateForm.value);
-
     const respuesta = await this.usuarioService.editUser(camposLlenos).subscribe({
       next: (user) => {
         console.log(user);
@@ -83,7 +79,6 @@ export class PerfilComponent implements OnInit {
         this.alerterror = true;
         setTimeout(()=>{this.alerterror = false;},1900);
         console.error('Error al editar usuario:', error);
-
       }
     });
   }
@@ -98,6 +93,10 @@ export class PerfilComponent implements OnInit {
     return camposLlenos;
   }
 
-
+  recargarPagina() {
+   
+    // location.reload(); es para volcer al inicio de la pagina
+    window.location.reload();
+  }
 
 }

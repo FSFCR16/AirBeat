@@ -1,4 +1,4 @@
-<section class="contedorperfil">
+<section *ngIf="!alertgeneral" class="contedorperfil">
     <section style="display: flex; border-bottom: 2px solid #022626">
         <section class=" perfilup">
             <img class="imgperfil"
@@ -8,7 +8,7 @@
         </section>
         <section style="display: flex;" class="datousuario">
             <div>
-                <h4 style="color: rgba(233, 230, 230, 0.7);; font-size: 18px; margin-top: 5px;">Tus datos: </h4>
+                <h4 style="color: rgba(233, 230, 230, 0.7); font-size: 18px; margin-top: 5px;">Tus datos: </h4>
                 <p> Nombre: {{ usuario.name }}</p>
                 <p> Apellido: {{ usuario.lastname }} </p>
             </div>
@@ -71,16 +71,19 @@
                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                 </svg>
 
-                <p style=" font-size: 18px; margin-left: 10px;margin-top: 4px; color: #1fb647;">Actualizacion exitosa
+                <p style="font-weight: bold; font-size: 18px; margin-left: 10px;margin-top: 4px; color: #1fb647;">Actualizacion exitosa
                 </p>
 
             </div>
             <div *ngIf="alerterror" style="display: flex;">
-                <svg style="height: 5vh; width: auto; color:rgb(197, 4, 4)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
-                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                  </svg>
+                <svg style="height: 5vh; width: auto; color:rgb(197, 4, 4)" xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+                </svg>
 
-                <p style=" font-size: 18px; margin-left: 10px;margin-top: 4px; color:rgb(197, 4, 4);">Error al actualizar
+                <p style=" font-size: 18px; margin-left: 10px;margin-top: 4px; font-weight: bold; color:rgb(197, 4, 4);">Error al
+                    actualizar
                 </p>
 
             </div>
@@ -98,4 +101,39 @@
         </section>
     </section>
 
+
 </section>
+
+
+<div *ngIf="alertgeneral" style="display:flex; flex-direction: column;  padding: 15vh;">
+    <section style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center;">
+            <svg style="height: 20vh; width: auto; color: #fff; margin: 8px;" xmlns="http://www.w3.org/2000/svg"
+                width="16" height="16" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path
+                    d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708m-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+            </svg>
+            <h5 style="color: #fff;">Oh no, parece que algo no marcha bien</h5>
+            <div class="container mt-4">
+                <ul style="color: #fff;">
+                    <li class="list-group-item">Contactanos para obtener más información:<a
+                            href="mailto:support@airbeat.com">support-airbeat</a></li>
+                    <li class="list-group-item">Por favor revisa tu conexión a Internet</li>
+                    <li class="list-group-item">Intenta recarga la página</li>
+                </ul>
+
+            </div>
+            <button href="#" style="justify-content: center; align-items: center; border: none;
+            outline: none;
+            border-radius: 8px;
+            width: 50%;
+            height: 4vh;
+            color: #fff;
+            font-size: 18px;
+            transform: .3s ease;
+            margin: 2px;
+            background-color: #00bfff;" (click)="recargarPagina()">Recargar</button>
+        </div>
+    </section>
+</div>

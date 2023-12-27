@@ -18,7 +18,7 @@ export class usuarioService {
       'Authorization': `key ${token}`,
     });
 
-    return this.http.get<any>(`${this.apiUrl}/getuser`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/getuser`, { headers }) ;
   }
 
   editUser(userFormData: User): Observable<any> {
