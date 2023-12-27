@@ -1,4 +1,4 @@
-<main class="container">
+<!--<main class="container">
     <aside>
         <div class="menu">
             <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Inicio</a>
@@ -26,11 +26,75 @@
                     <span class="button__text">Lista Canciones</span>
                 </div>
             </button>
-            <!--<a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Lista de Canciones</a> -->
+            (<a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Lista de Canciones</a>)
             <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Editar Canciones</a>
             <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Editar Usuarios</a>
         </div>
     </aside>
+</main> -->
+<main style="height: 82vh; padding: 10px; width: 100%;">
+    <section class="contenedor">
+        <section class="user">
+            <div class="usuario" style="width: 100%;">
+                <img src="../../../assets/img/logoAirBeat.png" alt="" style="width: 65px;">
+                <p>Nombre Usuario</p>
+            </div>
+        </section>
+        <section class="info">
+            <div class="nav">
+                <a> Editar Canciones</a>
+                <a>Editar Usuarios</a>
+                <div>
+                    <div class="group">
+                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <g>
+                                <path
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                                </path>
+                            </g>
+                        </svg>
+                        <input placeholder="Search" type="search" class="input">
+                    </div>
+                </div>
+            </div>
+            <div class="E-usuario">
+                @for(user of listaUsuarios;track user._id){
+                <div class="card">
+                    <div class="card__img">
+                        <img src="../../../assets/img/usuario.png" alt="" style="width: 75px;">
+                    </div>
+                    <div class="card__title">{{user.name}}</div>
+                    <div class="card__subtitle">{{user.email}}</div>
+                    <div class="card__wrapper">
+                        <button class="card__btn">Actualizar</button>
+                        <button class="card__btn card__btn-solid" (click)="openModel()" (click)="guardarborrarUser(user._id)">Eliminar</button>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </section>
+    </section>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Usuario</h1>
+                    <button type="button" class="btn-close" (click)="CloseModel()" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estas seguro de borrar el Usuario?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModel()"
+                        data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" (click)="borrarUser(userid)" >Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+
 
 <router-outlet></router-outlet>

@@ -1,0 +1,13 @@
+.cont__gen{
+    display: grid;
+    height: 100vh;
+    padding-right: 7px;
+    column-gap: 11px;
+    grid-template-columns: 19.5% auto;
+    grid-template-rows: 87.5% auto;
+    background-color: black ;
+}
+.footer{
+    grid-row: 2/3;
+    grid-column: 1/3;
+}

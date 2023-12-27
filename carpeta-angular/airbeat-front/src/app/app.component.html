@@ -1,2 +1,19 @@
+@if(mostrarComponente){
+    <main class="cont__gen">
+        <section class="contendor__navbar">
+            <app-nabvar></app-nabvar>
+        </section>
+        <section>
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+        </section>
+        <footer class="footer">
+            <app-musicplayer></app-musicplayer>
+        </footer>
+    </main>
+}@else {
+    <router-outlet></router-outlet>
+}
 
-<router-outlet></router-outlet>
+
