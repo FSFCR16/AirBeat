@@ -14,6 +14,10 @@ const busquedaUser =new mongoose.Schema({
         unique:false
 
     },
+    preview_url:{
+        type: String,
+        require: true
+    },
     songName:{
         type: String,
         require: true,

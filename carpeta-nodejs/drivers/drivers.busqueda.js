@@ -19,6 +19,7 @@ export const historial = async (req, res)=>{
         const nuevaBusqueda= new busquedaSchema({
             userId: _idUser, 
             cancionId: _idCancion,
+            preview_url: song.preview_url,
             songName: song.name_track,
             songImage: song.img_urls,
             songArtist: song.artist
@@ -37,7 +38,7 @@ export const getHistorial = async(req, res)=>{
     try{
         const userId= req.user._id
 
-        const historial = await busquedaSchema.find({userId: userId}).limit(6).sort({createdAt: 1})
+        const historial = await busquedaSchema.find({userId: userId}).limit(6).sort({date: -1})
         
         return res.status(200).json({historial})
 
