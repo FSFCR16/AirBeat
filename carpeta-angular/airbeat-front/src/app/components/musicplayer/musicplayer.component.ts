@@ -1,6 +1,7 @@
 import { Component,ViewChild,ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
 import { CommonModule } from '@angular/common';
+import { busqueda } from '../../services/bucador.servicios.service';
 import * as Howler from "howler";
 import { Subscription } from 'rxjs';
 
@@ -20,6 +21,7 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
   duracionseg:number | undefined;
   valuetest:number | undefined;
   displayNone = false
+
   sound!:Howl;
   informacionCompartida: songs={
     album:{
@@ -43,14 +45,52 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
     release_date: new Date ,
     _id:""
   }
+  cancionPredeterminada: busqueda ={
+    _id: "",
+    userId: "",
+    cancionId: "",
+    songArtist:"",
+    songName:"",
+    preview_url:"",
+    songImage: [{
+      img_url_64:"",
+      img_url_300:"",
+      img_url_640:"",
+    }],
+    date: new Date
+  }
+
   private subscription: Subscription = new Subscription;
 
   constructor(private buscardor:BucadorServiciosService){}
 
   ngOnInit(): void {
+
+
+    this.buscardor.traerHistorial().subscribe({
+      next:(data:any)=>{ 
+        this.cancionPredeterminada = data.historial[0]
+        console.log(this.cancionPredeterminada)
+        this.sound= new Howler.Howl({
+          src: [this.cancionPredeterminada.preview_url],
+          format: ['mpeg'],
+          volume: 0.4,
+          html5:true
+        })
+        this.sound.on("play",()=>{
+          this.duracion=this.formatTime(Math.round(this.sound.duration()))
+          this.duracionseg=this.sound.duration()  
+        })
+
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+
+
     this.subscription = this.buscardor.obtenerInformacion()
     .subscribe((data) => {
-      console.log(data)
       this.informacionCompartida = data;
       this.sound= new Howler.Howl({
         src: [this.informacionCompartida.preview_url],
@@ -67,7 +107,6 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
       // Utilizar la información compartida
       console.log('Información compartida recibida:', this.informacionCompartida);
     });
-    console.log(this.informacionCompartida.preview_url)
   }
 
   

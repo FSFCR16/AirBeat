@@ -13,8 +13,13 @@
             </div>
           </div>
           <div class="texts">
-            <p class="title-1">{{informacionCompartida.name_track}}</p>
-            <p class="title-2">{{informacionCompartida.artist}}</p>
+            @if(informacionCompartida._id  !== ""){
+              <p class="title-1">{{informacionCompartida.name_track}}</p>
+              <p class="title-2">{{informacionCompartida.artist}}</p>
+            }@else {
+              <p class="title-1">{{cancionPredeterminada.songName}}</p>
+              <p class="title-2">{{cancionPredeterminada.songArtist}}</p>
+            }
           </div>
         </div>
 

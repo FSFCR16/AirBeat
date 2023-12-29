@@ -31,13 +31,13 @@ interface PlaylistResponse {
   songs: []; // Tipo de datos de las canciones (puede ser más específico)
 }
 
-
 export interface busqueda{
   _id: string,
   userId: string,
   cancionId: string,
   songArtist:string,
   songName:string,
+  preview_url:string,
   songImage: [{
     img_url_64:string,
     img_url_300:string,
