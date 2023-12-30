@@ -1,9 +1,19 @@
 .fondoAlbum{
-    background-color: #272473b3;
+    background-color: #262473;
     padding: 10px;
+    border-radius: 5px;
+    height: 70vh;
+    overflow-x: hidden;
 }
+
 .list-group-item{
     background-color:transparent;
     color: white;
     border-color: rgba(255, 255, 255, 0.288);
+}
+.h2{
+    color: white;
+}
+.text-album{
+    color: rgba(255, 255, 255, 0.659);
 }

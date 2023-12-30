@@ -12,6 +12,7 @@ export interface songs{
     number_collaborators: number,
     collaborators_name:[string]
   },
+  artist:string,
   duration_ms:number,
   explicit: boolean,
   img_urls: {
@@ -50,7 +51,17 @@ export interface busqueda{
 export class BucadorServiciosService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://127.0.0.1:3000/'
+  private url = 'http://localhost:3000/'
+
+  getAlbum(nombre:string):Observable<songs[]>{
+    const token = localStorage.getItem("key")
+
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<songs[]>(`${this.url}songs/search/album/${nombre}`,{headers})
+  }
 
   traerCanciones():Observable<PlaylistResponse>{
     const token = localStorage.getItem("key")

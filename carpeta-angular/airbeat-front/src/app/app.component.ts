@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { MusicplayerComponent } from './components/musicplayer/musicplayer.component'
 import { NabvarComponent } from './components/nabvar/nabvar.component';
+import { AlbumComponent } from './components/album/album.component';
 import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent ],
+  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent, AlbumComponent ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
