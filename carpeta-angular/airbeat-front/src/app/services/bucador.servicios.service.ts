@@ -68,7 +68,7 @@ export class BucadorServiciosService {
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.get<any>(`${this.url}songs/search/${general}`, {headers})
+    return this.http.get<any>(`${this.url}songs/getsongsforname/${general}`, {headers})
 
   }
 
