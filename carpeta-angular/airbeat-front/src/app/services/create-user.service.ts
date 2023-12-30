@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 export interface User{
-  email: string,
-  name: string,
-  lastname: string,
-  telefono: string,
-  password: string,
-  confirmPass: string,
+  email?: string,
+  name?: string,
+  lastname?: string,
+  telefono?: string,
+  password?: string,
+  confirmPass?: string,
+  id?: string,
 }
 
 @Injectable({
