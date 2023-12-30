@@ -73,6 +73,8 @@ export class PerfilComponent implements OnInit {
       next: (user) => {
         console.log(user);
         this.alert = true;
+        window.location.reload();
+      
         setTimeout(()=>{this.alert = false;},1900);
       },
       error: (error) => {
