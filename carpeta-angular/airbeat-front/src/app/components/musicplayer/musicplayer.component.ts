@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { busqueda } from '../../services/bucador.servicios.service';
 import * as Howler from "howler";
 import { Subscription } from 'rxjs';
+type songOrBusqueda= busqueda | songs
 
 @Component({
   selector: 'app-musicplayer',
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './musicplayer.component.css'
 })
 export class MusicplayerComponent implements OnInit, OnDestroy {
+[x: string]: any;
   @ViewChild ("btnPlay") btnPlay!:ElementRef
   @ViewChild ("duration") duration!:ElementRef
   widthleght:string|undefined;
@@ -23,28 +25,7 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
   displayNone = false
 
   sound!:Howl;
-  informacionCompartida: songs={
-    album:{
-      trakc_number:0,
-      name_album:""
-    },
-    collaboration: {
-      number_collaborators:0,
-      collaborators_name:[""]
-    },
-    artist:"",
-    duration_ms:0,
-    explicit: false,
-    img_urls: {
-      img_url_640:"",
-      img_url_300:"",
-      img_url_64:"",
-    },
-    name_track:"",
-    preview_url:"",
-    release_date: new Date ,
-    _id:""
-  }
+  informacionCompartida: songOrBusqueda | any;
   cancionPredeterminada: busqueda ={
     _id: "",
     userId: "",
@@ -70,6 +51,7 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
     this.buscardor.traerHistorial().subscribe({
       next:(data:any)=>{ 
         this.cancionPredeterminada = data.historial[0]
+        console.log(this.informacionCompartida)
         console.log(this.cancionPredeterminada)
         this.sound= new Howler.Howl({
           src: [this.cancionPredeterminada.preview_url],
@@ -92,17 +74,7 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
     this.subscription = this.buscardor.obtenerInformacion()
     .subscribe((data) => {
       this.informacionCompartida = data;
-      this.sound= new Howler.Howl({
-        src: [this.informacionCompartida.preview_url],
-        format: ['mpeg'],
-        volume: 0.4,
-        html5:true
-      })
-      this.sound.on("play",()=>{
-        this.duracion=this.formatTime(Math.round(this.sound.duration()))
-        this.duracionseg=this.sound.duration()  
-      })
-      this.playMusic()
+      this.playMusic(this.informacionCompartida.preview_url)
 
       // Utilizar la información compartida
       console.log('Información compartida recibida:', this.informacionCompartida);
@@ -124,7 +96,23 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
   }
 
 
-  playMusic(){
+  playMusic(informacionCompartida: string){
+    if (this.sound && this.sound.playing()) {
+      this.sound.stop();
+    }
+
+    this.sound= new Howler.Howl({
+      src: [informacionCompartida],
+      format: ['mpeg'],
+      volume: 0.4,
+      html5:true
+    })
+
+    this.sound.on("play",()=>{
+      this.duracion=this.formatTime(Math.round(this.sound.duration()))
+      this.duracionseg=this.sound.duration()  
+    })
+
     this.sound.play();
     this.displayNone = !this.displayNone;
     setInterval(() => {

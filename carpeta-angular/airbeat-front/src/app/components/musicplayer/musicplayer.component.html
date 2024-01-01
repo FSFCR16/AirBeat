@@ -13,9 +13,9 @@
             </div>
           </div>
           <div class="texts">
-            @if(informacionCompartida._id  !== ""){
-              <p class="title-1">{{informacionCompartida.name_track}}</p>
-              <p class="title-2">{{informacionCompartida.artist}}</p>
+            @if(informacionCompartida){
+              <p class="title-1">{{informacionCompartida.name_track || informacionCompartida.songName}}</p>
+              <p class="title-2">{{informacionCompartida.artist || informacionCompartida.songArtist}}</p>
             }@else {
               <p class="title-1">{{cancionPredeterminada.songName}}</p>
               <p class="title-2">{{cancionPredeterminada.songArtist}}</p>
@@ -42,7 +42,7 @@
               fill-rule="evenodd"></path>
           </svg>
           <!-- Play and Pause-->
-          <svg [class.d-none]="displayNone==true" #btnPause (click)="playMusic()" xmlns="http://www.w3.org/2000/svg"
+          <svg [class.d-none]="displayNone==true" #btnPause (click)="playMusic(this.cancionPredeterminada.preview_url)" xmlns="http://www.w3.org/2000/svg"
             width="34" height="34" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
             <path
               d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5" />

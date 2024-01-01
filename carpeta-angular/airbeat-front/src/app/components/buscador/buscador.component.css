@@ -121,6 +121,7 @@ p{
 
 .cards{
     display: grid;
+    position: relative;
     justify-content: center;
     border-radius: 10px;
     padding: 10px;
@@ -128,6 +129,21 @@ p{
     width: 94%;
     background-color: #262473;    
     row-gap: 10px;
+}
+.borral__Historial{
+    position: absolute;
+    border-radius: 50px;
+    padding: 4px 7px;
+    transform: translateX(12rem);
+    border: none;
+    outline: none;
+    background-color:rgb(0, 0, 0, 0.3) ;
+    margin-top: 5px;
+
+}
+
+.btn__historial{
+    transform: translateY(-10px);
 }
 .text__card{
     color: aliceblue;
@@ -177,7 +193,7 @@ p{
     position: absolute;
     justify-content: center;
     align-items: center;
-    background-color: #121050;
+    background-color: #20203d;
     width: 3rem;
     height: 3rem;
     border-radius: 50px;
@@ -185,6 +201,7 @@ p{
     outline: none;
     top: 60%;
     right: 10%;
+    padding-left: 9px;
     
 }
 

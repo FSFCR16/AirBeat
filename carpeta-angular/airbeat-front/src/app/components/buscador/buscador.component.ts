@@ -7,6 +7,7 @@ import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
 import { busqueda } from '../../services/bucador.servicios.service';
 import { Subscription } from 'rxjs';
+import { error } from 'console';
 
 
 @Component({
@@ -90,7 +91,31 @@ export class BuscadorComponent implements OnInit {
     })
   }
 
+  borrarDelHistorial(id:string){
+    this.buscador.borrarHistorial(id).subscribe({
+      next:(data)=>{
+        window.location.reload()
+        console.log("Eliminado correctamente: ", data)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+  }
 
+  ultimoClick(id:string){
+
+    this.buscador.guardarUltimaCancion(id).subscribe({
+      next:(data)=>{
+        console.log("Ultima cancion ", data )
+
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+
+  }
 
 }
 

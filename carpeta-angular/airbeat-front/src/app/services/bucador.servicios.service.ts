@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { json } from 'stream/consumers';
+ 
 
 export interface songs{
   album:{
@@ -90,6 +91,24 @@ export class BucadorServiciosService {
       "authorization": `key ${token}`
     });
     return this.http.get<[]>(`${this.url}historial/traerCanciones`, {headers})
+  }
+
+  borrarHistorial(id:string):Observable<busqueda>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.delete<busqueda>(`${this.url}historial/eleminarHistorialId/${id}`, {headers})
+  }
+
+  guardarUltimaCancion(id:string):Observable<busqueda>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.post<busqueda>(`${this.url}songs/musicPlayer/${id}`,{}, {headers})
   }
 
   guardarInformacion(cancion: any) {
