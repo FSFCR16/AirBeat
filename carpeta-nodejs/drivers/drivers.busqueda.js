@@ -16,7 +16,7 @@ export const historial = async (req, res)=>{
             return res.status(404).json({error: "No se encontro la cancion"})
         }
 
-        const nuevaBusqueda= new busquedaSchema({
+        const nuevaBusqueda= await busquedaSchema.create({
             userId: _idUser, 
             cancionId: _idCancion,
             preview_url: song.preview_url,
@@ -28,6 +28,7 @@ export const historial = async (req, res)=>{
         res.status(200).json({message: "Busqueda guardada con exito"})
 
     }catch (error){
+        console.log(error)
         res.status(500).json({error:error})
     }
 }
@@ -47,4 +48,18 @@ export const getHistorial = async(req, res)=>{
     }
 
 
+}
+
+export const eliminarElemento = async(req, res)=>{
+    try{
+        const idElemnto = req.params._id
+        const elementoHistorial= await busquedaSchema.findByIdAndDelete(idElemnto)
+        if(!elementoHistorial){
+            res.status(404).json({message: "No se encontro ninguna cancion"})
+        }
+
+        res.status(200).json(elementoHistorial)
+    }catch(error){
+        res.status(500).json({error})
+    }
 }

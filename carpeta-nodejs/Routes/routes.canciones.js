@@ -12,11 +12,13 @@ import {
     editSongById,
     findSongByID
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
-
+ 
+import { play } from '../drivers/drivers.musicPlayer.js';
 import {songIn} from '../middleware/cancionExiste.middelwere.js';
 import { authVerification } from '../middleware/autenticacion.middlewere.js';
 import { historial } from '../drivers/drivers.busqueda.js';
 import { cancionEnLaBase } from '../middleware/idCancion.middlewere.js';
+import { unSoloDoc } from '../middleware/musicPlayer.middleware.js';
 
 const router = express.Router();
 //rutas para usuarios 
@@ -27,6 +29,7 @@ router.get('/search/artist/:name', findSongsByArtist);
 router.get('/search/:general', findgeneral);
 router.get('/explicit/:explicit', findSongsByExplicit);
 router.get('/all', SongsGet);
+router.post('/musicPlayer/:_id', authVerification, unSoloDoc, play)
 //rutas para admin
 router.delete('/delete/name/:name_track', SongsDeletename);
 router.delete('/delete/id/:_id', SongsDelete); 
