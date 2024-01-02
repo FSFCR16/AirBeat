@@ -18,12 +18,13 @@ export class MusicplayerComponent implements  OnDestroy {
   @ViewChild ("btnPlay") btnPlay!:ElementRef
   @ViewChild ("duration") duration!:ElementRef
   activo:boolean=false
-  widthleght:string|undefined;
-  duracionNow:string|undefined;
-  duracion:string | undefined;
-  duracionseg:number | undefined;
-  valuetest:number | undefined;
+  widthleght: string|undefined;
+  duracionNow: string|undefined;
+  duracion: string | undefined;
+  duracionseg: number | undefined;
+  valuetest: number | undefined;
   displayNone = false
+  cancionPredeterminada: boolean = false
   pausedAt: number = 0
 
   sound!:Howl;
@@ -48,7 +49,9 @@ export class MusicplayerComponent implements  OnDestroy {
         this.informacionCompartida=data
       },
       error: (error)=>{
-        console.log(error)
+        if (error.error.message === "No se encontro ninguna canacion en la base"){
+          this.cancionPredeterminada = true
+        }
       }
     })
   }

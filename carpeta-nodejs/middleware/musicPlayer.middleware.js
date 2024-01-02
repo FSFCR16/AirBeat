@@ -6,7 +6,7 @@ export const unSoloDoc = async (req, res, next) => {
         const count = await player.countDocuments({userId:id});
         
         if (count > 0) {
-            await player.findOneAndDelete({}, { sort: { Date: -1 } });
+            await player.findOneAndDelete({userId: id});
         }
         return next();
     } catch (error) {
