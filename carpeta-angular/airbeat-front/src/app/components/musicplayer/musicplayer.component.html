@@ -3,23 +3,28 @@
     <li class="nav-item">
       <div class="card">
         <div class="top">
-          <div class="pfp">
-            <div [class.d-none]="displayNone==false" class="playing">
-              <div class="blueline line-1"></div>
-              <div class="blueline line-2"></div>
-              <div class="blueline line-3"></div>
-              <div class="blueline line-4"></div>
-              <div class="blueline line-5"></div>
+            <div class="pfp">
+              @if(activo){
+                <div [class.d-none]="displayNone==false" class="playing">
+                  <div class="blueline line-1"></div>
+                  <div class="blueline line-2"></div>
+                  <div class="blueline line-3"></div>
+                  <div class="blueline line-4"></div>
+                  <div class="blueline line-5"></div>
+                </div>
+              }@else {
+                <div class="pfp">
+                  @if(this.informacionCompartida.img_urls){
+                    <img src="{{this.informacionCompartida.img_urls.img_url_64}}" alt="" style="border-radius: 3.5px; width: 40px; height: 45px; position: relative ; bottom: 3px;" >
+                  }@else {
+                    <img src="{{this.informacionCompartida.songImage[0].img_url_64}}" alt="" style="border-radius: 3.5px; width: 40px; height: 45px; position: relative ; bottom: 3px;">
+                  }
+                </div>
+              }
             </div>
-          </div>
           <div class="texts">
-            @if(informacionCompartida){
               <p class="title-1">{{informacionCompartida.name_track || informacionCompartida.songName}}</p>
               <p class="title-2">{{informacionCompartida.artist || informacionCompartida.songArtist}}</p>
-            }@else {
-              <p class="title-1">{{cancionPredeterminada.songName}}</p>
-              <p class="title-2">{{cancionPredeterminada.songArtist}}</p>
-            }
           </div>
         </div>
 
@@ -42,7 +47,7 @@
               fill-rule="evenodd"></path>
           </svg>
           <!-- Play and Pause-->
-          <svg [class.d-none]="displayNone==true" #btnPause (click)="playMusic(this.cancionPredeterminada.preview_url)" xmlns="http://www.w3.org/2000/svg"
+          <svg [class.d-none]="displayNone==true" #btnPause (click)="playMusic(this.informacionCompartida.preview_url)" xmlns="http://www.w3.org/2000/svg"
             width="34" height="34" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
             <path
               d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5" />

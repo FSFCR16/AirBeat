@@ -1,8 +1,9 @@
-import { player } from "../models/musicPlayer.model.js";
+import { player } from "../models/busqueda.usuarios.models.js";
 
 export const unSoloDoc = async (req, res, next) => {
     try {
-        const count = await player.countDocuments();
+        const id = req.user._id
+        const count = await player.countDocuments({userId:id});
         
         if (count > 0) {
             await player.findOneAndDelete({}, { sort: { Date: -1 } });

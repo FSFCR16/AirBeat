@@ -13,63 +13,26 @@ type songOrBusqueda= busqueda | songs
   templateUrl: './musicplayer.component.html',
   styleUrl: './musicplayer.component.css'
 })
-export class MusicplayerComponent implements OnInit, OnDestroy {
+export class MusicplayerComponent implements  OnDestroy {
 [x: string]: any;
   @ViewChild ("btnPlay") btnPlay!:ElementRef
   @ViewChild ("duration") duration!:ElementRef
+  activo:boolean=false
   widthleght:string|undefined;
   duracionNow:string|undefined;
   duracion:string | undefined;
   duracionseg:number | undefined;
   valuetest:number | undefined;
   displayNone = false
+  pausedAt: number = 0
 
   sound!:Howl;
   informacionCompartida: songOrBusqueda | any;
-  cancionPredeterminada: busqueda ={
-    _id: "",
-    userId: "",
-    cancionId: "",
-    songArtist:"",
-    songName:"",
-    preview_url:"",
-    songImage: [{
-      img_url_64:"",
-      img_url_300:"",
-      img_url_640:"",
-    }],
-    date: new Date
-  }
 
   private subscription: Subscription = new Subscription;
 
-  constructor(private buscardor:BucadorServiciosService){}
-
-  ngOnInit(): void {
-
-
-    this.buscardor.traerHistorial().subscribe({
-      next:(data:any)=>{ 
-        this.cancionPredeterminada = data.historial[0]
-        console.log(this.informacionCompartida)
-        console.log(this.cancionPredeterminada)
-        this.sound= new Howler.Howl({
-          src: [this.cancionPredeterminada.preview_url],
-          format: ['mpeg'],
-          volume: 0.4,
-          html5:true
-        })
-        this.sound.on("play",()=>{
-          this.duracion=this.formatTime(Math.round(this.sound.duration()))
-          this.duracionseg=this.sound.duration()  
-        })
-
-      },
-      error:(error)=>{
-        console.log(error)
-      }
-    })
-
+  constructor(private buscardor:BucadorServiciosService){
+    
 
     this.subscription = this.buscardor.obtenerInformacion()
     .subscribe((data) => {
@@ -79,7 +42,17 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
       // Utilizar la información compartida
       console.log('Información compartida recibida:', this.informacionCompartida);
     });
+
+    this.buscardor.tarerCancionMusicPlayer().subscribe({
+      next: (data)=>{
+        this.informacionCompartida=data
+      },
+      error: (error)=>{
+        console.log(error)
+      }
+    })
   }
+
 
   
   formatTime(secs:number) {
@@ -97,6 +70,7 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
 
 
   playMusic(informacionCompartida: string){
+    console.log(this.informacionCompartida)
     if (this.sound && this.sound.playing()) {
       this.sound.stop();
     }
@@ -107,22 +81,31 @@ export class MusicplayerComponent implements OnInit, OnDestroy {
       volume: 0.4,
       html5:true
     })
+    console.log(this.sound)
 
     this.sound.on("play",()=>{
       this.duracion=this.formatTime(Math.round(this.sound.duration()))
       this.duracionseg=this.sound.duration()  
     })
 
-    this.sound.play();
-    this.displayNone = !this.displayNone;
+    this.sound.play(); 
+
+    
+
+    if(!this.displayNone){
+      this.displayNone = !this.displayNone;
+    }
+
     setInterval(() => {
       this.step();
     }, 10);
+    this.activo=true
   }
 
   stopMusic(){
-    this.sound.pause()
+    this.sound.pause() 
     this.displayNone = !this.displayNone;
+    this.activo=false
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { player } from "../models/musicPlayer.model.js";
+import { player } from "../models/busqueda.usuarios.models.js";
 import { Music } from "../models/models.canciones.js";
 
 export const play = async (req, res)=>{
@@ -32,9 +32,19 @@ export const play = async (req, res)=>{
 }
 
 export const getsong = async(req, res)=>{
-    const idUser = req.user._id
+    try{
+        const idUser = req.user._id
+        const cancionPlayer=await player.findOne({userId:idUser})
+        if(!cancionPlayer){
+            return res.status(404).json({message: "No se encontro ninguna cancion para este usuario"})
+        }
 
-    const cancionPlayer=await player.findOne({userId:idUser})
+        return res.status(200).json(cancionPlayer)
+    }catch(error){
+        return res.status(500).json(error)
+    }
+
+
 
     
 }

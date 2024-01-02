@@ -111,6 +111,14 @@ export class BucadorServiciosService {
     return this.http.post<busqueda>(`${this.url}songs/musicPlayer/${id}`,{}, {headers})
   }
 
+  tarerCancionMusicPlayer(): Observable <busqueda>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<busqueda>(`${this.url}songs/music`, {headers})
+  }
   guardarInformacion(cancion: any) {
     this.informacionCompartidaSubject.next(cancion);
   }
