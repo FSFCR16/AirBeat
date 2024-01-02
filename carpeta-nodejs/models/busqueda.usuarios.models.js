@@ -14,6 +14,10 @@ const busquedaUser =new mongoose.Schema({
         unique:false
 
     },
+    preview_url:{
+        type: String,
+        require: true
+    },
     songName:{
         type: String,
         require: true,
@@ -39,3 +43,4 @@ const busquedaUser =new mongoose.Schema({
 })
 
 export const busquedaSchema= mongoose.model("busquedas", busquedaUser)
+export const player= mongoose.model("musicPlayers", busquedaUser)

@@ -35,6 +35,8 @@
                             <p style="font-size: 19px; font-weight: bold;">{{i.songName}}</p>
                             <p style="font-size:14px ;">{{i.songArtist}}</p>
                         </article>
+                        <button (click)="borrarDelHistorial(i._id)" class="borral__Historial"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></button>
+                        <button (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)" class="btn__play btn__historial"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
                     </section>
                 }
             </article>
@@ -54,11 +56,31 @@
                             <button class="btn_info">Cancion</button>
                         }
 
-                        <button (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion.preview_url)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
+                        <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
                     </section>
                 </article>
-                <article>
-    
+                <article class="cont__gensecund">
+                    <h4>Canciones</h4>
+                    <section class="cont__card_secundarias">
+                        @for (can of secundarias; track can._id) {
+                            <article class="cont__info__secundarias">
+                                <section class="cont__img__secundarias">
+                                    <img style="height: 40px; width: 40px;" src="{{can.img_urls.img_url_300}}" alt="">
+                                    <article>
+                                        <h6 style="margin: 0;">{{can.name_track}}</h6>
+                                        @if(can.collaboration){
+                                            <p style="font-size:13px ; font-weight: 300;">{{can.artist}} , {{can.collaboration.collaborators_name}}</p>
+                                        }@else {
+                                            <p style="font-size:13px ; font-weight: 300;">{{can.artist}}</p>
+                                        }
+                                    
+                                    </article>
+                                </section>
+                                <section>{{can.duration_ms}}</section>
+                                <button (click)="ultimoClick(can._id)" (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" class="btn__secundarias"><i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+                            </article>
+                        }
+                    </section>
                 </article>
     
             </section>

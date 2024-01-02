@@ -28,3 +28,4 @@ export const authVerification = (request, response, next) => {
         return response.json(e)
     }
 }
+
