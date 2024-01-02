@@ -55,6 +55,16 @@ export class BucadorServiciosService {
   private url = 'http://127.0.0.1:3000/'
   private informacionCompartidaSubject = new Subject<any>();
 
+  getAlbum(nombre:string):Observable<songs[]>{
+    const token = localStorage.getItem("key")
+
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<songs[]>(`${this.url}songs/search/album/${nombre}`,{headers})
+  }
+
   traerCanciones():Observable<PlaylistResponse>{
     const token = localStorage.getItem("key")
 
@@ -71,7 +81,7 @@ export class BucadorServiciosService {
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.get<any>(`${this.url}songs/search/${general}`, {headers})
+    return this.http.get<any>(`${this.url}songs/getsongsforname/${general}`, {headers})
 
   }
 

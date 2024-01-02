@@ -7,6 +7,7 @@ import { VistaPrincipalPageComponent } from './pages/vista-principal-page/vista-
 import { VistaUsuarioPageComponent } from './pages/vista-usuario-page/vista-usuario-page.component';
 import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { AlbumComponent } from './components/album/album.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 export const routes: Routes = [
@@ -18,5 +19,7 @@ export const routes: Routes = [
     {path: "home", component: VistaPrincipalPageComponent},
     {path: "user", component: VistaUsuarioPageComponent},
     {path: "album",component: AlbumComponent},
+    {path: "album",component: AlbumPageComponent},
+    {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
 ];

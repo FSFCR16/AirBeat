@@ -61,7 +61,7 @@ export const findSongsByAlbum = async (req, res) => {// no funciona
     const name_album = req.params.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
     const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
     const Album = await Music.find({ 'album.name_album': { $regex: new RegExp(albumDecodificado, 'i') } });
-
+    console.log(Album)
     if (Album) {
       return res.json(Album);
     } else {
