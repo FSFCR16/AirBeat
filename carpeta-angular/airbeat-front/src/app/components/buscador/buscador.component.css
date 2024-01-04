@@ -134,17 +134,26 @@ p{
     position: absolute;
     border-radius: 50px;
     padding: 4px 7px;
-    transform: translateX(12rem);
+    margin-left:85% ;
     border: none;
     outline: none;
     background-color:rgb(0, 0, 0, 0.3) ;
     margin-top: 5px;
+    transition: background 0.2s ease;
+    display: none;
 
 }
+.borral__Historial:hover{
+    background-color: rgb(24, 24, 24, 0.8);
+}
+
+
 
 .btn__historial{
     transform: translateY(-10px);
 }
+
+
 .text__card{
     color: aliceblue;
 }

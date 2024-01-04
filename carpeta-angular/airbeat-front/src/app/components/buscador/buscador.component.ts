@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
@@ -30,7 +30,8 @@ export class BuscadorComponent implements OnInit {
   isFocused: boolean = false;
   historial: busqueda[]=[]
 
-  constructor(private buscador: BucadorServiciosService, private router: Router) {
+
+  constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) {
   }
 
   ngOnInit(): void {
@@ -116,6 +117,8 @@ export class BuscadorComponent implements OnInit {
     })
 
   }
+
+
 
 }
 
