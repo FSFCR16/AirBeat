@@ -56,5 +56,23 @@ export class BucadorServiciosService {
     return this.http.get<any>(`${this.url}songs/getsongsforname/${name_track}`, {headers})
 
   }
-  
+  cancionesTraer(pagina: number):Observable<any>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<any>(`${this.url}songs/getsongsmassive/${pagina}`, {headers})
+  }
+
+
+  borrarCancion(id:string):Observable<songs>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.delete<songs>(`${this.url}songs/deletesongsforid/${id}`,{headers})
+  }
 }
+

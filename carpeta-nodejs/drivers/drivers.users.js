@@ -112,20 +112,50 @@ export const deleteUserById = async (req, res)=>{
     }
 }
 
-// export const UpdatePasswordByID = async (req, res)=>{
-//     try{
-//         let userId= req.params._id
-//         const password = req.body.password
+export const edituserById = async (req, res) => {
+    try {
+        const _id = req.user._id;
+        const updatedate = req.body.userFormData;
+        console.log(updatedate)
+        const existinguser = await User.findOneAndUpdate({ _id: _id }, updatedate);
+        if (!existinguser) {
+            return res.status(404).json({ error: 'No se encontro al usuario' });
+        }
+        return res.json(existinguser);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error al editar el usuario', erroor: error });
+    }
+};
 
-//         let user= await User.findOneAndUpdate(
-//             {_id: userId},
-//             { password: password},
-//             { new: true }
-//         );
-//             console.log(user)
-//         return res.json(user)
-        
-//     }catch(error){
-//         res.status(500).json({ error: 'Error al eleminar usuario(s)', errorType:error.message = "Algun inconveniente, verifica de nuevo" });
-//     }
-// } update para despues
+export const editUser = async (req, res) => {
+    try {
+        const _id = req.params._id;
+        const updatedate = req.body.userFormData;
+        console.log(updatedate)
+        const existinguser = await User.findOneAndUpdate({ _id: _id }, updatedate);
+        if (!existinguser) {
+            return res.status(404).json({ error: 'No se encontro al usuario' });
+        }
+        return res.json(existinguser);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error al editar el usuario', erroor: error });
+    }
+};
+
+export const finduserByID = async (req, res) => {
+    try {
+        const { _id } = req.params
+        const userdata = await User.findById(_id);
+        console.log(userdata);
+        if (userdata) {
+            return res.json(userdata);
+        } else {
+            return res.status(404).json({ error: `No se han encontrado resultados para (${_id})` });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};

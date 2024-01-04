@@ -14,11 +14,21 @@ export const SongsPost = async (req, res) => {
 
 export const SongsGet = async (req, res) => {
   try {
-    const Songs = await Music.find();
-     return res.json(Songs);
+    const paginaActual = parseInt(req.params.pagina) || 1;
+    const elementosPorPagina = 20;
+    const totalDocumentos = await Music.countDocuments();
+    const totalPaginas = Math.ceil(totalDocumentos / elementosPorPagina);
+    const Songs = await Music.
+    find()
+    .skip((paginaActual - 1) * elementosPorPagina)
+    .limit(elementosPorPagina)
+    .exec()
+    console.log(Songs)
+    return res.status(200).json({canciones:Songs, paginas:totalPaginas});
   } catch (error) {
     return res.status(500).json({ error: 'Error al obtener la lista de canciones' });
   }
+
 };
 
 export const findSongByName = async (req, res) => {
@@ -65,8 +75,9 @@ export const findSongsByAlbum = async (req, res) => {// no funciona
 
 export const SongsDelete = async (req, res) => {
   try {
-    const { _id } = req.body;
+    const _id = req.params._id;
     const cancion = await Music.findById(_id);
+    console.log(cancion)
     if (cancion) {
       await Music.findByIdAndDelete(_id);
       res.json({ message: 'Canción eliminada correctamente' });

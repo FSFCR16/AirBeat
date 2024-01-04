@@ -117,7 +117,7 @@ p {
 
 .contenedor {
   display: grid;
-  grid-template-rows: 25% auto;
+  grid-template-rows: 15.7% auto;
   row-gap: 3px;
   height: 100%;
   width: 100%;
@@ -127,7 +127,7 @@ p {
   display: flex;
   background:#00122c;
   color: white;
-  border-radius: 10px;
+  border-radius: 7px;
   width: 100%;
   padding: 25px;
   height: 100%;
@@ -137,11 +137,11 @@ p {
   display: grid;
   background: #00122c;
   color: white;
-  border-radius: 10px;
+  border-radius: 7px;
   width: 100%;
   padding: 25px;
   height: 100%;
-  grid-template-rows: 22% auto;
+  grid-template-rows: 17% auto;
 }
 
 .info::-webkit-scrollbar{

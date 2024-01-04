@@ -19,9 +19,6 @@ export class LoginComponent {
   @ViewChild("infoInicio") infoInicio!: ElementRef
 
   loginForm:any;
-
-
-
   constructor(private render:Renderer2, private userService:CreateUserService,private router:Router){
     this.loginForm= new FormGroup({email:new FormControl(),password: new FormControl()})
   }

@@ -55,5 +55,25 @@ export class CreateUserService {
     return this.http.delete <User>(
       `${this.apiUrl}/deleteUser/${id}`,{headers})
   }
+
+  editUsers(userFormData: User, id:string): Observable<any> {
+    const token = localStorage.getItem('key');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `key ${token}`
+    });
+
+    return this.http.put<any>(`${this.apiUrl}/editUsers/${id}`,JSON.stringify({userFormData}), { headers });
+  }
+
+  traerCanciones(): Observable <[]>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<[]>(
+      `${this.apiUrl}/getsongsmassive`,{headers});
+  }
 }
 

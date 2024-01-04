@@ -57,7 +57,10 @@
                     </div>
                 </div>
             </div>
-            <div class="E-usuario">
+            <app-lista-canciones>
+                
+            </app-lista-canciones>
+            <div class="E-usuario" hidden>
                 @for(user of listaUsuarios;track user._id){
                 <div class="card">
                     <div class="card__img">
@@ -66,8 +69,9 @@
                     <div class="card__title">{{user.name}}</div>
                     <div class="card__subtitle">{{user.email}}</div>
                     <div class="card__wrapper">
-                        <button class="card__btn">Actualizar</button>
-                        <button class="card__btn card__btn-solid" (click)="openModel()" (click)="guardarborrarUser(user._id)">Eliminar</button>
+                        <button class="card__btn" (click)="OpenPop()" (click)="guardarborrarUser(user._id)">Actualizar</button>
+                        <button class="card__btn card__btn-solid" (click)="openModel()"
+                            (click)="guardarborrarUser(user._id)">Eliminar</button>
                     </div>
                 </div>
                 }
@@ -89,12 +93,80 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="CloseModel()"
                         data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-danger" (click)="borrarUser(userid)" >Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="borrarUser(userid)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="PopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Datos </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="ClosePop()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color: black;">
+                    <form [formGroup]="loginForm" (ngSubmit)="actualizarDatos()">
+                        <div class="mb-2">
+                            <input formControlName="name" type="text" class="form-control" id="recipient-name"
+                                placeholder="Nombre">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="lastname" type="text" class="form-control" id="recipient-name"
+                                placeholder="Apellido">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="email" type="text" class="form-control" id="recipient-name"
+                                placeholder="Email">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="telefono" type="text" class="form-control" id="recipient-name"
+                                placeholder="Telefono">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="password" type="text" class="form-control" id="recipient-name"
+                                placeholder="Contraseña">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                (click)="ClosePop()">Close</button>
+                            <button type="submit">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal"  #modal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Cancion</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarPrueba()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    ¿Estas seguro de eliminar la cancion?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarPrueba()">Cerrar</button>
+                    <button type="button" class="btn btn-danger" (click)="borrarCancion()">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+
 
 
 <router-outlet></router-outlet>
