@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
+import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-nabvar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './nabvar.component.html',
   styleUrl: './nabvar.component.css'
 })
