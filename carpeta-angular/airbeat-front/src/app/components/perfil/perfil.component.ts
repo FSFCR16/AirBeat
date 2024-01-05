@@ -5,12 +5,13 @@ import { InputsComponent } from './inputs/inputs.component';
 import { usuarioService } from '../../services/vistaperfil.service';
 import { User } from '../../services/create-user.service';
 import { FormControl, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { ErrorComponent } from '../error/error.component';
 import { response } from 'express';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, InputsComponent, ReactiveFormsModule],
+  imports: [CommonModule, RouterOutlet, InputsComponent, ReactiveFormsModule, ErrorComponent],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
