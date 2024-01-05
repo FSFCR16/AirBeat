@@ -29,6 +29,8 @@ export class BuscadorComponent implements OnInit {
   busqueda: string = '';
   isFocused: boolean = false;
   historial: busqueda[]=[]
+  albumLength: number = 0
+  tipo: string = ""
 
 
   constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) {
@@ -60,8 +62,12 @@ export class BuscadorComponent implements OnInit {
       if (this.valorInput !== '') {
         this.busquedaSubscription = this.buscador.catchSongs(this.valorInput).subscribe({
           next: (data: any) => {
-            this.datos = [data[0]];
-            this.secundarias = data
+            console.log(data)
+            this.datos = [data.resultado[0]];
+            this.secundarias = data.resultado
+            this.tipo = data.type
+            this.albumLength = data.length
+            console.log(this.datos)
           },
           error: (error) => {
             console.log(error);

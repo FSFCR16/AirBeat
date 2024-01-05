@@ -1,5 +1,8 @@
+import { Album } from "../models/models.admin.js";
 import { Music } from "../models/models.canciones.js";
-
+function normalizeText(text) {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
 export const SongsPost = async (req, res) => {
   try {
     const body = req.body;
@@ -23,11 +26,8 @@ export const SongsGet = async (req, res) => {
 export const findSongByName = async (req, res) => {
   try {
     const name_track = req.params.name_track;
-    console.log(name_track)
     const regex = new RegExp(name_track, 'i');
-    console.log(regex)
     const song = await Music.findOne({ name_track: { $regex: regex } });
-
 
     if (song) {
       return res.status(200).json(song);
@@ -150,17 +150,36 @@ export const findSongsByArtist = async (req, res) => {
 export const findgeneral = async (req, res) => {
   try {
     const { general } = req.params;
+    let matchType = '';
+    let albumLength = 0
+    const normalizedGeneral = normalizeText(general)
     const contenido = await Music.find({
       $or: [
         { artist: { $regex: new RegExp(general, 'i') } },
-        { 'collaboration.collaborators_name': { $regex: new RegExp(general, 'i') } },
         { 'album.name_album': { $regex: new RegExp(general, 'i') } },
         { name_track: { $regex: new RegExp(general, 'i') } }
       ]
     }).limit(4);
+
     if (contenido.length > 0) {
-      return res.json(contenido);
-    } else {
+      const resultados = contenido.map(item => {
+        if (item.artist && normalizeText(item.artist).match(new RegExp(normalizedGeneral, 'i'))) {
+          matchType = 'Artista';
+        } else if (item["album"]["name_album"]&& normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i'))) {
+          matchType = 'Album';
+        } else if (item.name_track && normalizeText(item.name_track).match(new RegExp(normalizedGeneral, 'i'))) {
+          matchType = 'Cancion';
+        }
+        
+        return { ...item.toObject(), matchType };
+      });
+      if (matchType === "Album"){
+        const album= await Music.find({ 'album.name_album': { $regex: new RegExp(general, 'i') } })
+        albumLength = album.length
+        return res.status(200).json({resultado: resultados , type: matchType, length: albumLength });
+      }
+      return res.status(200).json({resultado: resultados , type: matchType });
+    }else {
       return res.status(404).json({ error: `No se han encontrado resultados para (${general})` });
     }
   } catch (error) {
@@ -186,3 +205,5 @@ export const editSongById = async (req, res) => {
     res.status(500).json({ error: 'Error al editar la canción' });
   }
 };
+
+

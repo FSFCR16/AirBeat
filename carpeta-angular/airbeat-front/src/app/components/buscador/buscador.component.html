@@ -38,7 +38,7 @@
                         <button (click)="borrarDelHistorial(i._id)" class="borral__Historial"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></button>
                         <button (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)" class="btn__play btn__historial"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
                     </section>
-                }
+                } 
             </article>
         </section>
     }@else {
@@ -46,18 +46,36 @@
             <section class="cont__resultado">
                 <article class="resultado">
                     <h4>Resultado principal</h4>
-                    <section class="card__resultado">
-                        <img style=" border-radius: 5px; width: 7rem; height: 7rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{cancion.img_urls.img_url_300}}" alt="">
-                        <h3 style="margin: 0;">{{cancion.name_track}}</h3>
-                        @if(!cancion.collaboration){
-                            <p>{{cancion.album.name_album}}</p>
-                        }@else {
-                            <p>{{cancion.collaboration.collaborators_name}}</p>
-                            <button class="btn_info">Cancion</button>
-                        }
+                    @if(tipo === "Album"){
+                        <section class="card__resultado">
+                            <img style=" border-radius: 5px; width: 7rem; height: 7rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{cancion.img_urls.img_url_300}}" alt="">
+                            <h3 style="margin: 0;">{{cancion.album.name_album}}</h3>
+                            <p>{{cancion.artist}} - {{albumLength}} canciones</p>
+                            <button class="btn_info">{{tipo}}</button>
+                            <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
+                        </section>
 
-                        <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
-                    </section>
+                    }@else if(tipo === "Cancion") {
+                        <section class="card__resultado">
+                            <img style=" border-radius: 5px; width: 7rem; height: 7rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{cancion.img_urls.img_url_300}}" alt="">
+                            <h3 style="margin: 0;">{{cancion.name_track}}</h3>
+                            @if(!cancion.collaboration){
+                                <p>{{cancion.artist}}, {{cancion.album.name_album}}</p>
+                            }@else {
+                                <p>{{cancion.artist}}, {{cancion.collaboration.collaborators_name}}</p>
+                                <button class="btn_info">{{tipo}}</button>
+                            }
+    
+                            <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
+                        </section>
+                    }@else if(tipo === "Artista"){
+                        <section class="card__resultado">
+                            <img style=" border-radius: 5px; width: 7rem; height: 7rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{cancion.img_urls.img_url_300}}" alt="">
+                            <h3 style="margin: 0;">{{cancion.artist}}</h3>
+                            <button class="btn_info">{{tipo}}</button>
+                            <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)" class="btn__play"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
+                        </section>
+                    }
                 </article>
                 <article class="cont__gensecund">
                     <h4>Canciones</h4>
