@@ -10,6 +10,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
 
 
+
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
@@ -22,4 +23,5 @@ export const routes: Routes = [
     {path: "album",component: AlbumPageComponent},
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
+   
 ];
