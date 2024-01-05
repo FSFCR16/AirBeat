@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterOutlet, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
 import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
@@ -13,7 +13,7 @@ import { error } from 'console';
 @Component({
   selector: 'app-buscador',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, RouterOutlet,],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css'
 })
