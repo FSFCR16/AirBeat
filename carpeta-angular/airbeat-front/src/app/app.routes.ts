@@ -7,9 +7,11 @@ import { VistaPrincipalPageComponent } from './pages/vista-principal-page/vista-
 import { VistaUsuarioPageComponent } from './pages/vista-usuario-page/vista-usuario-page.component';
 import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
 
 
 export const routes: Routes = [
+    {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
     {path: "search", component: BuscadorPageComponent},
     {path: 'search/:cancion', component: BuscadorPageComponent},

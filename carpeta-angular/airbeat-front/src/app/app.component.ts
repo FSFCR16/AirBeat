@@ -10,18 +10,18 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent, AlbumComponent ],
+  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent, AlbumComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'airbeat-front';
-  mostrarComponente:boolean= true;
-  constructor(private router:Router){
+  mostrarComponente: boolean = true;
+  constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         console.log(event.url)
-        if (event.url === '/login-page') {
+        if (event.url === '/login-page' || event.url === '/Init') {
           console.log(this.mostrarComponente)
           this.mostrarComponente = false; // No mostrar el componente en esta ruta
         } else {
