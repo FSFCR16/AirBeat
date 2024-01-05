@@ -9,14 +9,13 @@
     overflow-x: hidden;
 }
 .search-cont{
-    background-color:#393785 ;
+    background-color :#262473 ;
     margin-top: 7px;
     margin-right: 14px;
     border-radius: 10px;
     row-gap: 10px;
     width: auto;
     height: 98%;
-    padding: 5vh;
 }
 
 
