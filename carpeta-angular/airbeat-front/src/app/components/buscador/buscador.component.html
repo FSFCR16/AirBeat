@@ -2,7 +2,7 @@
   <header class="cont__header">
     <article class="cont__arrows">
       <section class="cont__btn">
-        <button class="btn__in">
+        <button class="btn__in" (click)="irAtras()">
           <i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>
         </button>
         <button class="btn__in">
@@ -47,7 +47,7 @@
         </article>
         <button (click)="borrarDelHistorial(i._id)" class="borral__Historial"><i class="fa-solid fa-xmark"
             style="color: #ffffff;"></i></button>
-        <button style="display: none;" #btnPlay (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)"
+        <button  #btnPlay (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)"
           class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
             viewBox="0 0 384 512">
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
@@ -72,7 +72,7 @@
         <p>{{cancion.artist}} - {{albumLength}} canciones</p>
         <button class="btn_info">{{tipo}}</button>
         <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
-          class="btn__play btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+          class="btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
             viewBox="0 0 384 512">
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
@@ -123,7 +123,7 @@
       <h4>Canciones</h4>
       <section class="cont__card_secundarias">
         @for (can of secundarias; track can._id) {
-        <article class="cont__info__secundarias">
+        <article #secundarias class="cont__info__secundarias">
           <section class="cont__img__secundarias">
             <img style="height: 40px; width: 40px;" src="{{can.img_urls.img_url_300}}" alt="">
             <article>
@@ -138,7 +138,7 @@
             </article>
           </section>
           <section>{{can.duration_ms}}</section>
-          <button (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" class="btn__secundarias"><i
+          <button (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" #btnSecundarias class="btn__secundarias"><i
               class="fa-solid fa-play" style="color: #ffffff;"></i></button>
         </article>
         }
@@ -161,7 +161,7 @@
               <p style="font-size: 19px; font-weight: bold; width: 12rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">{{i.album.name_album}}</p>
               <p style="font-size:14px ;">{{i.artist}}</p>
             </article>
-            <button style="display: none;" #btnPlay (click)="ultimoClick(i._id)" (click)="cargarCancion(i)"
+            <button  #btnPlay (click)="ultimoClick(i._id)" (click)="cargarCancion(i)"
               class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
                 viewBox="0 0 384 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->

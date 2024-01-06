@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, NavigationStart, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
@@ -6,7 +6,7 @@ import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
 import { busqueda } from '../../services/bucador.servicios.service';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError } from 'rxjs';
 import { error } from 'console';
 
 
@@ -18,9 +18,13 @@ import { error } from 'console';
   styleUrl: './buscador.component.css'
 })
 
-export class BuscadorComponent implements OnInit {
+export class BuscadorComponent implements OnInit,AfterViewInit{
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
   @ViewChildren('cartaDiv') cartas!: QueryList<ElementRef>;
+  @ViewChildren('btnPlay') btn_play!: QueryList<ElementRef>;
+  @ViewChildren('secundarias') secun!: QueryList<ElementRef>;
+  @ViewChildren('btnSecundarias') btnSecun!: QueryList<ElementRef>;
+
 
   private busquedaSubscription: Subscription | undefined;
   enlacesCanciones: string[] = [];
@@ -49,7 +53,6 @@ export class BuscadorComponent implements OnInit {
     this.buscador.tarerAlbums().subscribe({
       next:(data:any)=>{
         this.albums= data.albums
-        console.log(this.mostrarAlbums)
       },
       error: (error)=>{
         console.log(error)
@@ -69,16 +72,32 @@ export class BuscadorComponent implements OnInit {
       this.buscador.traerHistorialCom().subscribe({
         next:(data:any)=>{
           this.historial = data.historial
-          console.log(this.historial)
         },
         error: (error)=>{
           return error
         }
       })
     }
-
-
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      for(let i = 0; i < this.cartas.length; i++){
+        const carta = this.cartas.get(i);
+        const boton = this.btn_play.get(i)
+        console.log(boton)
+        if (carta) {
+          this.renderer.listen(carta.nativeElement, 'mouseover', () => {
+            this.renderer.addClass(boton?.nativeElement, "cont_block")
+          });
+          this.renderer.listen(carta.nativeElement, 'mouseout', ()=>{
+            this.renderer.removeClass(boton?.nativeElement, "cont_block")
+          })
+        }
+      }
+    }, 1000);
+  }
+  
 
 
 
@@ -104,12 +123,29 @@ export class BuscadorComponent implements OnInit {
               const formattedTime = this.formatTime(this.secundarias[i].duration_ms);
               this.secundarias[i].duration_ms = formattedTime; // Crear nueva propiedad con el tiempo formateado
             }
+            setTimeout(() => {
+              for(let i = 0; i < this.secun.length; i++){
+                const cartaSe = this.secun.get(i);
+                const botonSe = this.btnSecun.get(i)
+        
+                if (cartaSe) {
+                  this.renderer.listen(cartaSe.nativeElement, 'mouseover', () => {
+                    this.renderer.addClass(botonSe?.nativeElement, "cont_block_secundarias")
+                  });
+                  this.renderer.listen(cartaSe.nativeElement, 'mouseout', ()=>{
+                    this.renderer.removeClass(botonSe?.nativeElement, "cont_block_secundarias")
+                  })
+                }
+              }
+            }, 1000);
             // this.formatTime()
           },
           error: (error) => {
             console.log(error);
           }
         });
+      }else{
+        this.router.navigate(['/search']);
       }
     }, 500);
 
@@ -166,6 +202,16 @@ export class BuscadorComponent implements OnInit {
     })
 
   }
+
+
+  irAtras(){
+    // if(this.router.url === "home"){
+
+    // }
+    this.router.navigate(['/home']);
+  }
+
+
 
 
 
