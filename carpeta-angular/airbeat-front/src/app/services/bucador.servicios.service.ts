@@ -14,7 +14,7 @@ export interface songs{
     collaborators_name:[string]
   },
   artist:string,
-  duration_ms:number,
+  duration_ms:any,
   explicit: boolean,
   img_urls: {
     img_url_640:string,

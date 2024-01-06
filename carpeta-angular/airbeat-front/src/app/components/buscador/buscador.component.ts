@@ -20,6 +20,8 @@ import { error } from 'console';
 
 export class BuscadorComponent implements OnInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
+  @ViewChildren('cartaDiv') cartas!: QueryList<ElementRef>;
+
   private busquedaSubscription: Subscription | undefined;
   enlacesCanciones: string[] = [];
   valorInput:string=""
@@ -46,7 +48,9 @@ export class BuscadorComponent implements OnInit {
         return error
       }
     })
+
   }
+
 
 
   inputChanged(event: Event) {
@@ -67,7 +71,11 @@ export class BuscadorComponent implements OnInit {
             this.secundarias = data.resultado
             this.tipo = data.type
             this.albumLength = data.length
-            console.log(this.datos)
+            for (let i = 0; i < this.secundarias.length; i++) {
+              const formattedTime = this.formatTime(this.secundarias[i].duration_ms);
+              this.secundarias[i].duration_ms = formattedTime; // Crear nueva propiedad con el tiempo formateado
+            }
+            // this.formatTime()
           },
           error: (error) => {
             console.log(error);
@@ -76,6 +84,12 @@ export class BuscadorComponent implements OnInit {
       }
     }, 500);
 
+  }
+  formatTime(ms: number) {
+    const secs = Math.floor(ms / 1000) || 0; // Convertir milisegundos a segundos
+    const minutes = Math.floor(secs / 60) || 0;
+    const seconds = (secs - minutes * 60) || 0;
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   }
 
   changeColorInput(status: boolean) {

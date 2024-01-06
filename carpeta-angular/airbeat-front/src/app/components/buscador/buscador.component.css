@@ -193,8 +193,8 @@ p{
     height: 2rem;
     border-radius: 50px;
     color: aliceblue;
-    top:45%;
-    left: 33%;
+    top:6.3rem;
+    left: 9rem;
 }
 
 .btn__play{
@@ -211,7 +211,13 @@ p{
     top: 60%;
     right: 10%;
     padding-left: 9px;
+    box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    transition: background .3s ease;
     
+}
+
+.btn__principal:hover{
+    background-color:#2a2a4b ;
 }
 
 .cont__gensecund{

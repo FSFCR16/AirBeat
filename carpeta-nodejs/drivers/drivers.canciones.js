@@ -163,6 +163,7 @@ export const findgeneral = async (req, res) => {
 
     if (contenido.length > 0) {
       const resultados = contenido.map(item => {
+        console.log(item.name_track)
         if (item.artist && normalizeText(item.artist).match(new RegExp(normalizedGeneral, 'i'))) {
           matchType = 'Artista';
         } else if (item["album"]["name_album"]&& normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i'))) {
@@ -177,8 +178,9 @@ export const findgeneral = async (req, res) => {
         const album= await Music.find({ 'album.name_album': { $regex: new RegExp(general, 'i') } })
         albumLength = album.length
         return res.status(200).json({resultado: resultados , type: matchType, length: albumLength });
+      }else{
+        return res.status(200).json({resultado: resultados , type: matchType });
       }
-      return res.status(200).json({resultado: resultados , type: matchType });
     }else {
       return res.status(404).json({ error: `No se han encontrado resultados para (${general})` });
     }
