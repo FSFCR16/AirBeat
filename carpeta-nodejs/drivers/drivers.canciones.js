@@ -61,7 +61,6 @@ export const findSongsByAlbum = async (req, res) => {// no funciona
     const name_album = req.params.name_album;// const name_albu = req.body.album.name_album; Aqui guarda el nombre del album
     const albumDecodificado = decodeURIComponent(name_album);//esto se iria si usaramos body
     const Album = await Music.find({ 'album.name_album': { $regex: new RegExp(albumDecodificado, 'i') } });
-    console.log(Album)
     if (Album) {
       return res.json(Album);
     } else {
@@ -208,4 +207,27 @@ export const editSongById = async (req, res) => {
   }
 };
 
+export const albums = async (req, res)=>{
+  try {
+    let arrayAlbums = []
+    const nombresAlbumes = await Music.aggregate([
+        { $group: { _id: '$album.name_album' } },
+        { $project: { _id: 0, album: '$_id' } }
+    ]);
+    
+    let albums = nombresAlbumes
+    .map(album => album.album)
+    .filter(album => album !== null)
+    
+    for(let i = 0; i < albums.length; i++){
+      const nameAlbum = albums[i]
+      let album = await Music.findOne({'album.name_album': nameAlbum})
+      arrayAlbums.push(album)
+    }
 
+    return res.status(200).json({albums: arrayAlbums})
+
+} catch (error) {
+    console.log('Error al buscar los nombres de los álbumes:', error);
+}
+}

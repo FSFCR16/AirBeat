@@ -13,6 +13,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 export const routes: Routes = [
     {path: "login-page", component: LoginPageComponent},
     {path: "search", component: BuscadorPageComponent},
+    {path: "search/:historial", component: BuscadorPageComponent},
     {path: 'search/:cancion', component: BuscadorPageComponent},
     {path: "playlist", component: PlaylistPageComponent},
     {path: "admin", component: VistaAdminPageComponent},

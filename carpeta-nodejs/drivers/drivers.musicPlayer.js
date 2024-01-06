@@ -8,7 +8,6 @@ export const play = async (req, res)=>{
 
     try{
         const song = await Music.findOne({_id: _idCancion})
-        console.log(song)
 
         if(!song){
             return res.status(404).json({error: "No se encontro la cancion"})
@@ -35,6 +34,7 @@ export const getsong = async(req, res)=>{
     try{
         const idUser = req.user._id
         const cancionPlayer=await player.findOne({userId:idUser})
+        console.log(cancionPlayer)
         if(!cancionPlayer){
             return res.status(404).json({message: "No se encontro ninguna cancion para este usuario"})
         }

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationStart, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
 import { Howl, Howler } from "howler";
 import { songs } from '../../services/bucador.servicios.service';
@@ -13,7 +13,7 @@ import { error } from 'console';
 @Component({
   selector: 'app-buscador',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,],
+  imports: [CommonModule, RouterOutlet,RouterLink, RouterLinkActive],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css'
 })
@@ -33,21 +33,50 @@ export class BuscadorComponent implements OnInit {
   historial: busqueda[]=[]
   albumLength: number = 0
   tipo: string = ""
+  albums: songs[]= []
+  mostrarAlbums:boolean= true
 
 
   constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) {
   }
 
   ngOnInit(): void {
-    this.buscador.traerHistorial().subscribe({
+    this.buscador.obtenerMostrarAlbum().subscribe(valor => {
+      console.log(valor)
+      this.mostrarAlbums = valor;
+    });
+
+    this.buscador.tarerAlbums().subscribe({
       next:(data:any)=>{
-        this.historial = data.historial
-        console.log(this.historial)
+        this.albums= data.albums
+        console.log(this.mostrarAlbums)
       },
       error: (error)=>{
-        return error
+        console.log(error)
       }
     })
+
+    if(this.mostrarAlbums){
+      this.buscador.traerHistorial().subscribe({
+        next:(data:any)=>{
+          this.historial = data.historial
+        },
+        error: (error)=>{
+          return error
+        }
+      })
+    }else{
+      this.buscador.traerHistorialCom().subscribe({
+        next:(data:any)=>{
+          this.historial = data.historial
+          console.log(this.historial)
+        },
+        error: (error)=>{
+          return error
+        }
+      })
+    }
+
 
   }
 
@@ -137,6 +166,8 @@ export class BuscadorComponent implements OnInit {
     })
 
   }
+
+
 
 
 

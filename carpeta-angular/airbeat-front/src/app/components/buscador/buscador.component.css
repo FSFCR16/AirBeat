@@ -5,8 +5,8 @@ p{
 
 .search-cont{
     display: grid;
-    grid-template-rows: 9% 34% auto;
-    row-gap: 10px;
+    grid-template-rows: 9% 43% 43% auto;
+    row-gap: 20px;
     padding: 10px 20px;
     width: 100%;
     height: 100%;
@@ -115,8 +115,11 @@ p{
     grid-template-columns: repeat(6, 16.7%);
     background-color: #393785;
     border-radius: 8px;
-    
-
+}
+.cont-albums{
+    grid-template-columns: repeat(7, 16.7%);
+    height: 18.6rem;
+    overflow-x: hidden;
 }
 
 .cards{
@@ -172,10 +175,13 @@ p{
 
 .card__resultado{
     display: flex;
+    margin-top: 15px;
     position: relative;
-    width: 67%;
+    width: 80%;
+    height: 75% ;
     flex-direction: column;
     padding: 20px;
+    padding-top: 37px;
     border-radius: 10px;
     background-color: #393785;
 }
@@ -193,8 +199,8 @@ p{
     height: 2rem;
     border-radius: 50px;
     color: aliceblue;
-    top:6.3rem;
-    left: 9rem;
+    top:8.3rem;
+    left: 10rem;
 }
 
 .btn__play{
