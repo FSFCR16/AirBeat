@@ -5,8 +5,8 @@ p{
 
 .search-cont{
     display: grid;
-    grid-template-rows: 9% 34% auto;
-    row-gap: 10px;
+    grid-template-rows: 9% 43% 43% auto;
+    row-gap: 20px;
     padding: 10px 20px;
     width: 100%;
     height: 100%;
@@ -115,8 +115,11 @@ p{
     grid-template-columns: repeat(6, 16.7%);
     background-color: #393785;
     border-radius: 8px;
-    
-
+}
+.cont-albums{
+    grid-template-columns: repeat(7, 16.7%);
+    height: 18.6rem;
+    overflow-x: hidden;
 }
 
 .cards{
@@ -140,13 +143,12 @@ p{
     background-color:rgb(0, 0, 0, 0.3) ;
     margin-top: 5px;
     transition: background 0.2s ease;
-    display: none;
+    display: block
 
 }
 .borral__Historial:hover{
     background-color: rgb(24, 24, 24, 0.8);
 }
-
 
 
 .btn__historial{
@@ -172,10 +174,13 @@ p{
 
 .card__resultado{
     display: flex;
+    margin-top: 15px;
     position: relative;
-    width: 67%;
+    width: 80%;
+    height: 75% ;
     flex-direction: column;
     padding: 20px;
+    padding-top: 37px;
     border-radius: 10px;
     background-color: #393785;
 }
@@ -193,8 +198,8 @@ p{
     height: 2rem;
     border-radius: 50px;
     color: aliceblue;
-    top:45%;
-    left: 33%;
+    top:8.3rem;
+    left: 10rem;
 }
 
 .btn__play{
@@ -203,15 +208,28 @@ p{
     justify-content: center;
     align-items: center;
     background-color: #20203d;
-    width: 3rem;
-    height: 3rem;
+    opacity: 0;
+    width: 0;
+    height: 0;
     border-radius: 50px;
     border: none;
     outline: none;
-    top: 60%;
+    top: 10rem;
+    overflow: hidden;
     right: 10%;
     padding-left: 9px;
+    box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    transition: background .3s ease;
     
+}
+.btn__principal{
+    opacity: 1;
+    width: 3rem;
+    height: 3rem;
+}
+
+.btn__principal:hover{
+    background-color:#2a2a4b ;
 }
 
 .cont__gensecund{
@@ -250,15 +268,30 @@ p{
 
 .btn__secundarias{
     display: flex;
+    opacity: 0;
     justify-content: center;
     position: absolute;
     align-items: center;
     background-color: rgb(78, 76, 139, 0.4);
     border-radius: 5px;
     width: 2.5rem;
-    height: 2.5rem;
+    height: 0;
     border: none;
     outline: none;
 
     
+}
+.cont_block_secundarias{
+    opacity: 1;
+    height: 2.5rem;
+    transform: scaleY(1);
+    transition: all 0.4s ease;
+}
+
+.cont_block{
+    opacity: 1;
+    height: 3rem;
+    width: 3rem;
+    transform: scaleY(1);
+    transition: all 0.3s ease;
 }
