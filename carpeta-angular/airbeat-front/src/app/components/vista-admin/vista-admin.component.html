@@ -193,7 +193,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>AGREGAR CANCION</strong></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="agregarCerrar()"
                         aria-label="Close"></button>
                 </div>
@@ -241,7 +241,7 @@
                             </div>
                             }@else{
                             <div formGroupName="collaboration">
-                                <h6>Colaboraciones</h6>
+                                <h6>COlABORACIONES</h6>
                                 <input type="text" class="form-control" id="recipient-name"
                                     placeholder="Cantidad de colaboradores" formControlName="number_collaborators">
                                 <input type="text" class="form-control" id="recipient-name"
@@ -250,6 +250,7 @@
                             }
                         </div>
                         <div class="mb-2" formGroupName="img_urls">
+                            <h6>IMAGEN CANCION</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="img url 640px"
                                 formControlName="img_url_640">
                             <input type="text" class="form-control" id="recipient-name" placeholder="img url 300px"
@@ -258,26 +259,32 @@
                                 formControlName="img_url_64">
                         </div>
                         <div class="mb-2">
+                            <h6>ARTISTA</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Artist"
                                 formControlName="artist">
                         </div>
                         <div class="mb-2">
+                            <h6>DURACION</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Duration"
                                 formControlName="duration_ms">
                         </div>
                         <div class="mb-2">
+                            <h6>EXPLICITO</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Explicit"
                                 formControlName="explicit">
                         </div>
                         <div class="mb-2">
+                            <h6>NOMBRE DE LA CANCION</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Name Track"
                                 formControlName="name_track">
                         </div>
                         <div class="mb-2">
+                            <h6>PREVIEW URL</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Preview URL"
                                 formControlName="preview_url">
                         </div>
                         <div class="mb-2">
+                            <h6>FECHA DE LANZAMIENTO</h6>
                             <input type="text" class="form-control" id="recipient-name" placeholder="Release Date"
                                 formControlName="release_date">
                         </div>

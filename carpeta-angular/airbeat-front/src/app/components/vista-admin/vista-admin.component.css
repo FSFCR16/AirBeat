@@ -314,8 +314,15 @@ p {
 .modal{
   z-index: 1;
   opacity: 1;
-  overflow: none !important;
+  overflow: none !important; ;
 }
+
+
+.modal-header{
+  background-color: black;
+  color: #fff;
+}
+
 
 .botonConfirmacion{
   display: flex;
