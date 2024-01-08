@@ -11,7 +11,8 @@ import {
     findgeneral,
     editSongById,
     findSongByID,
-    albums
+    albums,
+    cancionesAleatorias
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
  
 import { play, getsong} from '../drivers/drivers.musicPlayer.js';
@@ -33,6 +34,7 @@ router.get('/all', SongsGet);
 router.post('/musicPlayer/:_id', authVerification, unSoloDoc, play)
 router.get('/music', authVerification, getsong)
 router.get('/albums', authVerification, albums)
+router.get('/aleatorias', cancionesAleatorias)
 
 //rutas para admin
 router.delete('/delete/name/:name_track', SongsDeletename);
