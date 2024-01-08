@@ -64,7 +64,7 @@
     <article class="resultado">
       <h4>Resultado principal</h4>
       @if(tipo === "Album"){
-      <section class="card__resultado">
+      <section class="card__resultado" (click)="irAlbum(cancion.album.name_album)">
         <img
           style=" border-radius: 5px; width: 8rem; height: 8rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
           src="{{cancion.img_urls.img_url_300}}" alt="">
@@ -72,7 +72,7 @@
         <p>{{cancion.artist}} - {{albumLength}} canciones</p>
         <button class="btn_info">{{tipo}}</button>
         <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
-          class="btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+          class="btn__play btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
             viewBox="0 0 384 512">
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
@@ -153,7 +153,7 @@
         <h4 style="cursor: default; color: aliceblue;">Albums</h4>
         <article class="cont__cards cont-albums">
           @for(i of albums; track i._id ){
-          <section class="cards" #cartaDiv>
+          <section class="cards" #cartaDiv (click)="irAlbum(i.album.name_album)">
             <img
               style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
               src="{{i.img_urls.img_url_300}}" alt="">

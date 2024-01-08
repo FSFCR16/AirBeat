@@ -240,6 +240,13 @@ export class BucadorServiciosService {
     return this.http.delete<any>(`${this.url}update/deletePlaylist/${id}`, { headers })
   }
 
+  llevarArutaAlmbu(name_album:string){
+    this.router.navigate(['album', name_album])
+  }
+
+
+
+
   guardarInfoPlaylist(data: any) {
     this.informacionSubject.next(data);
   }

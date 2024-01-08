@@ -188,6 +188,10 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
     })
   }
 
+  irAlbum(name_album:string){
+    this.buscador.llevarArutaAlmbu(name_album)
+  }
+
   ultimoClick(id:string){
 
     this.buscador.guardarUltimaCancion(id).subscribe({

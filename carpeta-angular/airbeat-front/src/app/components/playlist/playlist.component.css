@@ -105,6 +105,7 @@ html {
 }
 .cont_carta {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     align-items: center;
@@ -210,7 +211,7 @@ html {
 }
 .img_carta{
     display: flex;
-    column-gap: 10px;
+    column-gap: 13px;
 }
 
 #tituloPlaylist {
@@ -277,13 +278,15 @@ html {
 
 .btn__secundarias{
     display: flex;
+    position: relative;
+    left: 28px;
     opacity: 0;
     justify-content: center;
     position: absolute;
     align-items: center;
     background-color: rgb(78, 76, 139, 0.4);
     border-radius: 5px;
-    width: 3.12em;
+    width: 3.18em;
     height: 0;
     border: none;
     outline: none;

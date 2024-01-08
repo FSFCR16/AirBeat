@@ -79,10 +79,11 @@
           }
         </div>
         <div class="canciones_playlist">
-          @for(song of cacniones_playlist; track song._id ){
-          <div class="cont_carta cont_carta_dos" #secundarias>
-            <div class="img_carta">
-  
+          <div class="cont_carta cont_carta_dos" *ngFor="let song of cacniones_playlist; let i = index" #secundarias>
+            <div class="img_carta align-items-center">
+              <div>
+                <h6>{{i + 1}}.</h6>
+              </div>
               <img style="height: 50px; width: 50px; border-radius: 5px; " src="{{song.img_urls.img_url_64}}" alt="">
               <div class="nombre_cancion">
                 <p style="margin: 0;">{{song.name_track}}</p>
@@ -94,7 +95,6 @@
             <button (click)="cargarCancion(song)" #btnSecundarias class="btn__secundarias"><i
                 class="fa-solid fa-play" style="color: #ffffff;"></i></button>
           </div>
-          }
         </div>
       </div>
     </div>
