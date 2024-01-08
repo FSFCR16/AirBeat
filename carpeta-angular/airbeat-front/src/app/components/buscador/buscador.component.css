@@ -5,9 +5,9 @@ p{
 
 .search-cont{
     display: grid;
-    grid-template-rows: 9% 43% 43% auto;
-    row-gap: 20px;
+    grid-template-rows: 9% 43% 43% ;
     padding: 10px 20px;
+    row-gap: 15px;
     width: 100%;
     height: 100%;
 
