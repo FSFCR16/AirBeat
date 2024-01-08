@@ -13,28 +13,34 @@ export const createPlaylist = async (req, res) => {
 
     try {
         const userId = req.user._id;
-        const body = req.body.namePlaylist
 
         const playlist = new playlists({
             userId,
-            namePlaylist: body
         });
-        console.log()
-
         const newPlaylist = await playlist.save();
+        if(playlist){
+            const idPlaylist = playlist._id
+            console.log(idPlaylist)
+            const encontarPlaylist= await  playlists.findOne({_id: idPlaylist})
+            if(encontarPlaylist){
+                return res.status(200).json(encontarPlaylist);
+            }else{
+                return res.status(404).json({message: "Playlist no encontrada"})
+            }
+        }else{
+            return res.status(422).json({message: "No se pudo crear la playlist"})
+        }
 
-        res.json(newPlaylist);
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             error: err.message
         });
     }
 };
-
 export const postPlaylist = async (req, res) => {
     try {
         const _id = req.params._id
-        const song = req.body._id
+        const song = req.params._idsong
 
         const songPush = await Music.findOne({
             _id: song
@@ -94,12 +100,36 @@ export const traerPlaylistIdUser = async (req, res) => {
 
 }
 
-export const traerPlaylistId = async (req, res) => {
+export const traerPlaylistsId = async (req, res) => {
     try {
         const idUser = req.user._id
 
         const playlist = await playlists.find({
             userId: idUser
+        })
+
+        if (!playlist) {
+            return res.status(404).json({
+                error: "Playlist no encontarda"
+            })
+        }
+
+        return res.status(200).json(playlist)
+
+    } catch (e) {
+        res.status(500).json({
+            err: e
+        })
+    }
+
+}
+
+export const traerPlaylistById = async (req, res) => {
+    try {
+        const id = req.params._id
+
+        const playlist = await playlists.find({
+            _id: id
         })
 
         if (!playlist) {
@@ -144,7 +174,8 @@ export const deletePlaylist = async (req, res) => {
 export const deleteSongPlaylist = async (req, res) => {
     try {
         const idPlaylist = req.params._id
-        const idCancion = req.body._id
+        const idCancion = req.params._idsong
+        console.log(idCancion, idPlaylist)
         const playlist = await playlists.findOne({
             _id: idPlaylist
         })
@@ -184,7 +215,7 @@ export const changeName = async (req, res) => {
     try {
         const idPlaylist = req.params._id
         const newName = req.body.namePlaylist
-
+        console.log(idPlaylist, newName)
         const newNamePlaylist = await playlists.findOneAndUpdate({
             _id: idPlaylist
         }, {

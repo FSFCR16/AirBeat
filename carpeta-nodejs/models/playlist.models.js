@@ -5,12 +5,13 @@ const playlist = new mongoose.Schema({
     namePlaylist:{
         type:String,
         require:true,
-        unique:true
+        unique:false,
+        default: "Mi Playlist"
     },
     userId:{
         type: mongoose.Schema.Types.ObjectId,
-        require:true,
         ref: "User",
+        require:true,
         unique: false 
     },
 

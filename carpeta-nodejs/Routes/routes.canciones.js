@@ -10,7 +10,9 @@ import {
     findSongsByArtist,
     findgeneral,
     editSongById,
-    findSongByID
+    findSongByID,
+    albums,
+    cancionesAleatorias
 } from '../drivers/drivers.canciones.js'; // se llama el archivo de controlador y se importan las funciones
 import { play, getsong} from '../drivers/drivers.musicPlayer.js';
 import {songIn} from '../middleware/cancionExiste.middelwere.js';
@@ -30,6 +32,9 @@ router.get('/explicit/:explicit', findSongsByExplicit);
 router.get('/all', SongsGet);
 router.post('/musicPlayer/:_id', authVerification, unSoloDoc, play)
 router.get('/music', authVerification, getsong)
+router.get('/albums', authVerification, albums)
+router.get('/aleatorias', cancionesAleatorias)
+
 //rutas para admin
 router.delete('/delete/name/:name_track', SongsDeletename);
 router.put('/songs/edit:_id', editSongById);
