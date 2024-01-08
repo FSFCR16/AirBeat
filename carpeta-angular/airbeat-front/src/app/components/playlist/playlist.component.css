@@ -1,0 +1,298 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 7px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+    height: 84.3vh;
+    border-radius: 10px;
+
+}
+.canciones_playlist{
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    background-color:#393785 ;
+    border-radius: 10px;
+    padding: 10px;
+    row-gap: 3px;
+    height: 100%;
+}
+
+.canciones_playlist::-webkit-scrollbar {
+    width: 2px; /* Ancho del scrollbar */
+  }
+  
+  /* Flecha/Manija en el scrollbar */
+.canciones_playlist::-webkit-scrollbar-thumb {
+    background-color: #554b97; /* Color de la manija del scrollbar */
+    border-radius: 5px; /* Radio de borde para la manija */
+  }
+  
+  /* Track (rastro) del scrollbar */
+.canciones_playlist::-webkit-scrollbar-track {
+    background-color: #372A8c; /* Color del rastro del scrollbar */
+  }
+
+
+.fila-superior {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 15px;
+    width: 100%;
+}
+
+.cuadro-color {
+    width: 200px;
+    height: 200px;
+    background-color: #262473;
+    background-size: cover;
+    background-position: center;
+}
+
+.contenedor-buscador-botones {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 220px);
+    /* Ajustar al ancho del cuadro de color más el espacio */
+    height: 12.5rem;
+}
+
+.contenedor_carta {
+    display: flex;
+    background-color: #393785;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    row-gap: 10px;
+    height: 100%;
+    width: 40%;
+}
+/* Ancho y grosor del scrollbar */
+.contenedor_carta::-webkit-scrollbar {
+    width: 2px; /* Ancho del scrollbar */
+  }
+  
+  /* Flecha/Manija en el scrollbar */
+.contenedor_carta::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Color de la manija del scrollbar */
+    border-radius: 5px; /* Radio de borde para la manija */
+  }
+  
+  /* Track (rastro) del scrollbar */
+.contenedor_carta::-webkit-scrollbar-track {
+    background-color: #372A8c; /* Color del rastro del scrollbar */
+  }
+  
+
+.nombre_cancion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: azure;
+    align-content: center;
+
+
+}
+.cont_carta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px ;
+    border-radius: 5px;
+    height: 3rem;
+}
+.cont_carta:hover{
+    background-color: #1c1a4d;
+}
+
+.buscador-derecho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#busquedaCancion {
+    height: 50px;
+    padding: 10px;
+    font-size: 1em;
+    width: 31rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #393785;
+}
+
+
+#botonBuscar {
+    height: 50px;
+    background-color: #262473;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#botonBuscar:hover {
+    background-color: #1c1a4d;
+}
+
+.botones-playlist {
+    display: flex;
+    gap: 10px;
+}
+
+.fa-pen-to-square{
+    cursor: pointer;
+}
+
+.botones-playlist button {
+    background-color: #262473;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1em;
+}
+
+.botones-playlist button:hover {
+    background-color: #192178;
+}
+
+#botonEliminar {
+    background-color: #f44336;
+}
+
+#botonEliminar:hover {
+    background-color: #d32f2f;
+}
+
+.playlist-editor {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+    /* Ajustar al padding del contenedor */
+    height: auto;
+    max-height:36rem;
+    background-color:transparent;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.namePlaylist{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    column-gap: 20px;
+    background-color:#393785 ;
+
+}
+.img_carta{
+    display: flex;
+    column-gap: 10px;
+}
+
+#tituloPlaylist {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #2d2f71;
+}
+.cont__user{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 6px;
+    column-gap: 2px;
+    border-radius: 30px;
+    background-color: #393785;
+    padding: 10px;
+    padding-right: 20px;
+    height: 2.6rem;
+    cursor: pointer;
+}
+
+.cont__user:hover{
+    background-color: #1f1e47;
+}
+.btn__in{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    height: 2.2rem;
+    width: 2.2rem;
+    border: none;
+    outline: none;
+    background-color:#393785;
+}
+.btn__in:hover{
+    background-color: #1f1e47;
+}
+
+#botonAgregar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 13px;
+    height: 1.7rem;
+    width: auto;
+    padding: 10px;
+    background-color: #192178;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+
+}
+
+.cont_carta_dos{
+    height: 4rem;
+
+}
+
+.btn__secundarias{
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    background-color: rgb(78, 76, 139, 0.4);
+    border-radius: 5px;
+    width: 3.12em;
+    height: 0;
+    border: none;
+    outline: none;
+
+    
+}
+.cont_block_secundarias{
+    opacity: 1;
+    height: 3.12rem;
+    transform: scaleY(1);
+    transition: all 0.4s ease;
+}
