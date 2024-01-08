@@ -1,0 +1,80 @@
+<main class="main" #contenedorScroll #infocanciones>
+    @if(vistaBuscador){
+        @for(songs of mostrarCanciones; track songs._id){
+            <div class="card">
+                <div class="card__img">
+                    <img src="{{songs.img_urls.img_url_64}}" alt="" style="width: 75px;">
+                </div>
+                <div class="card__title">
+                    <div class="content-wrapper" #cardTitle>
+                        <span class="text-content">{{ songs.name_track }}</span>
+                    </div>
+                </div>
+                @if(songs.album){
+                    <div class="card__subtitle" style="margin-top: 1px;">{{ songs.album.name_album}}</div>
+                }@else{
+                    <div class="card__subtitle" style="margin-top: 1px;">unknown</div>
+                }
+                <div class="card__subtitle" style="margin-top: 2px;">{{ songs.artist}}</div>
+                <div class="card__wrapper">
+                    <button class="card__btn card__btn-solid" (click)="modalPop()" (click)="guardarborrarCancion(songs._id)">Eliminar</button>
+                </div>
+            </div>
+            }
+    }@else{
+        @for(songs of listaCanciones; track songs._id){
+    <div class="card">
+        <div class="card__img">
+            <img src="{{songs.img_urls.img_url_64}}" alt="" style="width: 75px;">
+        </div>
+        <div class="card__title">
+            <div class="content-wrapper" #cardTitle>
+                <span class="text-content">{{ songs.name_track }}</span>
+            </div>
+        </div>
+        @if(songs.album){
+            <div class="card__subtitle" style="margin-top: 1px;">{{ songs.album.name_album}}</div>
+        }@else{
+            <div class="card__subtitle" style="margin-top: 1px;">unknown</div>
+        }
+        <div class="card__subtitle" style="margin-top: 2px;">{{ songs.artist}}</div>
+        <div class="card__wrapper">
+            <button class="card__btn card__btn-solid" (click)="modalPop()" (click)="guardarborrarCancion(songs._id)">Eliminar</button>
+        </div>
+    </div>
+    }
+    }
+    @if(vistaBuscador){
+        <div class="paginacion" hidden>
+            <button class="boton-p" (click)="incrementar(-1)">
+                <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+            </button>
+            <div class="contador">
+                {{contador}} de {{cantidadBotones}}
+            </div>
+            <button class="boton-p" (click)="incrementar(1)">
+                <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+            </button>
+        </div>
+    }@else{
+        <div class="paginacion">
+            <button class="boton-p" (click)="incrementar(-1)">
+                <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+            </button>
+            <div class="contador">
+                {{contador}} de {{cantidadBotones}}
+            </div>
+            <button class="boton-p" (click)="incrementar(1)">
+                <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+            </button>
+        </div>
+    }
+    
+    <div class="añadirCancion">
+        <button class="añadirC" (click)="abrirA()">
+            Añadir cancion
+        </button>
+    </div>
+
+</main>
+

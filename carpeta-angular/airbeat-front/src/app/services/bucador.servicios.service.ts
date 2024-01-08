@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { json } from 'stream/consumers';
- 
+import { User } from './create-user.service';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+
 
 export interface songs{
   album:{
-    trakc_number:number,
+    track_number:number,
     name_album:string
   },
   collaboration: {
@@ -25,7 +27,7 @@ export interface songs{
   name_track:string,
   preview_url: string,
   release_date: Date,
-  _id: string
+  _id?: any
 }
 
 interface PlaylistResponse {
@@ -69,6 +71,7 @@ export class BucadorServiciosService {
   }
   private url = 'http://127.0.0.1:3000/'
   private informacionCompartidaSubject = new Subject<any>();
+  private _vistaBuscador = new BehaviorSubject<string>('');
 
   getAlbum(nombre:string):Observable<songs[]>{
     const token = localStorage.getItem("key")
@@ -106,8 +109,13 @@ export class BucadorServiciosService {
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`,{}, {headers})
+    return this.http.get<any>(`${this.url}songs/getsongsmassive/${songId}`, {headers})
   }
+
+
+  /*borrarCancion(id:string):Observable<songs>{
+    return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`,{}, {headers})
+  } */
 
   traerHistorial():Observable<[]>{
     const token = localStorage.getItem("key")
@@ -259,6 +267,63 @@ export class BucadorServiciosService {
     return this.informacionCompartidaSubject.asObservable();
   }
 
+  borrarCancion(id:string):Observable<songs>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.delete<songs>(`${this.url}songs/deletesongsforid/${id}`,{headers})
+  }
+
+  cancionesTraer(pagina: number):Observable<any>{
+    const token = localStorage.getItem("key")
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<any>(`${this.url}songs/getsongsmassive/${pagina}`, {headers})
+  }
 
 
+  agregarCancion(songs:songs):Observable<songs>{
+    const token = localStorage.getItem("key")
+
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.post<songs>(`${this.url}songs/postsongs`,JSON.stringify({songs}),{headers})
+  }
+
+  buscadorUsuarios(name:string):Observable<User>{
+    const token = localStorage.getItem("key")
+
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<User>(`${this.url}user/getUserByUsername/${name}`,{headers})
+  }
+  
+
+  buscadorCanciones(name_track:string):Observable<songs>{
+    const token = localStorage.getItem("key")
+
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "authorization": `key ${token}`
+    });
+    return this.http.get<songs>(`${this.url}songs/search/track/${name_track}`,{headers})
+  }
+
+  
+
+  get vistaBuscador$() {
+    return this._vistaBuscador.asObservable();
+  }
+
+  setVistaBuscador(value: string) {
+    this._vistaBuscador.next(value);
+  }
 }

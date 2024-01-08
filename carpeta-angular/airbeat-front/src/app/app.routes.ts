@@ -26,5 +26,4 @@ export const routes: Routes = [
     {path: "album",component: AlbumPageComponent},
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
-   
 ];
