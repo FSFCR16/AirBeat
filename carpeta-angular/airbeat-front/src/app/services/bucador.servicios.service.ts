@@ -59,7 +59,8 @@ export class BucadorServiciosService {
     this.mostrarAlbum = new BehaviorSubject<boolean>(true);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        this.mostrarComponente.next(event.url !== '/login-page');
+        this.mostrarComponente.next(event.url !== '/login-page' &&  event.url !== '/Init' );
+        // this.mostrarComponente.next(event.url !== '/Init'  );
         this.mostrarAlbum.next(event.url !== '/search/historial')
       }
     });
