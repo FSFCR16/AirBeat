@@ -26,6 +26,8 @@ export class VistaPrincipalComponent implements OnInit {
   secundarias :songs[] =[]
   isFocused: boolean = false;
   historial: busqueda[]=[]
+  mostrarAlbums:boolean= true
+  albums: songs[]= []
   usuario: any = {};
   alert: boolean = false;
   alerterror: boolean = false;
@@ -36,6 +38,19 @@ export class VistaPrincipalComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
+    this.buscador.obtenerMostrarAlbum().subscribe(valor => {
+      console.log(valor)
+      this.mostrarAlbums = valor;
+    });
+
+    this.buscador.tarerAlbums().subscribe({
+      next:(data:any)=>{
+        this.albums= data.albums
+      },
+      error: (error)=>{
+        console.log(error)
+      }
+    })
     this.buscador.traerHistorial().subscribe({
       next:(data:any)=>{
         this.historial = data.historial

@@ -96,8 +96,6 @@ p{
     display: grid;
     grid-template-rows: 12% auto;
     row-gap: 7px;
-    padding:0 22px;
-    padding-right: 30px;
 }
 
 .text_opciones__recientes{
@@ -109,6 +107,13 @@ p{
 
 .mostartodo:hover{
     text-decoration: underline;
+}
+.cont__cardsdos{
+    display: grid;
+    grid-template-columns: repeat(6, 16.7%);
+    background-color: #393785;
+    border-radius: 8px;
+
 }
 .cont__cards{
     display: grid;
