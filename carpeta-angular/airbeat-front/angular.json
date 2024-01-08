@@ -30,7 +30,7 @@
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": false,
-            "ssr": false
+            "ssr":false
           },
           "configurations": {
             "production": {

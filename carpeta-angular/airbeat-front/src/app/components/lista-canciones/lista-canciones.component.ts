@@ -2,10 +2,11 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { songs } from '../../services/bucador.servicios.service';
 import { RouterOutlet } from '@angular/router';
-import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
 import { ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { VistaAdminComponent } from '../vista-admin/vista-admin.component';
+
 
 @Component({
   selector: 'app-lista-canciones',
@@ -19,18 +20,25 @@ export class ListaCancionesComponent implements OnInit {
   cantidadBotones: number = 0;
   contador: number = 1;
   cancionid: any = ""
-
+  mostrarCanciones: songs[] = []
+  vistaBuscador: string= ""
 
   @ViewChild('contenedorScroll') contenedorScroll!: ElementRef;
   @ViewChildren('cardTitle') cardTitles!: QueryList<ElementRef>;
   @ViewChild('modal') modal!: ElementRef;
+  @ViewChild("infocanciones") infocanciones!: ElementRef
+  
   constructor(private user: BucadorServiciosService, private render: Renderer2, private vista: VistaAdminComponent) {
 
-
+    
   }
+  
   ngOnInit() {
     this.llamarApiParaObtenerCanciones(1);
-
+    this.user.vistaBuscador$.subscribe((vistaBuscador) => {
+      this.vistaBuscador = vistaBuscador;
+      this.buscadorCanciones();
+    });
   }
 
 
@@ -53,6 +61,7 @@ export class ListaCancionesComponent implements OnInit {
       next: (data) => {
         this.contador = pagina;
         this.listaCanciones = data.canciones;
+        console.log(this.listaCanciones[1].album)
         this.cantidadBotones = data.paginas;
         this.scrollContenedorArriba()
       },
@@ -80,6 +89,9 @@ export class ListaCancionesComponent implements OnInit {
     this.vista.abrirPueba()
   }
 
+  abrirA(){
+    this.vista.agregarAbrir()
+  }
 
   guardarborrarCancion(id: any ) {
     this.cancionid = id
@@ -98,6 +110,20 @@ export class ListaCancionesComponent implements OnInit {
       }
     })
   }
+
+  infoC(): ElementRef {
+    return this.infocanciones
+  }
+
+  buscadorCanciones(){
+    this.user.buscadorCanciones(this.vistaBuscador).subscribe({
+      next: (data: any) => {
+        this.mostrarCanciones = data
+        console.log(data)
+      },
+      error: (error) =>{
+        console.log(error)
+      }
+    })
+  }
 }
-
-

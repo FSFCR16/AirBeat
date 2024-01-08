@@ -1,8 +1,10 @@
-import { Component,ViewChild,ElementRef, Input, OnInit } from '@angular/core';
-import { Observable, interval } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
+import { Component,ViewChild,ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
 import { CommonModule } from '@angular/common';
+import { busqueda } from '../../services/bucador.servicios.service';
 import * as Howler from "howler";
+import { Subscription } from 'rxjs';
+type songOrBusqueda= busqueda | songs
 
 @Component({
   selector: 'app-musicplayer',
@@ -11,20 +13,51 @@ import * as Howler from "howler";
   templateUrl: './musicplayer.component.html',
   styleUrl: './musicplayer.component.css'
 })
-export class MusicplayerComponent implements OnInit {
+export class MusicplayerComponent implements  OnDestroy {
+[x: string]: any;
   @ViewChild ("btnPlay") btnPlay!:ElementRef
   @ViewChild ("duration") duration!:ElementRef
-  widthleght:string|undefined;
-  duracionNow:string|undefined;
-  duracion:string | undefined;
-  duracionseg:number | undefined;
-  valuetest:number | undefined;
-  public displayNone = false
-  sound= new Howler.Howl({
-    src: ['https://p.scdn.co/mp3-preview/d7fc61d223ebd1a29138956f512fd24301ea9ebb?cid=a6414b779b224dd792a7db2096907732'],
-    format: ['mpeg']
-  })
+  activo:boolean=false
+  widthleght: string|undefined;
+  duracionNow: string|undefined;
+  duracion: string | undefined;
+  duracionseg: number | undefined;
+  valuetest: number | undefined;
+  displayNone = false
+  cancionPredeterminada: boolean = false
+  pausedAt: number = 0
 
+  sound!:Howl;
+  informacionCompartida: songOrBusqueda | any;
+
+  private subscription: Subscription = new Subscription;
+
+  constructor(private buscardor:BucadorServiciosService){
+    
+
+    this.subscription = this.buscardor.obtenerInformacion()
+    .subscribe((data) => {
+      this.informacionCompartida = data;
+      this.playMusic(this.informacionCompartida.preview_url)
+
+      // Utilizar la información compartida
+      console.log('Información compartida recibida:', this.informacionCompartida);
+    });
+
+    this.buscardor.tarerCancionMusicPlayer().subscribe({
+      next: (data)=>{
+        this.informacionCompartida=data
+      },
+      error: (error)=>{
+        if (error.error.message === "No se encontro ninguna canacion en la base"){
+          this.cancionPredeterminada = true
+        }
+      }
+    })
+  }
+
+
+  
   formatTime(secs:number) {
     var minutes = Math.floor(secs / 60) || 0;
     var seconds = (secs - minutes * 60) || 0;
@@ -38,24 +71,49 @@ export class MusicplayerComponent implements OnInit {
       this.duration.nativeElement.style.width=this.widthleght
   }
 
-  ngOnInit(): void {
+
+  playMusic(informacionCompartida: string){
+    console.log(this.informacionCompartida)
+    if (this.sound && this.sound.playing()) {
+      this.sound.stop();
+    }
+
+    this.sound= new Howler.Howl({
+      src: [informacionCompartida],
+      format: ['mpeg'],
+      volume: 0.4,
+      html5:true
+    })
+    console.log(this.sound)
+
     this.sound.on("play",()=>{
       this.duracion=this.formatTime(Math.round(this.sound.duration()))
       this.duracionseg=this.sound.duration()  
     })
-  }
 
+    this.sound.play(); 
 
-  playMusic(){
-    this.sound.play();
-    this.displayNone = !this.displayNone;
+    
+
+    if(!this.displayNone){
+      this.displayNone = !this.displayNone;
+    }
+
     setInterval(() => {
       this.step();
-    }, 1);
+    }, 10);
+    this.activo=true
   }
 
   stopMusic(){
-    this.sound.pause()
+    this.sound.pause() 
     this.displayNone = !this.displayNone;
+    this.activo=false
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

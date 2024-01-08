@@ -67,17 +67,17 @@ export const getUser= async (req, res)=>{
 export const getUserByUsername= async (req, res)=>{
     try{
         const buscarTerm= req.params.userName
-        let getUsername= await User.find({ userName: { $regex: buscarTerm , $options: "i" } })
-        res.status(200).json(getUsername)
+        console.log(buscarTerm)
+        let getUsername= await User.find({ name: { $regex: buscarTerm , $options: "i" } })
 
         if(getUsername[0]==""){
-            res.json("Usuario no encontrado")
+            return res.status(404).json("Usuario no encontrado")
         }else{
-            res.status(200).json(getUsername)
+            return res.status(200).json(getUsername)
         }
 
     }catch(error){
-        res.status(500).json({ error: 'Error al traer a los usuarios' });
+        return res.status(500).json({ error: 'Error al traer a los usuarios' });
     }
 }
 
@@ -159,3 +159,5 @@ export const finduserByID = async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 };
+
+

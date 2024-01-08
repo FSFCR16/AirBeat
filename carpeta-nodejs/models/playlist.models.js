@@ -18,6 +18,7 @@ const playlist = new mongoose.Schema({
         Music,
         type:Array,
     }
+    
 })
 
 export const playlists= mongoose.model("playlists", playlist)

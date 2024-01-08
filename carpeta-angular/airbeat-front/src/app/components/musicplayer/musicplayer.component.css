@@ -3,7 +3,7 @@
     position: relative;
     width: 100vw;
     height: 120px;
-    background: black;
+    background-color: #001c43 ;
     padding: 10px;
   }
   
@@ -20,17 +20,19 @@
     left: 5px;
     height: 40px;
     width: 40px;
-    background-color: #d2d2d2;
+    background-color: white;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
   }
   
   .title-1 {
     color: white;
     font-size: 25px;
     font-weight: bolder;
+    margin: 0;
   }
   
   .title-2 {
@@ -41,7 +43,7 @@
   
   .time {
     width: 90%;
-    background-color: #5e5e5e;
+    background-color: #3b5252;
     height: 7px;
     border-radius: 3px;
     position: absolute;
@@ -51,7 +53,7 @@
   
   .elapsed {
     width: 0%;
-    background-color: #66162d;
+    background-color: #C4E5F2;
     height: 100%;
     border-radius: 3px;
   }
@@ -82,7 +84,7 @@
   }
   
   .controls svg:hover {
-    color: #66162d;
+    color: #C4E5F2;
   }
   
   .volume {
@@ -93,7 +95,7 @@
   
   .volume .slidera {
     height: 4px;
-    background-color: white;
+    background-color: #3b5252;
     width: 80%;
     border-radius: 2px;
     margin-top: 8px;
@@ -101,7 +103,7 @@
   }
   
   .volume .slidera .blue {
-    background-color: #66162d;
+    background-color: #C4E5F2;
     height: 100%;
     width: 80%;
     border-radius: 3px;
@@ -147,7 +149,7 @@
   }
   
   .blueline {
-    background-color: #66162d;
+    background-color: #04B2D9;
     height: 20px;
     width: 2px;
     position: relative;

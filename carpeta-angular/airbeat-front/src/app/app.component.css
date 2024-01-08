@@ -2,12 +2,28 @@
     display: grid;
     height: 100vh;
     padding-right: 7px;
-    column-gap: 11px;
-    grid-template-columns: 19.5% auto;
+    grid-template-columns: 19.5% 80.5%;
     grid-template-rows: 87.5% auto;
-    background-color: black ;
+    column-gap: 13px;
+    background: #001c43;
+    overflow-x: hidden;
+}
+.search-cont{
+    margin-top: 7px;
+    margin-right: 14px;
+    border-radius: 10px;
+    row-gap: 10px;
+    width: auto;
+    height: 86.3vh;
+}
+.contendor__navbar{
+    width: auto;
+    height: 86.3vh;
 }
 .footer{
     grid-row: 2/3;
     grid-column: 1/3;
 }
+
+
+

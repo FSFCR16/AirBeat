@@ -24,7 +24,6 @@ export class NabvarComponent implements OnInit {
         console.log(error);
       },
     });
-    console.log(this.valorInput)
   }
 
   onInputChange(value: string) {

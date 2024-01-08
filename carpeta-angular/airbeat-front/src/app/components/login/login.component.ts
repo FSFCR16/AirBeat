@@ -4,7 +4,7 @@ import { RegistroComponent } from '../registro/registro.component';
 import { FormControl,ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CreateUserService } from '../../services/create-user.service';
 import { Router } from '@angular/router';
-import { Console, error } from 'console';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,6 +19,9 @@ export class LoginComponent {
   @ViewChild("infoInicio") infoInicio!: ElementRef
 
   loginForm:any;
+
+
+
   constructor(private render:Renderer2, private userService:CreateUserService,private router:Router){
     this.loginForm= new FormGroup({email:new FormControl(),password: new FormControl()})
   }
@@ -26,7 +29,6 @@ export class LoginComponent {
     const email = this.loginForm.value.email;
 
     const password = this.loginForm.value.password;
-
     if(!this.loginForm.valid){
       return;
     }
