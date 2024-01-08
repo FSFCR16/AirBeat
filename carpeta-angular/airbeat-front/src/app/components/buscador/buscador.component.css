@@ -109,11 +109,13 @@ p{
     text-decoration: underline;
 }
 .cont__cardsdos{
-    display: grid;
-    grid-template-columns: repeat(6, 16.7%);
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
     background-color: #393785;
     border-radius: 8px;
-
+    height: 35vh;
+    width: 75vw;
 }
 .cont__cards{
     display: grid;
@@ -134,7 +136,7 @@ p{
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
-    width: 94%;
+    width: 15rem;
     background-color: #262473;    
     row-gap: 10px;
 }
