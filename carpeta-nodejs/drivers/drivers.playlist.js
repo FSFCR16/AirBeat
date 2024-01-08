@@ -131,10 +131,9 @@ export const traerPlaylistById = async (req, res) => {
         const playlist = await playlists.find({
             _id: id
         })
-
-        if (!playlist) {
+        if (playlist.length === 0) {
             return res.status(404).json({
-                error: "Playlist no encontarda"
+                message: "Playlist no encontarda"
             })
         }
 

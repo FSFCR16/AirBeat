@@ -237,8 +237,9 @@ export class BucadorServiciosService {
       "authorization": `key ${token}`      
     });
 
-    return this.http.get<any>(`${this.url}update/deletePlaylist/${id}`, { headers })
+    return this.http.delete<any>(`${this.url}update/deletePlaylist/${id}`, { headers })
   }
+
   guardarInfoPlaylist(data: any) {
     this.informacionSubject.next(data);
   }

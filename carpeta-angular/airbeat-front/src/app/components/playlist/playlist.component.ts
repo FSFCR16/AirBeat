@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { error } from 'console';
 import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from '../error/error.component';
 //import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-playlist',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule  ],
+  imports: [CommonModule, RouterOutlet, FormsModule, ErrorComponent  ],
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.css']
 })
@@ -23,6 +24,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   cacniones_playlist: songs[]=[]
   isFocused: boolean = false;
   img: string = ""
+  err: boolean =false
   cancionesPredeterminadas: songs[]=[]
   @ViewChildren('secundarias') secun!: QueryList<ElementRef>;
   @ViewChildren('btnSecundarias') btnSecun!: QueryList<ElementRef>;
@@ -40,8 +42,9 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         this.img = data[0].songs[0].img_urls.img_url_300
       },
       error: (error) => {
-        console.log(error);
-
+        if(error.error.message === "Playlist no encontarda"){
+          this.err = true
+        }
       }
     });
 

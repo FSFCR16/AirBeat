@@ -1,4 +1,5 @@
-<body>
+@if(!err){
+  <body>
     <div class="contenedor">
       <div class="fila-superior">
         <div class="cuadro-color">
@@ -98,5 +99,8 @@
       </div>
     </div>
   </body>
+}@else {
+  <app-error></app-error>
+}
+
   
-<router-outlet></router-outlet>

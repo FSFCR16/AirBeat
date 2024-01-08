@@ -41,43 +41,48 @@
             placeholder="Buscar">
         </section>
         <section class="cont__playAlb">
-          @for (cancion of datos; track cancion._id) {
-          @if(valorInput === "" || valorInput === undefined ){
-          <section class="contendor__card" (click)="irAlaPlaylist(cancion._id)">
-            @if(cancion.songs[0]){
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
-              alt="">
-            }@else{
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="../../../assets/img/logoAirBeat.png"
-              alt="">
-            }
-            <article class="text__cont">
-              <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
-              @if(cancion.songs.length > 0){
-              <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
-              }@else{
-              <p style="font-size: 13px;">Playlist • Nueva •</p>
+          @if(this.datos.length > 0){
+            @for (cancion of datos; track cancion._id) {
+              @if(valorInput === "" || valorInput === undefined ){
+              <section class="contendor__card" (click)="irAlaPlaylist(cancion._id)">
+                @if(cancion.songs[0]){
+                <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
+                  alt="">
+                }@else{
+                <img style="height: 50px; width: 50px; border-radius: 7px;" src="../../../assets/img/logoAirBeat.png"
+                  alt="">
+                }
+                <article class="text__cont">
+                  <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
+                  @if(cancion.songs.length > 0){
+                  <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
+                  }@else{
+                  <p style="font-size: 13px;">Playlist • Nueva •</p>
+                  }
+                </article>
+                <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
+              </section>
               }
-            </article>
-            <button class="btnClose" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
-          </section>
-          }
-          @if (valorInput === cancion.namePlaylist) {
-          <section class="contendor__card">
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
-              alt="">
-            <article class="text__cont">
-              <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
-              @if(cancion.songs.length > 0){
-              <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
-              }@else{
-              <p style="font-size: 13px;">Playlist • Nueva •</p>
+              @if (valorInput === cancion.namePlaylist) {
+              <section class="contendor__card">
+                <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
+                  alt="">
+                <article class="text__cont">
+                  <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
+                  @if(cancion.songs.length > 0){
+                  <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
+                  }@else{
+                  <p style="font-size: 13px;">Playlist • Nueva •</p>
+                  }
+                </article>
+                 <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
+              </section>
               }
-            </article>
-            <button class="btnClose" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
-          </section>
+              }
+          }@else {
+            <div></div>
           }
-          }
+          
         </section>
       </section>
       <div id="modalPlay" class="modal" tabindex="-1">
@@ -108,8 +113,8 @@
               <p>¿Deseas elminar?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="borrarPlaylist()"  data-bs-dismiss="modal">No</button>
-              <button type="button" class="btn btn-primary">Si</button>
+              <button type="button" class="btn btn-secondary" (click)="CloseModelEliminar()"  data-bs-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" (click)="borrarPlaylist()">Si</button>
             </div>
           </div>
         </div>
