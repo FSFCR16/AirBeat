@@ -1,6 +1,9 @@
 .main{
     display: flex;
     height: 100%;
+    margin-top: 7px;
+    border-radius: 7px;
     justify-content: center;
     align-items:center;
+    background-color: #262473 ;
 }

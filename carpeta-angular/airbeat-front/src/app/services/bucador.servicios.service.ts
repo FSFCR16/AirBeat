@@ -103,19 +103,15 @@ export class BucadorServiciosService {
 
   }
 
-  saveSongs(songId: string ):Observable<busqueda>{
+  saveSongs(songId: string): Observable<busqueda> {
     const token = localStorage.getItem("key")
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.get<any>(`${this.url}songs/getsongsmassive/${songId}`, {headers})
+    return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`, {}, { headers })
   }
 
-
-  /*borrarCancion(id:string):Observable<songs>{
-    return this.http.post<busqueda>(`${this.url}historial/postSong/${songId}`,{}, {headers})
-  } */
 
   traerHistorial():Observable<[]>{
     const token = localStorage.getItem("key")
