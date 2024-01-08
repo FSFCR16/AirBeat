@@ -47,9 +47,11 @@ export const findSongByName = async (req, res) => {
   try {
     const name_track = req.params.name_track;
     const regex = new RegExp(name_track, 'i');
-    console.log(regex)
-    const song = await Music.find({ name_track: { $regex: regex } });
-
+    const song = await Music.find({
+      name_track: {
+        $regex: regex
+      }
+    });
 
     if (song) {
       return res.status(200).json(song);

@@ -22,8 +22,8 @@ export const routes: Routes = [
     {path: "admin", component: VistaAdminPageComponent},
     {path: "home", component: VistaPrincipalPageComponent},
     {path: "user", component: VistaUsuarioPageComponent},
-    {path: "album",component: AlbumComponent},
-    {path: "album",component: AlbumPageComponent},
+    {path: "album/:name",component: AlbumPageComponent},
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
+
 ];

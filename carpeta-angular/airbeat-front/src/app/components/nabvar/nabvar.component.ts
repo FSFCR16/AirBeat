@@ -22,6 +22,7 @@ export class NabvarComponent implements OnInit {
     this.buscador.traerCanciones().subscribe({
       next: (data:any) => {
         this.datos= data
+        console.log(this.datos)
 
       },
       error: (error) => {
@@ -104,6 +105,11 @@ export class NabvarComponent implements OnInit {
     if (modelDiv != null) {
       modelDiv.style.display = "none";
     }
+  }
+  handleButtonClick(event: Event) {
+    event.stopPropagation(); 
+    console.log('Clic en el botón');
+   
   }
 
 }

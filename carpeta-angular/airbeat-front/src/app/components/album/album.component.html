@@ -1,28 +1,43 @@
+<div class="cont_-padre">
 
-<div class="z-1 fondoAlbum overflow-y-scroll">
-    <h2 class="h2">Album</h2>
+  <div class="nombre_album">
+    <h2 class="h2">{{name}}</h2>
+  </div>
+  <div class="z-1 fondoAlbum overflow-y-scroll">
     <div class="row">
-        
-        <div class="col-2 p-2">
-            <div class="ms-2 ratio ratio-1x1">
-                <img src="{{imgAlb}}">
+      <div class="col-2 p-2">
+        <div class="ms-2 ratio ratio-1x1">
+          <img
+            style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+            src="{{imgAlb}}">
+        </div>
+      </div>
+      <div class="col">
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item" #cartaDiv *ngFor="let tracks of tracks; let i = index">
+            <div class="numeracion d-flex flex-direction-column align-items-center" style="column-gap: 13px;" >
+              <h6>{{i + 1}}.</h6>
+              <div>
+                <h5>{{ tracks.name_track }}</h5>
+                @if(tracks.artist) {
+                <p class="text-album" style="margin: 0;">{{ tracks.artist }}</p>
+                } @else {
+                <p class="text-album" style="margin: 0;">{{ tracks.collaboration.collaborators_name }}</p>
+                }
+              </div>
             </div>
-        </div>
-        <div class="col">
-            <ul class="list-group list-group-flush ">
-                @for(tracks of tracks; track tracks._id){
-                <li class="list-group-item">
-                    <h5>{{tracks.name_track}}</h5>
-                    @if(tracks.artist){
-                        <p class="text-album" style="margin: 0;">{{tracks.artist}}</p>
-                    }@else{
-                        <p class="text-album" style="margin: 0;">{{tracks.collaboration.collaborators_name}}</p>
-                    }
-                </li>
-            }
-            </ul>
-        </div>
-        
+            <button #btnPlay (click)="ultimoClick(tracks._id); cargarCancion(tracks)"
+              class="btn__play btn__historial boton">
+              <svg xmlns="http://www.w3.org/2000/svg" height="17px" width="17px" viewBox="0 0 384 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                  d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
 </div>
