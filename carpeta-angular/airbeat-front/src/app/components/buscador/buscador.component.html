@@ -1,0 +1,178 @@
+<section class="search-cont">
+  <header class="cont__header">
+    <article class="cont__arrows">
+      <section class="cont__btn">
+        <button class="btn__in" (click)="irAtras()">
+          <i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>
+        </button>
+        <button class="btn__in">
+          <i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i>
+        </button>
+      </section>
+      <section class="cont__input" [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+        <input class="input__in__cont" [value]="busqueda" (input)="inputChanged($event)"
+          (focus)="changeColorInput(true)" (blur)="changeColorInput(false)" type="text"
+          placeholder="¿Que deseas escuchar?">
+      </section>
+    </article>
+    <article class="cont__user">
+      <button class="btn__in" style="background-color:#393785;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path fill="#ffffff"
+            d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" />
+          </svg>
+      </button>
+      <p style="color: #ffffff;">Name User</p>
+    </article>
+  </header>
+  @if(valorInput === ""){
+  <section class="cont__recientes">
+    <article class="text_opciones__recientes">
+      <h4 style="cursor: default;">Busquedas recientes</h4>
+      @if(mostrarAlbums){
+        <p  class="mostartodo" style="cursor: pointer;" routerLink="historial">Mostrar todo</p>
+      }
+    </article>
+    <article class="cont__cards">
+      @for(i of historial; track i._id ){
+      <section class="cards" #cartaDiv>
+        <img
+          style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{i.songImage[0].img_url_300}}" alt="">
+        <article class="text__card">
+          <p style="font-size: 19px; font-weight: bold;">{{i.songName}}</p>
+          <p style="font-size:14px ;">{{i.songArtist}}</p>
+        </article>
+        <button (click)="borrarDelHistorial(i._id)" class="borral__Historial"><i class="fa-solid fa-xmark"
+            style="color: #ffffff;"></i></button>
+        <button  #btnPlay (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)"
+          class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+            viewBox="0 0 384 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </svg></button>
+      </section>
+      }
+    </article>
+  </section>
+  }@else {
+  @for(cancion of datos; track cancion._id){
+  <section class="cont__resultado">
+    <article class="resultado">
+      <h4>Resultado principal</h4>
+      @if(tipo === "Album"){
+      <section class="card__resultado">
+        <img
+          style=" border-radius: 5px; width: 8rem; height: 8rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{cancion.img_urls.img_url_300}}" alt="">
+        <h3 style="margin: 0;">{{cancion.album.name_album}}</h3>
+        <p>{{cancion.artist}} - {{albumLength}} canciones</p>
+        <button class="btn_info">{{tipo}}</button>
+        <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
+          class="btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+            viewBox="0 0 384 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </svg></button>
+      </section>
+
+      }@else if(tipo === "Cancion") {
+      <section class="card__resultado">
+        <img
+          style=" border-radius: 5px; width: 8rem; height: 8rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{cancion.img_urls.img_url_300}}" alt="">
+        <h3 style="margin: 0;">{{cancion.name_track}}</h3>
+        @if(!cancion.collaboration){
+        <p>{{cancion.artist}}, {{cancion.album.name_album}}</p>
+        <button class="btn_info">{{tipo}}</button>
+        }@else {
+        <p>{{cancion.artist}}, {{cancion.collaboration.collaborators_name}}</p>
+        <button class="btn_info">{{tipo}}</button>
+        }
+
+        <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
+          class="btn__play btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+            viewBox="0 0 384 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </svg></button>
+      </section>
+      }@else if(tipo === "Artista"){
+      <section class="card__resultado">
+        <img
+          style=" border-radius: 5px; width: 8rem; height: 8rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{cancion.img_urls.img_url_300}}" alt="">
+        <h3 style="margin: 0;">{{cancion.artist}}</h3>
+        <button class="btn_info">{{tipo}}</button>
+        <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
+          class="btn__play btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+            viewBox="0 0 384 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+            </svg></button>
+      </section>
+      }
+    </article>
+    <article class="cont__gensecund">
+      <h4>Canciones</h4>
+      <section class="cont__card_secundarias">
+        @for (can of secundarias; track can._id) {
+        <article #secundarias class="cont__info__secundarias">
+          <section class="cont__img__secundarias">
+            <img style="height: 40px; width: 40px;" src="{{can.img_urls.img_url_300}}" alt="">
+            <article>
+              <h6 style="margin: 0;">{{can.name_track}}</h6>
+              @if(can.collaboration){
+              <p style="font-size:13px ; font-weight: 300;">{{can.artist}} , {{can.collaboration.collaborators_name}}
+              </p>
+              }@else {
+              <p style="font-size:13px ; font-weight: 300;">{{can.artist}}</p>
+              }
+
+            </article>
+          </section>
+          <section>{{can.duration_ms}}</section>
+          <button (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" #btnSecundarias class="btn__secundarias"><i
+              class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+        </article>
+        }
+      </section>
+    </article>
+
+  </section>
+  }
+  }
+  @if(mostrarAlbums){
+    <section class="cont__recientes">
+        <h4 style="cursor: default; color: aliceblue;">Albums</h4>
+        <article class="cont__cards cont-albums">
+          @for(i of albums; track i._id ){
+          <section class="cards" #cartaDiv>
+            <img
+              style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+              src="{{i.img_urls.img_url_300}}" alt="">
+            <article class="text__card">
+              <p style="font-size: 19px; font-weight: bold; width: 12rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">{{i.album.name_album}}</p>
+              <p style="font-size:14px ;">{{i.artist}}</p>
+            </article>
+            <button  #btnPlay (click)="ultimoClick(i._id)" (click)="cargarCancion(i)"
+              class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+                viewBox="0 0 384 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                  d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                </svg></button>
+          </section>
+          }
+        </article>
+      </section>
+  }
+
+
+</section>
