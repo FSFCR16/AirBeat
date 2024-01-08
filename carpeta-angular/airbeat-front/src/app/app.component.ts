@@ -3,32 +3,24 @@ import { CommonModule } from '@angular/common';
 import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { MusicplayerComponent } from './components/musicplayer/musicplayer.component'
 import { NabvarComponent } from './components/nabvar/nabvar.component';
-import { AlbumComponent } from './components/album/album.component';
-import { HomeComponentComponent } from './components/home-component/home-component.component';
+import { BucadorServiciosService } from './services/bucador.servicios.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent, AlbumComponent ],
+  imports: [CommonModule, RouterOutlet, MusicplayerComponent, NabvarComponent ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
   title = 'airbeat-front';
   isFocused: boolean = false;
-  mostrarComponente:boolean= true;
+  mostrarComponente:any= true;
 
-  constructor(private router:Router){
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        console.log(event.url)
-        if (event.url === '/login-page') {
-          console.log(this.mostrarComponente)
-          this.mostrarComponente = false; // No mostrar el componente en esta ruta
-        } else {
-          this.mostrarComponente = true; // Mostrar el componente en otras rutas
-        }
-      }
+
+  constructor(private router:Router, private buscador: BucadorServiciosService){
+    this.buscador.verificarRuta().subscribe(valor => {
+      this.mostrarComponente = valor;
     });
   }
 

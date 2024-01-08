@@ -50,6 +50,22 @@ export const getHistorial = async(req, res)=>{
 
 }
 
+export const getHistorialCompleto = async(req, res)=>{
+
+    try{
+        const userId= req.user._id
+
+        const historial = await busquedaSchema.find({userId: userId}).limit(12).sort({date: -1})
+        
+        return res.status(200).json({historial})
+
+    }catch(error){
+        return res.status(500).json({ message: "Error al obtener el historial", error: error.message });
+    }
+
+
+}
+
 export const eliminarElemento = async(req, res)=>{
     try{
         const idElemnto = req.params._id
