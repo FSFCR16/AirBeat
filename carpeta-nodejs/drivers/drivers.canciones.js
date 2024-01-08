@@ -10,26 +10,37 @@ function normalizeText(text) {
 }
 export const SongsPost = async (req, res) => {
   try {
-    const body = req.body;
+    const body = req.body.songs;
+    console.log(body)
     const newSongs = await Music.create(body);
-    res.status(201).json(newSongs);
+    console.log(newSongs)
+    return res.status(201).json(newSongs);
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      error: 'Error al crear un nueva cancion'
-    });
+    return res.status(500).json({ error: 'Error al crear un nueva cancion' });
   }
 };
 
+
 export const SongsGet = async (req, res) => {
   try {
-    const Songs = await Music.find();
-    return res.json(Songs);
+    const paginaActual = parseInt(req.params.pagina) || 1;
+    const elementosPorPagina = 20;
+    const totalDocumentos = await Music.countDocuments();
+    const totalPaginas = Math.ceil(totalDocumentos / elementosPorPagina);
+    const Songs = await Music.
+    find()
+    .skip((paginaActual - 1) * elementosPorPagina)
+    .limit(elementosPorPagina)
+    .exec()
+    console.log(Songs)
+    return res.status(200).json({canciones:Songs, paginas:totalPaginas});
   } catch (error) {
     return res.status(500).json({
       error: 'Error al obtener la lista de canciones'
     });
   }
+
 };
 
 export const findSongByName = async (req, res) => {

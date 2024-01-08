@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VistaperfilService } from './vistaperfil.service';
+import { usuarioService } from './vistaperfil.service';
 
 describe('VistaperfilService', () => {
-  let service: VistaperfilService;
+  let service: usuarioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VistaperfilService);
+    service = TestBed.inject(usuarioService);
   });
 
   it('should be created', () => {
