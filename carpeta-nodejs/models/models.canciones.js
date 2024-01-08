@@ -24,11 +24,6 @@ const albumSchema = new mongoose.Schema({
         required: true,
     },
     
-    // name_track: {
-    //     type: String,
-    //     required: true,
-    // }
-
 
 }, {
     _id: false
