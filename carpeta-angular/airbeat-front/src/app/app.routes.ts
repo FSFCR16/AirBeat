@@ -8,9 +8,12 @@ import { VistaUsuarioPageComponent } from './pages/vista-usuario-page/vista-usua
 import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { AlbumComponent } from './components/album/album.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
+
 
 
 export const routes: Routes = [
+    {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
     {path: "search", component: BuscadorPageComponent},
     {path: "search/:historial", component: BuscadorPageComponent},
@@ -22,4 +25,5 @@ export const routes: Routes = [
     {path: "album",component: AlbumPageComponent},
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
+   
 ];
