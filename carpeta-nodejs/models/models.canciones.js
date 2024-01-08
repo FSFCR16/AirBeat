@@ -24,11 +24,6 @@ const albumSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 4d7b6892bb46bd4c3054b96dd6b47f3727c93143
 
 }, {
     _id: false

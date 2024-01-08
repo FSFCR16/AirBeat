@@ -17,20 +17,13 @@ export const SongsPost = async (req, res) => {
     return res.status(201).json(newSongs);
   } catch (error) {
     console.log(error);
-<<<<<<< HEAD
     return res.status(500).json({ error: 'Error al crear un nueva cancion' });
-=======
-    res.status(500).json({
-      error: 'Error al crear un nueva cancion'
-    });
->>>>>>> 4d7b6892bb46bd4c3054b96dd6b47f3727c93143
   }
 };
 
 
 export const SongsGet = async (req, res) => {
   try {
-<<<<<<< HEAD
     const paginaActual = parseInt(req.params.pagina) || 1;
     const elementosPorPagina = 20;
     const totalDocumentos = await Music.countDocuments();
@@ -42,10 +35,6 @@ export const SongsGet = async (req, res) => {
     .exec()
     console.log(Songs)
     return res.status(200).json({canciones:Songs, paginas:totalPaginas});
-=======
-    const Songs = await Music.find();
-    return res.json(Songs);
->>>>>>> 4d7b6892bb46bd4c3054b96dd6b47f3727c93143
   } catch (error) {
     return res.status(500).json({
       error: 'Error al obtener la lista de canciones'
@@ -58,17 +47,9 @@ export const findSongByName = async (req, res) => {
   try {
     const name_track = req.params.name_track;
     const regex = new RegExp(name_track, 'i');
-<<<<<<< HEAD
     console.log(regex)
     const song = await Music.find({ name_track: { $regex: regex } });
 
-=======
-    const song = await Music.findOne({
-      name_track: {
-        $regex: regex
-      }
-    });
->>>>>>> 4d7b6892bb46bd4c3054b96dd6b47f3727c93143
 
     if (song) {
       return res.status(200).json(song);
@@ -84,28 +65,6 @@ export const findSongByName = async (req, res) => {
     });
   }
 };
-
-
-export const SongsDelete = async (req, res) => {
-  try {
-    const _id = req.params._id;
-    const cancion = await Music.findById(_id);
-    console.log(cancion)
-    if (cancion) {
-      await Music.findByIdAndDelete(_id);
-      res.json({ message: 'Canción eliminada correctamente' });
-    } else {
-      res.status(404).json({ error: 'No se encontró la canción' });
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Error al eliminar la canción' });
-  }
-};
-
-
-
-
 
 export const findSongByID = async (req, res) => {
   try {
@@ -154,8 +113,6 @@ export const findSongsByAlbum = async (req, res) => { // no funciona
 };
 
 
-<<<<<<< HEAD
-=======
 export const SongsDelete = async (req, res) => {
   try {
     const {
@@ -180,7 +137,6 @@ export const SongsDelete = async (req, res) => {
     });
   }
 };
->>>>>>> 4d7b6892bb46bd4c3054b96dd6b47f3727c93143
 
 export const SongsDeletename = async (req, res) => {
   try {
