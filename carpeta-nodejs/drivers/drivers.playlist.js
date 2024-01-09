@@ -17,7 +17,6 @@ export const createPlaylist = async (req, res) => {
         const playlist = new playlists({
             userId,
         });
-        console.log(playlist)
         const newPlaylist = await playlist.save();
         if(playlist){
             const idPlaylist = playlist._id

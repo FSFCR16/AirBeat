@@ -5,13 +5,32 @@ p{
 
 .search-cont{
     display: grid;
-    grid-template-rows: 9% 43% 43% ;
-    padding: 10px 20px;
+    grid-template-rows: 9% auto auto ;
     row-gap: 15px;
-    width: 100%;
     height: 100%;
+    padding: 10px 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+
 
 }
+
+.search-cont::-webkit-scrollbar {
+    width: 3px; /* Ancho del scrollbar */
+  }
+  
+  /* Flecha/Manija en el scrollbar */
+.search-cont::-webkit-scrollbar-thumb {
+    background-color: #554b97; /* Color de la manija del scrollbar */
+    border-radius: 5px; /* Radio de borde para la manija */
+  }
+  
+  /* Track (rastro) del scrollbar */
+.search-cont::-webkit-scrollbar-track {
+    background-color: #372A8c; /* Color del rastro del scrollbar */
+  }
+
 
 
 .cont__header{
@@ -95,6 +114,7 @@ p{
 .cont__recientes{
     display: grid;
     grid-template-rows: 12% auto;
+    height: 21rem;
     row-gap: 7px;
 }
 
@@ -109,13 +129,12 @@ p{
     text-decoration: underline;
 }
 .cont__cards{
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: repeat(7, 16.6%);
     background-color: #393785;
     border-radius: 8px;
-    height: 40vh;
-    width: 75vw;
+    height: auto;
+    width: 100%;
 }
 .cont__cards::-webkit-scrollbar {
     width:1vh;
@@ -128,10 +147,29 @@ p{
   }
 
 .cont-albums{
-    grid-template-columns: repeat(7, 16.7%);
-    height: 18.6rem;
-    overflow-x: hidden;
+    grid-template-columns: repeat(7, 16.6%);
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
 }
+
+
+.cont-albums::-webkit-scrollbar {
+    width: 2px; /* Ancho del scrollbar */
+  }
+  
+  /* Flecha/Manija en el scrollbar */
+.cont-albums::-webkit-scrollbar-thumb {
+    background-color: #554b97; /* Color de la manija del scrollbar */
+    border-radius: 5px; /* Radio de borde para la manija */
+  }
+  
+  /* Track (rastro) del scrollbar */
+.cont-albums::-webkit-scrollbar-track {
+    background-color: #372A8c; /* Color del rastro del scrollbar */
+  }
 
 .cards{
     display: grid;
@@ -139,14 +177,16 @@ p{
     justify-content: center;
     border-radius: 10px;
     padding: 10px;
+    height: auto;
     margin: 5px;
-    width: 15rem;
+    width: 97%;
     background-color: #262473;    
     row-gap: 10px;
 }
 .borral__Historial{
     border-radius: 50px;
     padding: 4px 7px;
+    position: absolute;
     border: none;
     outline: none;
     background-color:rgb(0, 0, 0, 0.3) ;
@@ -301,3 +341,215 @@ p{
     transform: scaleY(1);
     transition: all 0.3s ease;
 }
+
+.cont-cards-historial{
+    grid-template-columns: repeat(6, 16.6%);
+    height: 100%;
+}
+
+
+@media screen and (min-width: 1500px) and (max-width:  1920px) {
+
+    .cont-cards-historial{
+        margin-bottom: 5px;
+    }
+
+    .cont-albums{
+        height: 19rem;
+    }
+    
+    .cards{
+        height: 18rem;
+    }
+}
+
+
+
+@media screen and (min-width: 1500px) and (max-width:  1650px) {
+
+    .p-grid-style{
+        width: 10rem !important;
+        font-size: 16px !important  ;
+    }
+    .cont-albums{
+        height: 19rem;
+    }
+
+    .cards{
+        height: 18rem;
+    }
+}
+
+@media screen and (min-width: 1250px) and (max-width:  1500px) {
+
+    .p-grid-style{
+        width: 10rem !important;
+        font-size: 15px !important  ;
+    }
+
+    .p-grid-style-c{
+        font-size: 13px !important  ;
+    }
+
+    .cont__cards{
+        grid-template-columns: repeat(7, 19.9%);
+    }
+
+    .cont-cards-historial{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+  }
+  @media screen and (min-width: 1150px) and (max-width:  1250px) {
+
+    .p-grid-style{
+        width: 9rem !important;
+        font-size: 15px !important  ;
+    }
+
+    .p-grid-style-c{
+        font-size: 13px !important  ;
+    }
+    
+    .cards{
+        height: 16rem;
+    }
+    .cont-cards-historial{
+
+        height: 17rem;
+
+    }
+
+    
+    .cont-albums-abajo{
+        height: 20rem;
+    
+    }
+
+    .cont__cards{
+        grid-template-columns: repeat(7, 19.9%);
+    }
+    .cont-cards-historial{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+  }
+
+  @media screen and (min-width: 940px) and (max-width:  1150px) {
+
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        padding: 2px;
+        top: 0;
+    }
+    .p-grid-style{
+        width: 8rem !important;
+        font-size: 14px !important  ;
+    }
+
+    .p-grid-style-c{
+        font-size: 12px !important  ;
+    }
+    .cards{
+        height: 16rem;
+    }
+    .cont-cards-historial{
+
+        height: 17rem;
+
+    }
+    .cont-cards-historial{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    
+    .cont-albums-abajo{
+        height: 20rem;
+    
+    }
+
+    .cont__cards{
+        grid-template-columns: repeat(7, 24.8%);
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width:  940px) {
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        padding: 2px;
+        top: 0;
+    }
+
+    .p-grid-style{
+        width: 6rem !important;
+        font-size: 12px !important  ;
+    }
+
+    .p-grid-style-c{
+        font-size: 10px !important  ;
+    }
+
+    .img-card{
+        width: 99% !important;
+        height: 99% !important;
+    }
+    .cards{
+        height: 16rem;
+    }
+    .cont-cards-historial{
+
+        height: 17rem;
+
+    }
+    .cont-cards-historial{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    
+    .cont-albums-abajo{
+        height: 20rem;
+    
+    }
+
+    .cont__cards{
+        grid-template-columns: repeat(7, 24.8%);
+    }
+  }
+  @media screen and (min-width: 400px) and (max-width:  768px) {
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        padding: 2px;
+        top: 0;
+    }
+
+    .p-grid-style{
+        width: 8rem !important;
+        font-size: 14px !important  ;
+    }
+
+    .p-grid-style-c{
+        font-size: 12px !important  ;
+    }
+
+    .img-card{
+        width: 98% !important;
+        height: 98% !important;
+    }
+
+    .cont__cards{
+        grid-template-columns: repeat(7, 33.2%);
+    }
+    .cont-cards-historial{
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+  }
+

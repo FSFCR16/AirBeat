@@ -7,7 +7,6 @@ import { songs } from '../../services/bucador.servicios.service';
 import { Router } from '@angular/router';
 import { busqueda } from '../../services/bucador.servicios.service';
 import { Subscription, catchError } from 'rxjs';
-import { usuarioService } from '../../services/vistaperfil.service';
 import { error } from 'console';
 
 
@@ -33,24 +32,18 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
   sound: Howl | undefined;
   datos: songs[]= [];
   secundarias :songs[] =[]
-  busqueda: string = '';
   isFocused: boolean = false;
   historial: busqueda[]=[]
   albumLength: number = 0
   tipo: string = ""
   albums: songs[]= []
   mostrarAlbums:boolean= true
-  usuario: any = {};
-  alert: boolean = false;
-  alerterror: boolean = false;
-  alertgeneral: boolean = false;
 
 
-  constructor(private usuarioService: usuarioService, private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) {
+  constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) {
   }
 
   ngOnInit(): void {
-    this.obtenerUsuario();
     this.buscador.obtenerMostrarAlbum().subscribe(valor => {
       console.log(valor)
       this.mostrarAlbums = valor;
@@ -59,6 +52,7 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
     this.buscador.tarerAlbums().subscribe({
       next:(data:any)=>{
         this.albums= data.albums
+
       },
       error: (error)=>{
         console.log(error)
@@ -84,27 +78,6 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
         }
       })
     }
-  }
-
-  obtenerUsuario(): void {
-    this.usuarioService.obtenerUsuario().subscribe(
-      (data) => {
-        this.usuario = data;
-        console.log(data)
-      },
-      (error) => {
-        if (error.status === 404) {
-          this.alertgeneral = true;
-          console.error('Usuario no encontrado 404:', error);
-        } else if (error.status === 500) {
-          this.alertgeneral = true;
-          console.error('Error del servidor 500:', error);
-        } else {
-          this.alertgeneral = true;
-          console.error('Error al obtener usuario:', error);
-        }
-      }
-    );
   }
 
   ngAfterViewInit() {
@@ -140,8 +113,8 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       if (this.valorInput !== '') {
         this.busquedaSubscription = this.buscador.catchSongs(this.valorInput).subscribe({
           next: (data: any) => {
-            console.log(data)
             this.datos = [data.resultado[0]];
+            console.log(this.datos[0])
             this.secundarias = data.resultado
             this.tipo = data.type
             this.albumLength = data.length
@@ -173,7 +146,7 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       }else{
         this.router.navigate(['/search']);
       }
-    }, 500);
+    }, 0);
 
   }
   formatTime(ms: number) {
