@@ -60,6 +60,7 @@ export class PerfilComponent implements OnInit {
     );
   }
 
+  
   editarUsuario() {
     this.formularioDesactivado = !this.formularioDesactivado;
     if (this.formularioDesactivado) {

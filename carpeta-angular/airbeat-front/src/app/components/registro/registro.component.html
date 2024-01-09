@@ -1,28 +1,60 @@
-<section hidden #infoRegistro class="infoRegistro">
-    <form (submit)="usuarioCrear()" style="display: grid; grid-template-columns: 50% 50%; row-gap: 22px;" action="">
-        <app-inputs (valueChanged)="usuario.name = $event" text="Nombre"  typeText="text" textFor="Nombre" idText="Nombre"
-            nameText="Nombre" placeholder="Nombre"></app-inputs>
-        <app-inputs (valueChanged)="usuario.lastname = $event" text="Apellido"  typeText="text" textFor="Apellido" idText="Apellido"
-            nameText="Apellido" placeholder="Apellido"></app-inputs>
-        <app-inputs (valueChanged)="usuario.telefono = $event" text="Telefono"  typeText="text" textFor="Telefono" idText="Telefono"
-            nameText="Telefono" placeholder="Telefono"></app-inputs>
-        <app-inputs (valueChanged)="usuario.email = $event" text="Email"  typeText="email" textFor="Email" idText="Email"
+<section *ngIf="!alertgeneral" hidden #infoRegistro class="infoRegistro">
+    <form [formGroup]="registroForm" (submit)="usuarioCrear()"
+        style="display: grid; grid-template-columns: 50% 50%; row-gap: 22px;" action="">
+
+        <app-inputs text="Nombre" typeText="text" textFor="Nombre" idText="Nombre" nameText="Nombre"
+            placeholder="Nombre"></app-inputs>
+
+
+        <app-inputs (valueChanged)="usuario.lastname = $event" text="Apellido" typeText="text" textFor="Apellido"
+            idText="Apellido" nameText="Apellido" placeholder="Apellido"></app-inputs>
+        <app-inputs (valueChanged)="usuario.telefono = $event" text="Telefono" typeText="text" textFor="Telefono"
+            idText="Telefono" nameText="Telefono" placeholder="Telefono"></app-inputs>
+        <app-inputs (valueChanged)="usuario.email = $event" text="Email" typeText="email" textFor="Email" idText="Email"
             nameText="Email" placeholder="Email"></app-inputs>
-        <app-inputs (valueChanged)="usuario.password  = $event" text="Contraseña"  typeText="password" textFor="Contraseña"
-            idText="Contraseña" nameText="Contraseña" placeholder="Contraseña"></app-inputs>
+        <app-inputs (valueChanged)="usuario.password  = $event" text="Contraseña" typeText="password"
+            textFor="Contraseña" idText="Contraseña" nameText="Contraseña" placeholder="Contraseña"></app-inputs>
         <app-inputs (valueChanged)="usuario.confirmPass = $event" text="Confirmar Contraseña" typeText="password"
             textFor="Confirmar Contraseña" idText="Confirmar Contraseña" nameText="Confirmar Contraseña"
             placeholder="Contraseña"></app-inputs>
         <button class="button-create" type="submit">Registrase</button>
     </form>
-    <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <div *ngIf="!alertgeneral" style="display: flex; flex-direction: column; margin-bottom: 10px;">
         <label for="checkbox" class="checkbox-label">
-            <input type="checkbox" id="checkbox">
-            <span>Acepto las condiciones y el aviso legal</span>
-        </label>
-        <label for="checkbox" class="checkbox-label">
-            <input type="checkbox" id="checkbox">
+            <input type="checkbox" id="checkbox" required>
             <span>Acepto las condiciones y el aviso legal</span>
         </label>
     </div>
 </section>
+<div *ngIf="alertgeneral" style="display:flex; flex-direction:column; height: 45vh;">
+    <section style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center;">
+            <svg style="height: 10vh; width: auto; color: #000000; " xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                <path
+                    d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708m-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+            </svg>
+            <h5 style="color: #000000; ">Oh no, parece que algo no marcha bien</h5>
+            <div class="container mt-4">
+                <ul style="color: #000000; ">
+                    <li class="list-group-item">Contactanos para obtener más información:<a
+                            href="mailto:support@airbeat.com">support-airbeat</a></li>
+                    <li class="list-group-item">Por favor revisa tu conexión a Internet</li>
+                    <li class="list-group-item">Intenta recarga la página</li>
+                </ul>
+
+            </div>
+            <button href="#" style="justify-content: center; align-items: center; border: none;
+            outline: none;
+            border-radius: 8px;
+            width: 50%;
+            height: 4vh;
+            color: #fff;
+            font-size: 18px;
+            transform: .3s ease;
+            margin: 2px;
+            background-color: #00bfff;" (click)="recargarPagina()">Recargar</button>
+        </div>
+    </section>
+</div>

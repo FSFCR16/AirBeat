@@ -1,29 +1,35 @@
 import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistroComponent } from '../registro/registro.component';
-import { FormControl,ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormControl,ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { CreateUserService } from '../../services/create-user.service';
 import { Router } from '@angular/router';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RegistroComponent, ReactiveFormsModule],
+  imports: [CommonModule, RegistroComponent, ReactiveFormsModule,ErrorComponent, ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  alertgeneral: boolean = false;
   @ViewChild("btniniciar") btnIniciar!: ElementRef
   @ViewChild("btnregistrar") btnRegistrar!: ElementRef
   @ViewChild(RegistroComponent) login!:  RegistroComponent
   @ViewChild("infoInicio") infoInicio!: ElementRef
 
   loginForm:any;
+  // constructor(private render:Renderer2, private userService:CreateUserService,private router:Router){
+  //   this.loginForm= new FormGroup({email:new FormControl(),password: new FormControl()})
+  // }
 
-
-
-  constructor(private render:Renderer2, private userService:CreateUserService,private router:Router){
-    this.loginForm= new FormGroup({email:new FormControl(),password: new FormControl()})
+  constructor(private render: Renderer2, private userService: CreateUserService, private router: Router) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
   }
   onSubmit(){
     const email = this.loginForm.value.email;
@@ -41,7 +47,6 @@ export class LoginComponent {
 
       },
       error:(error) => {
-
         console.log('Ocurrió un error:', error.error.error);
         if (error.error.error === 'credenciales incorrectas') {
           alert('Credenciales incorrectas. Verifique nuevamente.');
@@ -51,7 +56,7 @@ export class LoginComponent {
           this.router.navigate(['/login-page']);
         } else {
           console.log('Error desconocido:', error);
-          // Si hay un error desconocido, decide si redirigir o realizar alguna otra acción
+          this.alertgeneral = true;
         }
       }
   });
@@ -72,5 +77,11 @@ export class LoginComponent {
     this.render.removeClass(this.btnIniciar.nativeElement, "colorMorado")
     this.login.infoR().nativeElement.removeAttribute("hidden")
     this.infoInicio.nativeElement.setAttribute("hidden",true)
+  }
+
+  recargarPagina() {
+   
+    // location.reload(); es para volcer al inicio de la pagina
+    window.location.reload();
   }
 }

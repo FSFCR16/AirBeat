@@ -14,7 +14,7 @@ import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
 
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
-    {path: "login-page", component: LoginPageComponent},
+    {path: "login-page", component: LoginPageComponent},//listo 
     {path: "search", component: BuscadorPageComponent},
     {path: "search/historial", component: BuscadorPageComponent},
     {path: 'search/:cancion', component: BuscadorPageComponent},
@@ -24,6 +24,6 @@ export const routes: Routes = [
     {path: "user", component: VistaUsuarioPageComponent},
     {path: "album",component: AlbumComponent},
     {path: "album",component: AlbumPageComponent},
-    {path:"perfil", component: PerfilComponent},
+    {path:"perfil", component: PerfilComponent},//listo de error 
     {path: "**", component: VistaPrincipalPageComponent},
 ];

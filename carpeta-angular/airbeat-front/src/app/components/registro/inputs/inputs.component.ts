@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-inputs',
@@ -16,6 +17,7 @@ export class InputsComponent {
   @Input() placeholder:String = ""
   @Input() typeText:String = ""
   //@Input() value:String = ""
+  @Input() formControl: FormControl = new FormControl();
   @Output() valueChanged = new EventEmitter<string>();
 
   onInputChange(event: any) {

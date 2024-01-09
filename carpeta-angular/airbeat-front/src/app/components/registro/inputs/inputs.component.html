@@ -1,6 +1,20 @@
-<div class="label-c">
+<!-- <div class="label-c">
     <label class="label-inputs" for="{{textFor}}">
         {{text}}
     </label>
     <input (input)="onInputChange($event)" type="{{typeText}}" id="{{idText}}" name="{{nameText}}" placeholder="{{placeholder}}">
+</div> -->
+<div class="label-c">
+    <label class="label-inputs" for="{{textFor}}">
+        {{text}}
+    </label>
+    <input (input)="onInputChange($event)" type="{{typeText}}" id="{{idText}}" name="{{nameText}}"
+        placeholder="{{placeholder}}">
+    
+    <div *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)" class="error-message">
+        <!-- Mensaje de error específico para cada campo -->
+        <ng-container *ngIf="formControl.hasError('required')">Campo obligatorio</ng-container>
+        <ng-container *ngIf="formControl.hasError('email')">Formato de correo electrónico inválido</ng-container>
+        <!-- Puedes agregar más mensajes de error según tus validadores -->
+    </div>
 </div>
