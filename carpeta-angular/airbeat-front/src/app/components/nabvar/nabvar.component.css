@@ -194,7 +194,11 @@ p {
 .text__cont {
   color: aliceblue;
 }
-
+@media screen and (min-width: 1438px) and (max-width:  1600px) {
+  .btn__cont{
+    width: 15rem;
+  }
+}
 
 
   @media screen and (min-width: 983px) and (max-width:  1438px) {

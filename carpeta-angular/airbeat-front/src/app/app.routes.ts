@@ -15,9 +15,10 @@ import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
-    {path: "search", component: BuscadorPageComponent},
-    {path: "search/historial", component: BuscadorPageComponent},
-    {path: 'search/:cancion', component: BuscadorPageComponent},
+    {path: "search", component: BuscadorPageComponent, children:[
+        {path: "historial", component: BuscadorPageComponent},
+        {path: ':cancion', component: BuscadorPageComponent},
+    ]},
     {path: "playlist/:id", component: PlaylistPageComponent},
     {path: "admin", component: VistaAdminPageComponent},
     {path: "home", component: VistaPrincipalPageComponent},

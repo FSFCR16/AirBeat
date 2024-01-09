@@ -11,7 +11,7 @@
       </section>
       <section class="cont__input" [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }">
         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-        <input class="input__in__cont" [value]="busqueda" (input)="inputChanged($event)"
+        <input class="input__in__cont"  (input)="inputChanged($event)"
           (focus)="changeColorInput(true)" (blur)="changeColorInput(false)" type="text"
           placeholder="¿Que deseas escuchar?">
       </section>
@@ -59,7 +59,7 @@
     </article>
   </section>
   }@else {
-    @for(cancion of datos; track cancion._id){
+  @for(cancion of datos; track cancion._id){
   <section class="cont__resultado">
     <article class="resultado">
       <h4>Resultado principal</h4>
@@ -90,7 +90,7 @@
         <p>{{cancion.artist}}, {{cancion.album.name_album}}</p>
         <button class="btn_info">{{tipo}}</button>
         }@else {
-        <p>{{cancion.artist}}, {{cancion.collaboration.collaborators_name}}</p>
+        <p>{{cancion.artist}} - {{cancion.collaboration.collaborators_name}}</p>
         <button class="btn_info">{{tipo}}</button>
         }
 
@@ -129,7 +129,7 @@
             <article>
               <h6 style="margin: 0;">{{can.name_track}}</h6>
               @if(can.collaboration){
-              <p style="font-size:13px ; font-weight: 300;">{{can.artist}} , {{can.collaboration.collaborators_name}}
+              <p style="font-size:13px ; font-weight: 300;">{{can.artist}} - {{can.collaboration.collaborators_name}}
               </p>
               }@else {
               <p style="font-size:13px ; font-weight: 300;">{{can.artist}}</p>
