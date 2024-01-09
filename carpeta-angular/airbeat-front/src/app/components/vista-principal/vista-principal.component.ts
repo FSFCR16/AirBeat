@@ -62,13 +62,14 @@ export class VistaPrincipalComponent implements OnInit, AfterViewInit {
         return error
       }
     })
+    this.obtenerUsuario()
   }
 
   obtenerUsuario(): void {
     this.usuarioService.obtenerUsuario().subscribe(
       (data) => {
         this.usuario = data;
-        console.log(data)
+        console.log(this.usuario)
       },
       (error) => {
         if (error.status === 404) {

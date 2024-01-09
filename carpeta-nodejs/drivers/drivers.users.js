@@ -146,9 +146,10 @@ export const editUser = async (req, res) => {
 
 export const finduserByID = async (req, res) => {
     try {
-        const  _id  = req.user._id
-        const userdata = await User.findById(_id);
-        console.log(userdata);
+        const  id  = req.user._id;
+        console.log(id)
+        const userdata = await User.findOne({_id: id});
+        console.log(userdata)
         if (userdata) {
             return res.json(userdata);
         } else {
