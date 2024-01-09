@@ -18,22 +18,21 @@
                 style="text-decoration: none; color: inherit;">Iniciar Sesión</a></button>
     </section>
 </header>
-<section class="cont__recientes">
-    <article class="text_opciones__recientes">
-        <h4 style="cursor: default;">Top Canciones</h4>
-    </article>
-    <article class="cont__cards">
-        @for(i of historial; track i._id  ){
-            <section class="cards">
-                <img style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{i.songImage[0].img_url_300}}" alt="">
-                <article class="text__card">
-                    <p style="font-size: 19px; font-weight: bold;">{{i.songName}}</p>
-                    <p style="font-size:14px ;">{{i.songArtist}}</p>
-                </article>
-                <button (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)" class="btn__play btn__historial"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></button>
-            </section>
-        }
-    </article>
+<section style="margin: 10px;" class="cont__recientes">
+  <H2 style="color: #ffff; font-size: 25px;">Top en tendencias </H2>
+  <section class="cont__cards">
+    @for(song of cancionesPredeterminadas; track song._id){
+    <section class="cards cardsalbums" #cartaDiv>
+      <img class="img-card"
+        style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+        src="{{song.img_urls.img_url_300}}" alt="">
+      <article class="text__card">
+        <p class="p-grid-style"
+          style=" color: aliceblue; font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">
+          {{song.name_track}}</p>
+        <p class="p-grid-style-c" style="color: aliceblue; font-size:14px ;">{{song.artist}}</p>
+      </article>
+    </section>
+    }
+  </section>
 </section>
-
-

@@ -1,22 +1,23 @@
-.contAlbum{
-    padding: 5vh;
-}
+
 .fondoAlbum{
     background-color: #262473;
     padding: 10px;
     border-radius: 5px;
-    height: 70vh;
+    height: 70%;
+    width: 100%;
     overflow-x: hidden;
 }
 *{
     margin: 0;
 }
 
-.cont_-padre{
+.cont__padre{
     display: flex;
+    padding: 20px;
+    row-gap: 10px;
     flex-direction: column;
-    height: 80vh;
-    width: 70vw;
+    height: 100%;
+    width: 100%;
     row-gap: 7px;
 }
 
