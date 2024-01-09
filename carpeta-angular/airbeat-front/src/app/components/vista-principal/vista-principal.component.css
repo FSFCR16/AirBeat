@@ -240,6 +240,10 @@ p{
 
     
 }
+.busqueda-recientes{
+    overflow-x: hidden;
+    padding-bottom: 3px;
+}
 
 
 
