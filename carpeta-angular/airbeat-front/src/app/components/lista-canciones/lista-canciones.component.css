@@ -4,8 +4,22 @@
   grid-gap: 10px;
   grid-auto-flow: row dense;
   overflow-y: scroll;
-  height: 20.2rem;
+  height: 60%;
   overflow-x: hidden;
+}
+.main::-webkit-scrollbar {
+  width: 2px; /* Ancho del scrollbar */
+}
+
+/* Flecha/Manija en el scrollbar */
+.main::-webkit-scrollbar-thumb {
+  background-color: #554b97; /* Color de la manija del scrollbar */
+  border-radius: 5px; /* Radio de borde para la manija */
+}
+
+/* Track (rastro) del scrollbar */
+.main::-webkit-scrollbar-track {
+  background-color: #372A8c; /* Color del rastro del scrollbar */
 }
 
 .card {

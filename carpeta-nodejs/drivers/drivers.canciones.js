@@ -376,7 +376,7 @@ export const cancionesAleatorias = async (req, res) => {
   try {
     const resultados = await Music.aggregate([{
       $sample: {
-        size: 5
+        size: 6
       }
     }]); // Obtener 5 documentos aleatorios
 

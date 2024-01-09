@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet,RouterLink } from '@angular/router';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
@@ -17,8 +17,10 @@ import { error } from 'console';
   templateUrl: './vista-principal.component.html',
   styleUrl: './vista-principal.component.css'
 })
-export class VistaPrincipalComponent implements OnInit {
+export class VistaPrincipalComponent implements OnInit, AfterViewInit {
   @ViewChildren('btnEscuchar') btns!: QueryList<ElementRef>;
+  @ViewChildren('cartaDiv') cartas!: QueryList<ElementRef>;
+  @ViewChildren('btnPlay') btn_play!: QueryList<ElementRef>;
   private busquedaSubscription: Subscription | undefined;
   enlacesCanciones: string[] = [];
   sound: Howl | undefined;
@@ -33,7 +35,7 @@ export class VistaPrincipalComponent implements OnInit {
   alerterror: boolean = false;
   alertgeneral: boolean = false;
 
-  constructor(private usuarioService: usuarioService, private buscador: BucadorServiciosService, private router: Router) {
+  constructor(private usuarioService: usuarioService, private buscador: BucadorServiciosService, private router: Router, private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
@@ -128,6 +130,29 @@ export class VistaPrincipalComponent implements OnInit {
     })
 
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      for(let i = 0; i < this.cartas.length; i++){
+        const carta = this.cartas.get(i);
+        const boton = this.btn_play.get(i)
+        if (carta) {
+          this.renderer.listen(carta.nativeElement, 'mouseover', () => {
+            this.renderer.addClass(boton?.nativeElement, "cont_block")
+          });
+          this.renderer.listen(carta.nativeElement, 'mouseout', ()=>{
+            this.renderer.removeClass(boton?.nativeElement, "cont_block")
+          })
+        }
+      }
+    }, 1000);
+  }
+
+  
+  irAlbum(name_album:string){
+    this.buscador.llevarArutaAlmbu(name_album)
+  }
+  
   
 }
 
