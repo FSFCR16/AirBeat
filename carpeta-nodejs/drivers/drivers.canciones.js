@@ -260,18 +260,18 @@ export const findgeneral = async (req, res) => {
         }
       ]
     }).limit(4);
-
     if (contenido.length > 0) {
       const resultados = contenido.map(item => {
         console.log(item.name_track)
         if (item.artist && normalizeText(item.artist).match(new RegExp(normalizedGeneral, 'i'))) {
           matchType = 'Artista';
-        } else if (item["album"]["name_album"] && normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i'))) {
-          matchType = 'Album';
-        } else if (item.name_track && normalizeText(item.name_track).match(new RegExp(normalizedGeneral, 'i'))) {
+        }else if (item.name_track && normalizeText(item.name_track).match(new RegExp(normalizedGeneral, 'i'))) {
           matchType = 'Cancion';
-        }
-
+        }else if(item["album"]) {
+          if( (item["album"]["name_album"] && normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i')))){
+            matchType = 'Album';
+          }
+        } 
         return {
           ...item.toObject(),
           matchType
