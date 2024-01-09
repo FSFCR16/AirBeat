@@ -1,14 +1,29 @@
 <header style="display: flex; padding: 3.5vh; justify-content: space-between; border-bottom: 2px solid #001C43;">
-    <section>
-        <h4 style="color: #ffff; font-size: 35px;">Bienvenido a Airbeat</h4>
-    </section>
-    <section>
-        <button> <a [routerLink]="['/login-page']" routerLinkActive="router-link-active"  style="text-decoration: none; color: inherit;"> Airbeat Premium</a> </button>
-        <button> <a [routerLink]="['/login-page']" routerLinkActive="router-link-active" style="text-decoration: none; color: inherit;">Iniciar Sesión</a></button>
-    </section>
+  <section>
+    <h4 style="color: #ffff; font-size: 35px;">Bienvenido a Airbeat</h4>
+  </section>
+  <section>
+    <button> <a [routerLink]="['/login-page']" routerLinkActive="router-link-active"
+        style="text-decoration: none; color: inherit;"> Airbeat Premium</a> </button>
+    <button> <a [routerLink]="['/login-page']" routerLinkActive="router-link-active"
+        style="text-decoration: none; color: inherit;">Iniciar Sesión</a></button>
+  </section>
 </header>
-<section style="margin: 10px;">
-<H2 style="color: #ffff; font-size: 25px;">Top en tendencias </H2>
+<section style="margin: 10px;" class="cont__recientes">
+  <H2 style="color: #ffff; font-size: 25px;">Top en tendencias </H2>
+  <section class="cont__cards">
+    @for(song of cancionesPredeterminadas; track song._id){
+    <section class="cards cardsalbums" #cartaDiv>
+      <img class="img-card"
+        style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+        src="{{song.img_urls.img_url_300}}" alt="">
+      <article class="text__card">
+        <p class="p-grid-style"
+          style=" color: aliceblue; font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">
+          {{song.name_track}}</p>
+        <p class="p-grid-style-c" style="color: aliceblue; font-size:14px ;">{{song.artist}}</p>
+      </article>
+    </section>
+    }
+  </section>
 </section>
-
-

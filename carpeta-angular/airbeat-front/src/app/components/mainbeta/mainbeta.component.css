@@ -9,3 +9,30 @@ button{
     margin: 2px;
     background-color: #00bfff;
 }
+
+.cont__recientes{
+    display: grid;
+    grid-template-rows: 12% auto;
+    row-gap: 7px;
+}
+
+.cards{
+    display: grid;
+    position: relative;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    width: 97%;
+    background-color: #262473;    
+    row-gap: 10px;
+}
+
+.cont__cards{
+    display: grid;
+    grid-template-columns: repeat(6, 16.6%);
+    background-color: #393785;
+    border-radius: 8px;
+    height: auto;
+    width: 100%;
+}
