@@ -12,7 +12,7 @@ export const postUser= async (req, res)=>{
 
         let newUser= await User.create(user)
         
-        const payload={_id: newUser._id}
+        const payload={_id: newUser._id, role:newUser.role}
 
         let token = await jwt.sign(payload, process.env.JWT_KEY)
 
@@ -159,5 +159,9 @@ export const finduserByID = async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 };
+
+export const verificacion = (req, res) =>{
+    return res.status(200).json({message: "usuario autenticado"})
+}
 
 

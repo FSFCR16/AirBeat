@@ -54,6 +54,7 @@ export class VistaAdminComponent implements OnInit {
       lastname: new FormControl(),
       telefono: new FormControl(),
       name: new FormControl(),
+      role: new FormControl(),
     })
 
 
@@ -112,7 +113,7 @@ export class VistaAdminComponent implements OnInit {
     console.log(camposLlenadosDos)
     this.buscador.agregarCancion(camposLlenadosDos).subscribe({
       next: (data) => {
-        /*window.location.reload()*/
+        window.location.reload()
         console.log(data)
       },
       error: (error) => {

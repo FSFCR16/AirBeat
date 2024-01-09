@@ -1,4 +1,4 @@
-import { postUser, getUser, getUserByEmail,getUserByUsername, deleteUserById, login, edituserById, finduserByID, editUser } from "../drivers/drivers.users.js";
+import { postUser, getUser, getUserByEmail,getUserByUsername, deleteUserById, login, edituserById, finduserByID, editUser, verificacion } from "../drivers/drivers.users.js";
 import express  from "express";
 import { authVerification } from "../middleware/autenticacion.middlewere.js";
 const routerUser = express.Router()
@@ -12,4 +12,5 @@ routerUser.delete("/deleteUser/:_id", deleteUserById)
 routerUser.put("/editUser",authVerification, edituserById)
 routerUser.get("/getuser",authVerification, finduserByID)
 routerUser.put("/editUsers/:_id", authVerification, editUser )
+routerUser.get("/autorizar", authVerification, verificacion)
 export default routerUser
