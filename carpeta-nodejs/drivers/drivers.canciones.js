@@ -17,7 +17,9 @@ export const SongsPost = async (req, res) => {
     return res.status(201).json(newSongs);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: 'Error al crear un nueva cancion' });
+    return res.status(500).json({
+      error: 'Error al crear un nueva cancion'
+    });
   }
 };
 
@@ -30,11 +32,14 @@ export const SongsGet = async (req, res) => {
     const totalPaginas = Math.ceil(totalDocumentos / elementosPorPagina);
     const Songs = await Music.
     find()
-    .skip((paginaActual - 1) * elementosPorPagina)
-    .limit(elementosPorPagina)
-    .exec()
+      .skip((paginaActual - 1) * elementosPorPagina)
+      .limit(elementosPorPagina)
+      .exec()
     console.log(Songs)
-    return res.status(200).json({canciones:Songs, paginas:totalPaginas});
+    return res.status(200).json({
+      canciones: Songs,
+      paginas: totalPaginas
+    });
   } catch (error) {
     return res.status(500).json({
       error: 'Error al obtener la lista de canciones'
@@ -356,7 +361,7 @@ export const albums = async (req, res) => {
       })
       arrayAlbums.push(album)
     }
-
+    // console.log(arrayAlbums)
     return res.status(200).json({
       albums: arrayAlbums
     })

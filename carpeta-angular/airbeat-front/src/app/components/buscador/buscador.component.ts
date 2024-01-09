@@ -53,6 +53,7 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
     this.buscador.tarerAlbums().subscribe({
       next:(data:any)=>{
         this.albums= data.albums
+        console.log(this.albums)
       },
       error: (error)=>{
         console.log(error)
