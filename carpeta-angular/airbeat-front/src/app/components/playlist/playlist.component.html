@@ -1,102 +1,109 @@
+@if(!err){
+
 <body>
-    <div class="contenedor">
-      <div class="fila-superior">
-        <div class="cuadro-color">
-          @if(img){
-          <img
-            style="height: 200px; width: 200px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
-            src="{{img}}" alt="Imagen descriptiva">
-          }@else{
-              <img
-              style="height: 200px; width: 200px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
-              src="../../../assets/img/logoAirBeat.png" alt="Imagen descriptiva"> 
-          }
-        </div>
-        <div class="contenedor-buscador-botones">
-          <div class="buscador-derecho ">
-            <input [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }" type="text" id="busquedaCancion"
-              placeholder="Buscar canciones..." [(ngModel)]="cancion_track" (blur)="changeColorInput(false)"
-              (focus)="changeColorInput(true)" (input)="mostraValor()">
-            <article class="cont__user">
-              <button class="btn__in" style="background-color:#393785;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                  <path fill="#ffffff"
-                    d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" />
-                  </svg>
-              </button>
-              <p style="color: #ffffff; margin: 0;">Name User</p>
-            </article>
-          </div>
-          <div class="contenedor_carta">
-            @if (cancion_track) {
-            @for(song of canciones_encontradas; track song._id) {
-            <div class="cont_carta">
-              <div class="img_carta">
-                <img style="height: 40px; width: 40px; border-radius: 3px; align-self: center;"
-                  src="{{song.img_urls.img_url_64}}" alt="">
-                <div class="nombre_cancion">
-                  <p
-                    style="margin: 0; font-size: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 11rem;">
-                    {{song.name_track}}</p>
-                  <p style="margin: 0;">{{song.artist}}</p>
-                </div>
-              </div>
-              <p></p>
-              <button id="botonAgregar" (click)="anadirCancion(song._id)">Agregar Canción</button>
-            </div>
-            }
-            }@else {
-            @for(song of cancionesPredeterminadas; track song._id){
-            <div class="cont_carta">
-              <div class="img_carta">
-                <img style="height: 40px; width: 40px; border-radius: 3px;" src="{{song.img_urls.img_url_64}}" alt="">
-                <div class="nombre_cancion">
-                  <p
-                    style="margin: 0; font-size: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 11rem;">
-                    {{song.name_track}}</p>
-                  <p style="margin: 0; font-size: 12px">{{song.artist}}</p>
-                </div>
-              </div>
-              <p></p>
-              <button id="botonAgregar" (click)="anadirCancion(song._id)">Agregar Canción</button>
-            </div>
-            }
-  
-            }
-          </div>
-        </div>
+  <div class="contenedor">
+    <div class="fila-superior">
+      <div class="cuadro-color">
+        @if(img){
+        <img
+          style="height: 200px; width: 200px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{img}}" alt="Imagen descriptiva">
+        }@else{
+        <img
+          style="height: 200px; width: 200px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="../../../assets/img/logoAirBeat.png" alt="Imagen descriptiva">
+        }
       </div>
-      <div class="playlist-editor">
-        <div class="namePlaylist">
-          <h2> {{infoplaylist.namePlaylist}} </h2>
-          @if(!btnOprimido){
-          <i class="fa-solid fa-pen-to-square" style="color: #ffffff;" (click)="btnOprimido = true"></i>
-          }@else{
-          <input type="text" [(ngModel)]="nombreNuevo" placeholder="Cambiar nombre">
-          <button (click)="cambiarNombre()"> cambiar</button>
-          }
+      <div class="contenedor-buscador-botones">
+        <div class="buscador-derecho ">
+          <input [ngStyle]="{'outline': isFocused ? '2px solid #FFFFFF' : 'none' }" type="text" id="busquedaCancion"
+            placeholder="Buscar canciones..." [(ngModel)]="cancion_track" (blur)="changeColorInput(false)"
+            (focus)="changeColorInput(true)" (input)="mostraValor()">
+
         </div>
-        <div class="canciones_playlist">
-          @for(song of cacniones_playlist; track song._id ){
-          <div class="cont_carta cont_carta_dos" #secundarias>
+        <article class="cont__user">
+          <button class="btn__in" style="background-color:#393785;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+              <path fill="#ffffff"
+                d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" />
+            </svg>
+          </button>
+          <p class="p-user" style=" color: #ffffff; margin: 0;">Name User</p>
+        </article>
+        <div class="contenedor_carta">
+          @if (cancion_track) {
+          @for(song of canciones_encontradas; track song._id) {
+          <div class="cont_carta">
             <div class="img_carta">
-  
-              <img style="height: 50px; width: 50px; border-radius: 5px; " src="{{song.img_urls.img_url_64}}" alt="">
+              <img style="height: 40px; width: 40px; border-radius: 3px; align-self: center;"
+                src="{{song.img_urls.img_url_64}}" alt="">
               <div class="nombre_cancion">
-                <p style="margin: 0;">{{song.name_track}}</p>
+                <p
+                  style="margin: 0; font-size: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 11rem;">
+                  {{song.name_track}}</p>
                 <p style="margin: 0;">{{song.artist}}</p>
               </div>
             </div>
             <p></p>
-            <button (click)="eliminarCancion(song._id)" id="botonAgregar"> Eliminar</button>
-            <button (click)="cargarCancion(song)" #btnSecundarias class="btn__secundarias"><i
-                class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+            <button id="botonAgregar" (click)="anadirCancion(song._id)">Agregar Canción</button>
           </div>
+          }
+          }@else {
+          @for(song of cancionesPredeterminadas; track song._id){
+          <div class="cont_carta">
+            <div class="img_carta">
+              <img style="height: 40px; width: 40px; border-radius: 3px;" src="{{song.img_urls.img_url_64}}" alt="">
+              <div class="nombre_cancion">
+                <p class="nombreCancion"
+                  style="margin: 0; font-size: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 11rem;">
+                  {{song.name_track}}</p>
+                <p class="nombreArtist" style="margin: 0; font-size: 12px">{{song.artist}}</p>
+              </div>
+            </div>
+            <p></p>
+            <button id="botonAgregar" (click)="anadirCancion(song._id)">Agregar </button>
+          </div>
+          }
+
           }
         </div>
       </div>
     </div>
-  </body>
-  
-<router-outlet></router-outlet>
+    <div class="playlist-editor">
+      <div class="namePlaylist">
+        <h2> {{infoplaylist.namePlaylist}} </h2>
+        @if(!btnOprimido){
+        <i class="fa-solid fa-pen-to-square" style="color: #ffffff;" (click)="btnOprimido = true"></i>
+        }@else{
+        <div class="d-flex" style="column-gap: 5px;">
+          <input id="busquedaCancion" class="cambioNombre" type="text" [(ngModel)]="nombreNuevo"
+            placeholder="Cambiar nombre">
+          <button id="botonAgregar" (click)="cambiarNombre()"> cambiar</button>
+        </div>
+        }
+      </div>
+      <div class="canciones_playlist">
+        <div class="cont_carta cont_carta_dos" *ngFor="let song of cacniones_playlist; let i = index" #secundarias>
+          <div class="img_carta align-items-center">
+            <div>
+              <h6>{{i + 1}}.</h6>
+            </div>
+            <img style="height: 50px; width: 50px; border-radius: 5px; " src="{{song.img_urls.img_url_64}}" alt="">
+            <div class="nombre_cancion">
+              <p style="margin: 0;">{{song.name_track}}</p>
+              <p style="margin: 0;">{{song.artist}}</p>
+            </div>
+          </div>
+          <p></p>
+          <button (click)="eliminarCancion(song._id)" id="botonAgregar"> Eliminar</button>
+          <button (click)="cargarCancion(song)" #btnSecundarias class="btn__secundarias"><i class="fa-solid fa-play"
+              style="color: #ffffff;"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+}@else {
+<app-error></app-error>
+}

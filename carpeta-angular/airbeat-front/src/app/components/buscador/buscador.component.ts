@@ -32,7 +32,6 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
   sound: Howl | undefined;
   datos: songs[]= [];
   secundarias :songs[] =[]
-  busqueda: string = '';
   isFocused: boolean = false;
   historial: busqueda[]=[]
   albumLength: number = 0
@@ -53,6 +52,7 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
     this.buscador.tarerAlbums().subscribe({
       next:(data:any)=>{
         this.albums= data.albums
+
       },
       error: (error)=>{
         console.log(error)
@@ -85,7 +85,6 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       for(let i = 0; i < this.cartas.length; i++){
         const carta = this.cartas.get(i);
         const boton = this.btn_play.get(i)
-        console.log(boton)
         if (carta) {
           this.renderer.listen(carta.nativeElement, 'mouseover', () => {
             this.renderer.addClass(boton?.nativeElement, "cont_block")
@@ -114,8 +113,8 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       if (this.valorInput !== '') {
         this.busquedaSubscription = this.buscador.catchSongs(this.valorInput).subscribe({
           next: (data: any) => {
-            console.log(data)
             this.datos = [data.resultado[0]];
+            console.log(this.datos[0])
             this.secundarias = data.resultado
             this.tipo = data.type
             this.albumLength = data.length
@@ -147,7 +146,7 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       }else{
         this.router.navigate(['/search']);
       }
-    }, 500);
+    }, 0);
 
   }
   formatTime(ms: number) {
@@ -187,6 +186,10 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
         console.log(error)
       }
     })
+  }
+
+  irAlbum(name_album:string){
+    this.buscador.llevarArutaAlmbu(name_album)
   }
 
   ultimoClick(id:string){

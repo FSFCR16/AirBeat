@@ -1,0 +1,23 @@
+.cont_comp_search {
+  margin-top: 7px;
+  width: 99.2%;
+  height: 86.5vh;
+  background-color: rgb(38, 36, 115);
+  border-radius: 7px;
+}
+
+@media screen and (min-width: 500px) and (max-width:  768px) {
+
+  .cont_comp_search {
+  
+    width: 100%;
+
+  }
+
+}
+
+
+
+
+
+

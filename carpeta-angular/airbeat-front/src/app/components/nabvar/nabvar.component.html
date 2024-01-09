@@ -1,65 +1,127 @@
-<main class="container">
+<main class="main">
   <section class="contenedor__gen">
     <section class="navegacion__inicio">
-      <article class="cont__input">
-        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-        <input class="inpu__in" type="text" placeholder="Encuentra tu sonido">
-      </article>
-      <article class="btn__cont">
-        <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="23px" width="25px" viewBox="0 0 576 512">
-          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-          <path fill="aliceblue"
-            d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
-        </svg>
-        <button class="button ">Inicio</button>
-      </article>
+      <div class="d-block d-md-none d-xl-none">
+        <article class="btn__cont d-flex justify-content-center align-items-center">
+          <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list"
+              viewBox="0 0 16 16" s>
+              <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+          </a>
+        </article>
+      </div>
+      <!-- Off-Canvas-->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
+        style="background-color: #262473; color: white;">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">AirBeat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a routerLink="search" class="nav-link" aria-current="page" style="color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 512 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path fill="#ffffff"
+                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                </svg> Buscar
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="home" class="nav-link" aria-current="page" style="color: white;">
+                <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="23px" width="25px" viewBox="0 0 576 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                  <path fill="#ffffff"
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+                </svg> Inicio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="album" class="nav-link" aria-current="page" style="color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 512 512" fill="#ffffff">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path
+                    d="M494.8 47c12.7-3.7 20-17.1 16.3-29.8S494-2.8 481.2 1L51.7 126.9c-9.4 2.7-17.9 7.3-25.1 13.2C10.5 151.7 0 170.6 0 192v4V304 448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H218.5L494.8 47zM368 240a80 80 0 1 1 0 160 80 80 0 1 1 0-160zM80 256c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16zM64 320c0-8.8 7.2-16 16-16H208c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm16 64c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16z" />
+                </svg> Playlists
+              </a>
+            </li>
+            <li class="nav-item">
+              <a type="button" (click)="crearPlaylistBtn()" class="nav-link" aria-current="page" style="color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 448 512" fill="#ffffff">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path
+                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                </svg> Agregar Playlist
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="d-none d-md-inline">
+        <article class="btn__cont d-flex justify-content-center align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+          </svg>
+          <button routerLink="search" class="button ">Buscar</button>
+        </article>
+      </div>
+      <div class="d-none d-md-inline">
+        <article class="btn__cont">
+          <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="23px" width="25px" viewBox="0 0 576 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path fill="aliceblue"
+              d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+          </svg>
+          <button routerLink="home" class="button ">Inicio</button>
+        </article>
+      </div>
     </section>
     <aside class="aside">
       <section class="categorias">
         <section class="cate">
           <section class="cate">
             <i class="fa-solid fa-list" style="color: #ffffff;"></i>
-            <p style="font-size: 19px;">Categorias</p>
+            <p class="" style="font-size: 19px;">Playlists</p>
           </section>
           <section>
             <button class="btnPlus" (click)="openModel()"><i class="fa-solid fa-plus"></i></button>
           </section>
         </section>
         <section class="cont_opciones">
-          <article class="cont__categorias">
-            albums
-          </article>
-          <article class=" cont__categorias">
-            playlist
-          </article>
-        </section>
-      </section>
-      <section style="display: flex; flex-direction: column; row-gap: 5px; " class="cont__gen_opcion">
-        <section class="cont__input cont__input__dos">
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
           <input #myInput (input)="onInputChange(myInput.value)" class="inpu__in input__dos" type="text"
             placeholder="Buscar">
         </section>
+      </section>
+      <section style="display: flex; flex-direction: column; row-gap: 5px; " class="cont__gen_opcion">
         <section class="cont__playAlb">
+          @if(this.datos.length > 0){
           @for (cancion of datos; track cancion._id) {
           @if(valorInput === "" || valorInput === undefined ){
           <section class="contendor__card" (click)="irAlaPlaylist(cancion._id)">
             @if(cancion.songs[0]){
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
+            <img class="img_play" style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
               alt="">
             }@else{
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="../../../assets/img/logoAirBeat.png"
+            <img class="img_play" style="height: 50px; width: 50px; border-radius: 7px;" src="../../../assets/img/logoAirBeat.png"
               alt="">
             }
             <article class="text__cont">
-              <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
+              <p class="p-playlist" style="font-weight: bold;">{{cancion.namePlaylist}}</p>
               @if(cancion.songs.length > 0){
-              <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
+              <p class="p-playlist-c" style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
               }@else{
-              <p style="font-size: 13px;">Playlist • Nueva •</p>
+              <p class="p-playlist-c" style="font-size: 13px;">Playlist • Nueva •</p>
               }
             </article>
-            <button class="btnClose" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
+            <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()"
+              (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
           </section>
           }
           @if (valorInput === cancion.namePlaylist) {
@@ -74,47 +136,54 @@
               <p style="font-size: 13px;">Playlist • Nueva •</p>
               }
             </article>
-            <button class="btnClose" (click)="openModelEliminar()" (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
+            <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()"
+              (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
           </section>
           }
           }
+          }@else {
+          <div></div>
+          }
+
         </section>
       </section>
-      <div id="modalPlay" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">PLAYLIST</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModel()" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>¿Deseas crear una playlist?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="CloseModel()" data-bs-dismiss="modal">No</button>
-              <button type="button" class="btn btn-primary" (click)="crearPlaylistBtn()">Si</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="modalEliminar" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModelEliminar()" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>¿Deseas elminar?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="borrarPlaylist()"  data-bs-dismiss="modal">No</button>
-              <button type="button" class="btn btn-primary">Si</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
     </aside>
   </section>
 </main>
+
+<div id="modalPlay" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">PLAYLIST</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModel()"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Deseas crear una playlist?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="CloseModel()"
+          data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="crearPlaylistBtn()">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modalEliminar" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModelEliminar()"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Deseas elminar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="CloseModelEliminar()"
+          data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="borrarPlaylist()">Si</button>
+      </div>
+    </div>

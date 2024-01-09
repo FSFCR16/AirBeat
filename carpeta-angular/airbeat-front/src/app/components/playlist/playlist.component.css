@@ -1,9 +1,11 @@
 body,
 html {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
+    margin-top: 7px;
+    padding: 3px;
+    background-color: #262473;
     border-radius: 7px;
+    height: 100%;
+    width: 100%;
 }
 
 .contenedor {
@@ -12,6 +14,7 @@ html {
     align-items: flex-start;
     padding: 10px;
     gap: 10px;
+    width: 100%;
     height: 84.3vh;
     border-radius: 10px;
 
@@ -59,8 +62,9 @@ html {
 }
 
 .contenedor-buscador-botones {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 38% auto;
+    grid-template-rows: 30% auto;
     width: calc(100% - 220px);
     /* Ajustar al ancho del cuadro de color más el espacio */
     height: 12.5rem;
@@ -68,13 +72,14 @@ html {
 
 .contenedor_carta {
     display: flex;
+    grid-row: 2/3;
     background-color: #393785;
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
     row-gap: 10px;
     height: 100%;
-    width: 40%;
+    width: 100%;
 }
 /* Ancho y grosor del scrollbar */
 .contenedor_carta::-webkit-scrollbar {
@@ -105,6 +110,7 @@ html {
 }
 .cont_carta {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     align-items: center;
@@ -129,7 +135,7 @@ html {
     height: 50px;
     padding: 10px;
     font-size: 1em;
-    width: 31rem;
+    width: 100%;
     border: none;
     outline: none;
     border-radius: 15px;
@@ -210,7 +216,7 @@ html {
 }
 .img_carta{
     display: flex;
-    column-gap: 10px;
+    column-gap: 13px;
 }
 
 #tituloPlaylist {
@@ -223,7 +229,10 @@ html {
     background-color: #2d2f71;
 }
 .cont__user{
+
     display: flex;
+    justify-self: end;
+    grid-column: 2/3;
     align-items: center;
     position: relative;
     top: 6px;
@@ -233,6 +242,7 @@ html {
     padding: 10px;
     padding-right: 20px;
     height: 2.6rem;
+    width: 10rem;
     cursor: pointer;
 }
 
@@ -277,13 +287,15 @@ html {
 
 .btn__secundarias{
     display: flex;
-    opacity: 0;
+    position: relative;
+    left: 28px;
+    opacity: 0; 
     justify-content: center;
     position: absolute;
     align-items: center;
     background-color: rgb(78, 76, 139, 0.4);
     border-radius: 5px;
-    width: 3.12em;
+    width: 3.18em;
     height: 0;
     border: none;
     outline: none;
@@ -295,4 +307,103 @@ html {
     height: 3.12rem;
     transform: scaleY(1);
     transition: all 0.4s ease;
+}
+
+.cambioNombre{
+    width: 7rem;
+    height: 2.3rem !important;
+    background-color: #262473 !important;
+}
+
+@media screen and (min-width: 1450px) and (max-width:  1600px) {
+    #botonAgregar{
+        font-size: 12px;
+    }
+    .nombreCancion{
+        font-size: 14px !important;
+    }
+
+    .nombreArtist{
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (min-width: 1250px) and (max-width:  1450px) {
+    .contenedor-buscador-botones{
+        grid-template-columns: 45% auto;
+    }
+    #botonAgregar{
+        font-size: 11px;
+    }
+
+}
+
+@media screen and (min-width: 900px) and (max-width:  1250px) {
+    .contenedor-buscador-botones{
+        grid-template-columns: 75% auto;
+    }
+    #botonAgregar{
+        font-size: 11px;
+    }
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        width: auto;
+        padding: 2px;
+        top: 0;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width:  1000px) {
+    .contenedor-buscador-botones{
+        grid-template-columns: 88% auto;
+    }
+    #botonAgregar{
+        font-size: 11px;
+    }
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        width: auto;
+        padding: 2px;
+        top: 0;
+    }
+    .nombreCancion{
+        font-size: 12px !important;
+        width: 6rem !important;
+    }
+
+    .nombreArtist{
+        font-size: 10px !important;
+    }
+
+}
+
+@media screen and (min-width: 400px) and (max-width:  768px) {
+    .contenedor-buscador-botones{
+        grid-template-columns: 88% auto;
+    }
+    #botonAgregar{
+        font-size: 11px;
+    }
+    .p-user{
+        display: none;
+    } 
+    .cont__user{
+        width: auto;
+        padding: 2px;
+        top: 0;
+    }
+    .nombreCancion{
+        font-size: 15px !important;
+        width: 10rem !important;
+    }
+
+    .nombreArtist{
+        font-size: 12px !important;
+    }
+
 }

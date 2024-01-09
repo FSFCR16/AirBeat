@@ -1,3 +1,6 @@
+.contAlbum{
+    padding: 5vh;
+}
 .fondoAlbum{
     background-color: #262473;
     padding: 10px;
@@ -5,15 +8,93 @@
     height: 70vh;
     overflow-x: hidden;
 }
+*{
+    margin: 0;
+}
+
+.cont_-padre{
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 70vw;
+    row-gap: 7px;
+}
+
+.nombre_album{
+    background-color: #393785;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+.fondoAlbum{
+    background-color:#393785 ;
+    position: relative;
+    padding: 10px;
+    height: 80vh;
+    border-radius: 5px;
+    overflow-x: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.fondoAlbum::-webkit-scrollbar {
+    width: 2px; /* Ancho del scrollbar */
+  }
+  
+  /* Flecha/Manija en el scrollbar */
+.fondoAlbum::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Color de la manija del scrollbar */
+    border-radius: 5px; /* Radio de borde para la manija */
+  }
+  
+  /* Track (rastro) del scrollbar */
+.fondoAlbum::-webkit-scrollbar-track {
+    background-color: #372A8c; /* Color del rastro del scrollbar */
+  }
+  
 
 .list-group-item{
+    position: relative;
     background-color:transparent;
     color: white;
     border-color: rgba(255, 255, 255, 0.288);
 }
+
+.list-group-item:hover{
+    background-color:#1c1a4d ;
+}
+
 .h2{
     color: white;
 }
 .text-album{
     color: rgba(255, 255, 255, 0.659);
+}
+
+.btn__play{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: #20203d;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    bottom: 15px;
+    right: 40px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    padding-left: 9px;
+    box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    transition: background .3s ease;
+    
+}
+.cont_block{
+    opacity: 1;
+    height: 2.5rem;
+    width: 2.5rem;
+    transform: scaleY(1);
+    transition: all 0.3s ease;
 }

@@ -16,6 +16,7 @@ import { guardAdmin, guardGuard } from './guards/guard.guard';
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
+<<<<<<< HEAD
     {path: "search", component: BuscadorPageComponent, canActivate: [guardGuard]},
     {path: "search/historial", component: BuscadorPageComponent, canActivate: [guardGuard]},
     {path: 'search/:cancion', component: BuscadorPageComponent, canActivate: [guardGuard]},
@@ -27,4 +28,18 @@ export const routes: Routes = [
     {path: "album",component: AlbumPageComponent, canActivate: [guardGuard]},
     {path:"perfil", component: PerfilComponent, canActivate: [guardGuard]},
     {path: "**", component: VistaPrincipalPageComponent, canActivate: [guardGuard]},
+=======
+    {path: "search", component: BuscadorPageComponent, children:[
+        {path: "historial", component: BuscadorPageComponent},
+        {path: ':cancion', component: BuscadorPageComponent},
+    ]},
+    {path: "playlist/:id", component: PlaylistPageComponent},
+    {path: "admin", component: VistaAdminPageComponent},
+    {path: "home", component: VistaPrincipalPageComponent},
+    {path: "user", component: VistaUsuarioPageComponent},
+    {path: "album/:name",component: AlbumPageComponent},
+    {path:"perfil", component: PerfilComponent},
+    {path: "**", component: VistaPrincipalPageComponent},
+
+>>>>>>> f06e9fef847188228e1d2a9fb4f436e86437d89f
 ];
