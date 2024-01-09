@@ -48,22 +48,23 @@
   @media screen and (min-width: 1000px) and (max-width:  1200px) {
 
     .cont__gen{
-        grid-template-columns: 30vw 70vw;
+        grid-template-columns: 28vw 72vw;
     }
 
 
   }
 
-  @media screen and (min-width: 880px) and (max-width:  1000px) {
+  @media screen and (min-width: 768px) and (max-width:  1000px) {
 
     .cont__gen{
         grid-template-columns: 32vw auto;
     }
   }
-  @media screen and (min-width: 700px) and (max-width:  880px) {
+  @media screen and (min-width: 300px) and (max-width:  768px) {
 
     .cont__gen{
-        grid-template-columns: 35vw auto;
+      padding-left: 6px;
+      grid-template-columns: 8vw auto;
     }
   }
 

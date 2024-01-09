@@ -251,14 +251,15 @@ p {
 
   }
 
-  @media screen and (min-width: 766px) and (max-width:  900px) {
+  @media screen and (min-width: 500px) and (max-width:  768px) {
 
     .contenedor__gen{
-      grid-template-rows: 5% auto;
+      align-items: start;
+      grid-template-rows: 100%;
     }
 
     .aside{
-      grid-template-rows: 11% auto;
+      display: none;
     }
     .img_play{
       align-self: center;
@@ -266,7 +267,7 @@ p {
       width: 40px !important;
     }
     .btn__cont{
-      width: 4rem;
+      width: 2rem;
       height: 2rem;
     }
     .p-playlist{
@@ -275,6 +276,13 @@ p {
 
     .p-playlist-c{
       font-size: 10px !important;
+    }
+
+    .navegacion__inicio{
+      padding-top:10px ;
+      display: flex;
+      justify-content: start;
+      height: 100%;
     }
 
 

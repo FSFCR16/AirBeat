@@ -6,6 +6,15 @@
   border-radius: 7px;
 }
 
+@media screen and (min-width: 500px) and (max-width:  768px) {
+
+  .cont_comp_search {
+  
+    width: 100%;
+
+  }
+
+}
 
 
 
