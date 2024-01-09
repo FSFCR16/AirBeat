@@ -17,6 +17,7 @@ export const createPlaylist = async (req, res) => {
         const playlist = new playlists({
             userId,
         });
+        console.log(playlist)
         const newPlaylist = await playlist.save();
         if(playlist){
             const idPlaylist = playlist._id
@@ -131,10 +132,9 @@ export const traerPlaylistById = async (req, res) => {
         const playlist = await playlists.find({
             _id: id
         })
-
-        if (!playlist) {
+        if (playlist.length === 0) {
             return res.status(404).json({
-                error: "Playlist no encontarda"
+                message: "Playlist no encontarda"
             })
         }
 

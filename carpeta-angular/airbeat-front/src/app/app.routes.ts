@@ -13,17 +13,17 @@ import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
 
 
 export const routes: Routes = [
-    { path: "Init", component: ViewbetaComponent },//pau
-    { path: "login-page", component: LoginPageComponent },//listo falta el validador del registro
-    { path: "search", component: BuscadorPageComponent },//santi no
-    { path: "search/historial", component: BuscadorPageComponent },//no funciona
-    { path: 'search/:cancion', component: BuscadorPageComponent },//santi no
-    { path: "playlist/:id", component: PlaylistPageComponent },//no funciona
-    { path: "admin", component: VistaAdminPageComponent },// lsito
-    { path: "home", component: VistaPrincipalPageComponent },//pau
-    { path: "user", component: VistaUsuarioPageComponent },//no funciona
-    { path: "album", component: AlbumComponent },// listo
-    // {path: "album",component: AlbumPageComponent},//no funciona
-    { path: "perfil", component: PerfilComponent },//listo 
-    { path: "**", component: VistaPrincipalPageComponent },
+    {path: "Init", component: ViewbetaComponent},
+    {path: "login-page", component: LoginPageComponent},
+    {path: "search", component: BuscadorPageComponent},
+    {path: "search/historial", component: BuscadorPageComponent},
+    {path: 'search/:cancion', component: BuscadorPageComponent},
+    {path: "playlist/:id", component: PlaylistPageComponent},
+    {path: "admin", component: VistaAdminPageComponent},
+    {path: "home", component: VistaPrincipalPageComponent},
+    {path: "user", component: VistaUsuarioPageComponent},
+    {path: "album/:name",component: AlbumPageComponent},
+    {path:"perfil", component: PerfilComponent},
+    {path: "**", component: VistaPrincipalPageComponent},
+
 ];
