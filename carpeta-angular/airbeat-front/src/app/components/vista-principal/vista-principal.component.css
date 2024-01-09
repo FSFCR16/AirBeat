@@ -246,6 +246,35 @@ p{
 }
 
 
+.btn__play{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: #20203d;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    top: 10rem;
+    overflow: hidden;
+    right: 10%;
+    padding-left: 9px;
+    box-shadow:rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    transition: background .3s ease;
+    
+}
+
+.cont_block{
+    opacity: 1;
+    height: 3rem;
+    width: 3rem;
+    transform: scaleY(1);
+    transition: all 0.3s ease;
+}
+
 
 @media screen and (min-width: 1520px) and (max-width:  1650px) {
 
