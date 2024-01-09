@@ -42,7 +42,8 @@
               </li>
               <li class="nav-item">
                 <a routerLink="album" class="nav-link" aria-current="page" style="color: white;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 512 512" fill="#ffffff">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 512 512"
+                    fill="#ffffff">
                     <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path
                       d="M494.8 47c12.7-3.7 20-17.1 16.3-29.8S494-2.8 481.2 1L51.7 126.9c-9.4 2.7-17.9 7.3-25.1 13.2C10.5 151.7 0 170.6 0 192v4V304 448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H218.5L494.8 47zM368 240a80 80 0 1 1 0 160 80 80 0 1 1 0-160zM80 256c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16zM64 320c0-8.8 7.2-16 16-16H208c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm16 64c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16z" />
@@ -50,9 +51,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a type="button" (click)="crearPlaylistBtn()" class="nav-link" aria-current="page" style="color: white;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px"
-                    viewBox="0 0 448 512" fill="#ffffff"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <a type="button" (click)="crearPlaylistBtn()" class="nav-link" aria-current="page"
+                  style="color: white;">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="23px" width="23px" viewBox="0 0 448 512"
+                    fill="#ffffff"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path
                       d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                   </svg> Agregar Playlist
@@ -103,22 +105,42 @@
             </article>
           </section>
         </section>
-        <section style="display: flex; flex-direction: column; row-gap: 5px; margin-top: 2vh;" class="cont__gen_opcion">
+        <section class="cont_opciones">
+          <article class="cont__categorias">
+            albums
+          </article>
+          <article class=" cont__categorias">
+            playlist
+          </article>
+        </section>
+        <section style="display: flex; flex-direction: column; row-gap: 5px; " class="cont__gen_opcion">
           <section class="cont__input cont__input__dos">
             <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
             <input #myInput (input)="onInputChange(myInput.value)" class="inpu__in input__dos" type="text"
               placeholder="Buscar">
           </section>
           <section class="cont__playAlb">
+            @if(this.datos.length > 0){
             @for (cancion of datos; track cancion._id) {
             @if(valorInput === "" || valorInput === undefined ){
-            <section class="contendor__card">
+            <section class="contendor__card" (click)="irAlaPlaylist(cancion._id)">
+              @if(cancion.songs[0]){
               <img style="height: 50px; width: 50px; border-radius: 7px;"
                 src="{{cancion.songs[0].img_urls.img_url_300}}" alt="">
+              }@else{
+              <img style="height: 50px; width: 50px; border-radius: 7px;" src="../../../assets/img/logoAirBeat.png"
+                alt="">
+              }
               <article class="text__cont">
                 <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
+                @if(cancion.songs.length > 0){
                 <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
+                }@else{
+                <p style="font-size: 13px;">Playlist • Nueva •</p>
+                }
               </article>
+              <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()"
+                (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
             </section>
             }
             @if (valorInput === cancion.namePlaylist) {
@@ -127,53 +149,75 @@
                 src="{{cancion.songs[0].img_urls.img_url_300}}" alt="">
               <article class="text__cont">
                 <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>
+                @if(cancion.songs.length > 0){
                 <p style="font-size: 13px;">Playlist • {{cancion.songs.length}} canciones esperandote •</p>
+                }@else{
+                <p style="font-size: 13px;">Playlist • Nueva •</p>
+                }
               </article>
+              <button class="btnClose" (click)="handleButtonClick($event)" (click)="openModelEliminar()"
+                (click)="guardarId(cancion._id)"><i class="fa-solid fa-xmark" style="color: #fcfcfc;"></i></button>
             </section>
             }
             }
-          </section>
-        </section>
-        <div id="modalPlay" class="modal" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">PLAYLIST</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModel()"
-                  aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>¿Deseas crear una playlist?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="CloseModel()"
-                  data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" (click)="crearPlaylistBtn()">Si</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="modalEliminar" class="modal" tabindex="-1">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModelEliminar()"
-                  aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>¿Deseas elminar?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="borrarPlaylist()"
-                  data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary">Si</button>
-              </div>
-            </div>
-          </div>
-        </div>
+            }@else {
+            <div></div>
+            }
 
-      </aside>
-    </section>
-  </main>
-</div>
+          </section>
+          <div id="modalPlay" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">PLAYLIST</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModel()"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Deseas crear una playlist?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="CloseModel()"
+                    data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary" (click)="crearPlaylistBtn()">Si</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="modalEliminar" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModelEliminar()"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Deseas elminar?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="borrarPlaylist()"
+                    data-bs-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary">Si</button>
+                </div>
+              </div>
+              <div id="modalEliminar" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="CloseModelEliminar()"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>¿Deseas elminar?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="CloseModelEliminar()"
+                        data-bs-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-primary" (click)="borrarPlaylist()">Si</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>

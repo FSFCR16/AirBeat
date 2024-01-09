@@ -65,7 +65,7 @@
     <article class="resultado">
       <h4>Resultado principal</h4>
       @if(tipo === "Album"){
-      <section class="card__resultado">
+      <section class="card__resultado" (click)="irAlbum(cancion.album.name_album)">
         <img
           style=" border-radius: 5px; width: 8rem; height: 8rem; margin-bottom: 15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
           src="{{cancion.img_urls.img_url_300}}" alt="">
@@ -73,7 +73,7 @@
         <p>{{cancion.artist}} - {{albumLength}} canciones</p>
         <button class="btn_info">{{tipo}}</button>
         <button (click)="ultimoClick(cancion._id)" (click)="saveHistorial(cancion._id)" (click)="cargarCancion(cancion)"
-          class="btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+          class="btn__play btn__principal"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
             viewBox="0 0 384 512">
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
@@ -150,30 +150,32 @@
   }
   }
   @if(mostrarAlbums){
-  <section class="cont__recientes" style="padding-top: 10vh;">
-    <article class="text_opciones__recientes">
-      <h4 style="cursor: default;">Albumes</h4>
-    </article>
-    <article class="cont__cards" style="overflow-x: scroll;">
-      @for(i of albums; track i._id){
-      <section class="cards">
-        <img
-          style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
-          src="{{i.img_urls.img_url_300}}" alt="">
-        <article class="text__card">
-          <p
-            style="font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">
-            {{i.album.name_album}}</p>
-          <p style="font-size:14px ;">{{i.artist}}</p>
+    <section class="cont__recientes" style="padding-top: 10vh;">
+        <h4 style="cursor: default; color: aliceblue;">Albumes</h4>
+        <article class="cont__cards cont-albums" style="overflow-x: scroll;">
+          @for(i of albums; track i._id ){
+          <section class="cards" #cartaDiv (click)="irAlbum(i.album.name_album)">
+            <img
+              style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+              src="{{i.img_urls.img_url_300}}" alt="">
+            <article class="text__card">
+              <p style="font-size: 19px; font-weight: bold; width: 12rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">{{i.album.name_album}}</p>
+              <p style="font-size:14px ;">{{i.artist}}</p>
+            </article>
+            <button  #btnPlay (click)="ultimoClick(i._id)" (click)="cargarCancion(i)"
+              class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
+                viewBox="0 0 384 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                  d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                </svg></button>
+          </section>
+          }
         </article>
 
       </section>
       }
-    </article>
   </section>
-  }
-
   <footer style="margin-bottom: 30vh;">
 
   </footer>
-</section>

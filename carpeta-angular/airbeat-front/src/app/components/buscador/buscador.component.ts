@@ -112,7 +112,6 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
       for(let i = 0; i < this.cartas.length; i++){
         const carta = this.cartas.get(i);
         const boton = this.btn_play.get(i)
-        console.log(boton)
         if (carta) {
           this.renderer.listen(carta.nativeElement, 'mouseover', () => {
             this.renderer.addClass(boton?.nativeElement, "cont_block")
@@ -214,6 +213,10 @@ export class BuscadorComponent implements OnInit,AfterViewInit{
         console.log(error)
       }
     })
+  }
+
+  irAlbum(name_album:string){
+    this.buscador.llevarArutaAlmbu(name_album)
   }
 
   ultimoClick(id:string){
