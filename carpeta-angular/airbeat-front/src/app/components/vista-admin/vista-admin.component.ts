@@ -7,18 +7,20 @@ import { FormControl, ReactiveFormsModule, FormGroup, Validators,FormsModule } f
 import { ListaCancionesComponent } from '../lista-canciones/lista-canciones.component';
 import { ElementRef } from '@angular/core';
 import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
+import { ErrorComponent } from '../error/error.component';
 
 
 @Component({
   selector: 'app-vista-admin',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, ListaCancionesComponent, FormsModule],
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, ListaCancionesComponent, FormsModule,ErrorComponent],
   templateUrl: './vista-admin.component.html',
   styleUrl: './vista-admin.component.css'
 })
 export class VistaAdminComponent implements OnInit {
 
   listaUsuarios: User[] = []
+  alerta: boolean = false;
 
   userid: any = ""
 
@@ -54,7 +56,6 @@ export class VistaAdminComponent implements OnInit {
       lastname: new FormControl(),
       telefono: new FormControl(),
       name: new FormControl(),
-      role: new FormControl(),
     })
 
 
@@ -83,13 +84,23 @@ export class VistaAdminComponent implements OnInit {
   ngOnInit(): void {
     this.user.traerUsuarios().subscribe({
       next: (data) => {
-        this.listaUsuarios = data
-        console.log(this.listaUsuarios)
+        this.listaUsuarios = data;
+        console.log(this.listaUsuarios);
       },
       error: (error) => {
-        console.log(error)
+        if (error.status === 404) {
+          this.alerta = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alerta = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alerta = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
-    })
+    });
+    
   }
 
   actualizarDatos() {
@@ -103,7 +114,16 @@ export class VistaAdminComponent implements OnInit {
         console.log(data)
       },
       error: (error) => {
-        console.log(error)
+        if (error.status === 404) {
+          this.alerta = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alerta = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alerta = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }
@@ -113,11 +133,20 @@ export class VistaAdminComponent implements OnInit {
     console.log(camposLlenadosDos)
     this.buscador.agregarCancion(camposLlenadosDos).subscribe({
       next: (data) => {
-        window.location.reload()
+        /*window.location.reload()*/
         console.log(data)
       },
       error: (error) => {
-        console.log(error)
+        if (error.status === 404) {
+          this.alerta = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alerta = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alerta = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }
@@ -182,7 +211,16 @@ export class VistaAdminComponent implements OnInit {
         console.log(data)
       },
       error: (error) => {
-        console.log(error)
+        if (error.status === 404) {
+          this.alerta = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alerta = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alerta = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }
@@ -273,8 +311,17 @@ export class VistaAdminComponent implements OnInit {
           this.mostrarUsuarios = data
           console.log(data)
         },
-        error: (error) =>{
-          console.log(error)
+        error: (error) => {
+          if (error.status === 404) {
+            this.alerta = true;
+            console.error('Usuario no encontrado 404:', error);
+          } else if (error.status === 500) {
+            this.alerta = true;
+            console.error('Error del servidor 500:', error);
+          } else {
+            this.alerta = true;
+            console.error('Error al obtener usuario:', error);
+          }
         }
       })
     }else{

@@ -1,3 +1,309 @@
+<<<<<<< HEAD
+<!--<main class="container">
+    <aside>
+        <div class="menu">
+            <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Inicio</a>
+            
+            <button class="button" style="--clr: #1f073a ;">
+                <span class="button-decor"></span>
+                <div class="button-content">
+                    <div class="button__icon">
+                        <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" width="24">
+                            <circle opacity="0.5" cx="25" cy="25" r="23" fill="url(#icon-payments-cat_svg__paint0_linear_1141_21101)"></circle>
+                            <mask id="icon-payments-cat_svg__a" fill="#fff">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M34.42 15.93c.382-1.145-.706-2.234-1.851-1.852l-18.568 6.189c-1.186.395-1.362 2-.29 2.644l5.12 3.072a1.464 1.464 0 001.733-.167l5.394-4.854a1.464 1.464 0 011.958 2.177l-5.154 4.638a1.464 1.464 0 00-.276 1.841l3.101 5.17c.644 1.072 2.25.896 2.645-.29L34.42 15.93z">
+                                </path>
+                            </mask>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.42 15.93c.382-1.145-.706-2.234-1.851-1.852l-18.568 6.189c-1.186.395-1.362 2-.29 2.644l5.12 3.072a1.464 1.464 0 001.733-.167l5.394-4.854a1.464 1.464 0 011.958 2.177l-5.154 4.638a1.464 1.464 0 00-.276 1.841l3.101 5.17c.644 1.072 2.25.896 2.645-.29L34.42 15.93z" fill="#fff"></path>
+                            <path d="M25.958 20.962l-1.47-1.632 1.47 1.632zm2.067.109l-1.632 1.469 1.632-1.469zm-.109 2.068l-1.469-1.633 1.47 1.633zm-5.154 4.638l-1.469-1.632 1.469 1.632zm-.276 1.841l-1.883 1.13 1.883-1.13zM34.42 15.93l-2.084-.695 2.084.695zm-19.725 6.42l18.568-6.189-1.39-4.167-18.567 6.19 1.389 4.166zm5.265 1.75l-5.12-3.072-2.26 3.766 5.12 3.072 2.26-3.766zm2.072 3.348l5.394-4.854-2.938-3.264-5.394 4.854 2.938 3.264zm5.394-4.854a.732.732 0 01-1.034-.054l3.265-2.938a3.66 3.66 0 00-5.17-.272l2.939 3.265zm-1.034-.054a.732.732 0 01.054-1.034l2.938 3.265a3.66 3.66 0 00.273-5.169l-3.265 2.938zm.054-1.034l-5.154 4.639 2.938 3.264 5.154-4.638-2.938-3.265zm1.023 12.152l-3.101-5.17-3.766 2.26 3.101 5.17 3.766-2.26zm4.867-18.423l-6.189 18.568 4.167 1.389 6.19-18.568-4.168-1.389zm-8.633 20.682c1.61 2.682 5.622 2.241 6.611-.725l-4.167-1.39a.732.732 0 011.322-.144l-3.766 2.26zm-6.003-8.05a3.66 3.66 0 004.332-.419l-2.938-3.264a.732.732 0 01.866-.084l-2.26 3.766zm3.592-1.722a3.66 3.66 0 00-.69 4.603l3.766-2.26c.18.301.122.687-.138.921l-2.938-3.264zm11.97-9.984a.732.732 0 01-.925-.926l4.166 1.389c.954-2.861-1.768-5.583-4.63-4.63l1.39 4.167zm-19.956 2.022c-2.967.99-3.407 5.003-.726 6.611l2.26-3.766a.732.732 0 01-.145 1.322l-1.39-4.167z" fill="#fff" mask="url(#icon-payments-cat_svg__a)"></path>
+                            <defs>
+                                <linearGradient id="icon-payments-cat_svg__paint0_linear_1141_21101" x1="25" y1="2" x2="25" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#fff" stop-opacity="0.71"></stop>
+                                    <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="button__text">Lista Canciones</span>
+                </div>
+            </button>
+            (<a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Lista de Canciones</a>)
+            <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Editar Canciones</a>
+            <a class="active" href="#"><span><img class="home" src="../../../assets/img/HOME8-casa (2).svg" alt=""></span>Editar Usuarios</a>
+        </div>
+    </aside>
+</main> -->
+<main style="height: 82vh; width: 100%;">
+    <section *ngIf="!alerta" class="contenedor">
+        <section class="user">
+            <div class="usuario" style="width: 100%;">
+                <img src="../../../assets/img/logoAirBeat.png" alt="" style="width: 65px;">
+                <p>Vista Administrador</p>
+            </div>
+        </section>
+        <section class="info">
+            <div class="nav">
+                <a (click)="vistaC()" (click)="buscadorCanciones = true"> Editar Canciones</a>
+                <a (click)="vistaU()" (click)="buscadorCanciones = false">Editar Usuarios</a>
+                <div>
+                    <div class="group">
+                        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <g>
+                                <path
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                                </path>
+                            </g>
+                        </svg>
+                        <input placeholder="Search" type="search" class="input" [(ngModel)]="vistaBuscador"
+                            (input)="buscadorVista()">
+                    </div>
+                </div>
+            </div>
+            <app-lista-canciones>
+
+            </app-lista-canciones>
+            <div class="E-usuario" #infousuario hidden>
+                @if(vistaBuscador){
+                @for(user of mostrarUsuarios;track user._id){
+                <div class="card">
+                    <div class="card__img">
+                        <img src="../../../assets/img/usuario.png" alt="" style="width: 75px;">
+                    </div>
+                    <div class="card__title">{{user.name}}</div>
+                    <div class="card__subtitle">{{user.email}}</div>
+                    <div class="card__wrapper">
+                        <button class="card__btn" (click)="OpenPop()"
+                            (click)="guardarborrarUser(user._id)">Actualizar</button>
+                        <button class="card__btn card__btn-solid" (click)="openModel()"
+                            (click)="guardarborrarUser(user._id)">Eliminar</button>
+                    </div>
+                </div>
+                }
+                }@else{
+                @for(user of listaUsuarios;track user._id){
+                <div class="card">
+                    <div class="card__img">
+                        <img src="../../../assets/img/usuario.png" alt="" style="width: 75px;">
+                    </div>
+                    <div class="card__title">{{user.name}}</div>
+                    <div class="card__subtitle">{{user.email}}</div>
+                    <div class="card__wrapper">
+                        <button class="card__btn" (click)="OpenPop()"
+                            (click)="guardarborrarUser(user._id)">Actualizar</button>
+                        <button class="card__btn card__btn-solid" (click)="openModel()"
+                            (click)="guardarborrarUser(user._id)">Eliminar</button>
+                    </div>
+                </div>
+                }
+                }
+
+
+            </div>
+        </section>
+    </section>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Usuario</h1>
+                    <button type="button" class="btn-close" (click)="CloseModel()" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estas seguro de borrar el Usuario?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="CloseModel()"
+                        data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" (click)="borrarUser(userid)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="PopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Datos </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="ClosePop()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color: black;">
+                    <form [formGroup]="loginForm" (ngSubmit)="actualizarDatos()">
+                        <div class="mb-2">
+                            <input formControlName="name" type="text" class="form-control" id="recipient-name"
+                                placeholder="Nombre">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="lastname" type="text" class="form-control" id="recipient-name"
+                                placeholder="Apellido">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="email" type="text" class="form-control" id="recipient-name"
+                                placeholder="Email">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="telefono" type="text" class="form-control" id="recipient-name"
+                                placeholder="Telefono">
+                        </div>
+                        <div class="mb-2">
+
+                            <input formControlName="password" type="text" class="form-control" id="recipient-name"
+                                placeholder="Contraseña">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                (click)="ClosePop()">Close</button>
+                            <button type="submit" class=" btn btn-danger">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" #modal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Cancion</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarPrueba()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    ¿Estas seguro de eliminar la cancion?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        (click)="cerrarPrueba()">Cerrar</button>
+                    <button type="button" class="btn btn-danger" (click)="borrarCancion()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" style="height: 30rem; top: 30px;" id="exampleModal" #añadirC tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>AGREGAR CANCION</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="agregarCerrar()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="cancionesForm" (ngSubmit)="agregarSongs()">
+                        <div class="mb-2" style="width: 100%;">
+                            @if(album){
+                            <div class="mb-2" #contenedorHidden>
+                                <h6>
+                                    ¿Esta cancion pertenece a un album?
+                                </h6>
+                                <div class="botonConfirmacion">
+                                    <button class="botonSi" (click)="album = false">
+                                        si
+                                    </button>
+                                    <button class="botonNo" (click)="onNoButtonClick($event, hidden)">
+                                        no
+                                    </button>
+                                </div>
+                            </div>
+                            }@else{
+                            <div formGroupName="album">
+                                <h6>ALBUM</h6>
+                                <input type="text" class="form-control" id="recipient-name"
+                                    placeholder="Nombre del Album" formControlName="name_album">
+                                <input type="text" class="form-control" id="recipient-name"
+                                    placeholder="Posicion de la cancion en el Album" formControlName="track_number">
+                            </div>
+                            }
+                        </div>
+                        <div class="mb-2">
+                            @if(collaboration){
+                            <div class="mb-2" #colaboracionHidden>
+                                <h6>
+                                    ¿Tiene colaboracion?
+                                </h6>
+                                <div class="botonConfirmacion">
+                                    <button class="botonSi" (click)="collaboration = false">
+                                        si
+                                    </button>
+                                    <button class="botonNo" (click)="onNoButtonClick($event,colaboracion)">
+                                        no
+                                    </button>
+                                </div>
+                            </div>
+                            }@else{
+                            <div formGroupName="collaboration">
+                                <h6>COlABORACIONES</h6>
+                                <input type="text" class="form-control" id="recipient-name"
+                                    placeholder="Cantidad de colaboradores" formControlName="number_collaborators">
+                                <input type="text" class="form-control" id="recipient-name"
+                                    placeholder="Nombre de colaboradores" formControlName="collaborators_name">
+                            </div>
+                            }
+                        </div>
+                        <div class="mb-2" formGroupName="img_urls">
+                            <h6>IMAGEN CANCION</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="img url 640px"
+                                formControlName="img_url_640">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="img url 300px"
+                                formControlName="img_url_300">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="img url 64px"
+                                formControlName="img_url_64">
+                        </div>
+                        <div class="mb-2">
+                            <h6>ARTISTA</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Artist"
+                                formControlName="artist">
+                        </div>
+                        <div class="mb-2">
+                            <h6>DURACION</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Duration"
+                                formControlName="duration_ms">
+                        </div>
+                        <div class="mb-2">
+                            <h6>EXPLICITO</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Explicit"
+                                formControlName="explicit">
+                        </div>
+                        <div class="mb-2">
+                            <h6>NOMBRE DE LA CANCION</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Name Track"
+                                formControlName="name_track">
+                        </div>
+                        <div class="mb-2">
+                            <h6>PREVIEW URL</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Preview URL"
+                                formControlName="preview_url">
+                        </div>
+                        <div class="mb-2">
+                            <h6>FECHA DE LANZAMIENTO</h6>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Release Date"
+                                formControlName="release_date">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="agregarCerrar()"
+                                data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Agregar Cancion</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-error *ngIf="alerta"></app-error>
+</main>
+
+=======
 <!--<main class="container">
     <aside>
         <div class="menu">
@@ -307,4 +613,5 @@
 
 
 
+>>>>>>> 89fad0760c4bb43ec217c0b5a6f49501e6341a93
 <router-outlet></router-outlet>
