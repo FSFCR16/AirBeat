@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
 
+
+
 @Component({
   selector: 'app-mainbeta',
   standalone: true,
@@ -28,5 +30,4 @@ export class MainbetaComponent {
     })
   }
 }
-
 

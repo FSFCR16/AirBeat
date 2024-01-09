@@ -9,6 +9,7 @@ import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { AlbumComponent } from './components/album/album.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
+import { guardAdmin, guardGuard } from './guards/guard.guard';
 
 
 
