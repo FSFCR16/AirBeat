@@ -17,7 +17,9 @@ export const SongsPost = async (req, res) => {
     return res.status(201).json(newSongs);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: 'Error al crear un nueva cancion' });
+    return res.status(500).json({
+      error: 'Error al crear un nueva cancion'
+    });
   }
 };
 
@@ -30,11 +32,14 @@ export const SongsGet = async (req, res) => {
     const totalPaginas = Math.ceil(totalDocumentos / elementosPorPagina);
     const Songs = await Music.
     find()
-    .skip((paginaActual - 1) * elementosPorPagina)
-    .limit(elementosPorPagina)
-    .exec()
+      .skip((paginaActual - 1) * elementosPorPagina)
+      .limit(elementosPorPagina)
+      .exec()
     console.log(Songs)
-    return res.status(200).json({canciones:Songs, paginas:totalPaginas});
+    return res.status(200).json({
+      canciones: Songs,
+      paginas: totalPaginas
+    });
   } catch (error) {
     return res.status(500).json({
       error: 'Error al obtener la lista de canciones'
@@ -255,18 +260,18 @@ export const findgeneral = async (req, res) => {
         }
       ]
     }).limit(4);
-
     if (contenido.length > 0) {
       const resultados = contenido.map(item => {
         console.log(item.name_track)
         if (item.artist && normalizeText(item.artist).match(new RegExp(normalizedGeneral, 'i'))) {
           matchType = 'Artista';
-        } else if (item["album"]["name_album"] && normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i'))) {
-          matchType = 'Album';
-        } else if (item.name_track && normalizeText(item.name_track).match(new RegExp(normalizedGeneral, 'i'))) {
+        }else if (item.name_track && normalizeText(item.name_track).match(new RegExp(normalizedGeneral, 'i'))) {
           matchType = 'Cancion';
-        }
-
+        }else if(item["album"]) {
+          if( (item["album"]["name_album"] && normalizeText(item["album"]["name_album"]).match(new RegExp(normalizedGeneral, 'i')))){
+            matchType = 'Album';
+          }
+        } 
         return {
           ...item.toObject(),
           matchType
@@ -356,7 +361,7 @@ export const albums = async (req, res) => {
       })
       arrayAlbums.push(album)
     }
-
+    // console.log(arrayAlbums)
     return res.status(200).json({
       albums: arrayAlbums
     })
