@@ -21,7 +21,6 @@ export const routes: Routes = [
     {path: "playlist/:id", component: PlaylistPageComponent},
     {path: "admin", component: VistaAdminPageComponent},
     {path: "home", component: VistaPrincipalPageComponent},
-    {path: "user", component: VistaUsuarioPageComponent},
     {path: "album/:name",component: AlbumPageComponent},
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},

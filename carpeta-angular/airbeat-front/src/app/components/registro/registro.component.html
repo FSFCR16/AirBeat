@@ -1,11 +1,8 @@
 <section *ngIf="!alertgeneral" hidden #infoRegistro class="infoRegistro">
     <form [formGroup]="registroForm" (submit)="usuarioCrear()"
         style="display: grid; grid-template-columns: 50% 50%; row-gap: 22px;" action="">
-
-        <app-inputs text="Nombre" typeText="text" textFor="Nombre" idText="Nombre" nameText="Nombre"
-            placeholder="Nombre"></app-inputs>
-
-
+            <app-inputs (valueChanged)="usuario.name = $event" text="Nombre" typeText="text" textFor="Nombre"
+            idText="Nombre" nameText="Nombre" placeholder="Nombre"></app-inputs>
         <app-inputs (valueChanged)="usuario.lastname = $event" text="Apellido" typeText="text" textFor="Apellido"
             idText="Apellido" nameText="Apellido" placeholder="Apellido"></app-inputs>
         <app-inputs (valueChanged)="usuario.telefono = $event" text="Telefono" typeText="text" textFor="Telefono"
