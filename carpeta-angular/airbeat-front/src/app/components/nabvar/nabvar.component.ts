@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
-import { Router, RouterLink,RouterLinkActive,RouterOutlet } from '@angular/router';
-import { Console, error, log } from 'console';
+import { RouterLink, RouterOutlet, RouterLinkActive, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nabvar',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterLinkActive,RouterOutlet],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './nabvar.component.html',
   styleUrl: './nabvar.component.css'
 })
@@ -16,6 +15,7 @@ export class NabvarComponent implements OnInit {
   valorInput: string | undefined;
   idPlaylist: string = ""
   idSong: string=""
+
   constructor(private buscador: BucadorServiciosService, private router: Router) { }
 
   ngOnInit(): void {
