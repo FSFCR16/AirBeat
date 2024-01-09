@@ -33,7 +33,7 @@
     </aside>
 </main> -->
 <main style="height: 82vh; width: 100%;">
-    <section class="contenedor">
+    <section *ngIf="!alerta" class="contenedor">
         <section class="user">
             <div class="usuario" style="width: 100%;">
                 <img src="../../../assets/img/logoAirBeat.png" alt="" style="width: 65px;">
@@ -299,9 +299,7 @@
         </div>
     </div>
 
+    <app-error *ngIf="alerta"></app-error>
 </main>
-
-
-
 
 <router-outlet></router-outlet>

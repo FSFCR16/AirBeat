@@ -1,5 +1,5 @@
 
-<div class="z-1 fondoAlbum overflow-y-scroll">
+<div  *ngIf="!alerta" class="z-1 fondoAlbum overflow-y-scroll">
     <h2 class="h2">Album</h2>
     <div class="row">
         
@@ -25,4 +25,7 @@
         
     </div>
 
+   
+
 </div>
+<app-error *ngIf="alerta"></app-error>
