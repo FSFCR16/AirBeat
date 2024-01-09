@@ -10,7 +10,7 @@
   .contenedor__gen {
     display: grid;
     grid-template-rows: 15% auto;
-    row-gap: 3px;
+    row-gap: 5px;
     width: 100%;
     height: 100%;
   
