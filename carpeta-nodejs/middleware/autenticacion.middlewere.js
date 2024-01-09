@@ -5,7 +5,7 @@ export const authVerification = (request, response, next) => {
     try {
         console.log(request.headers.authorization)
         if (!request.headers.authorization) {
-            return response.json({ error: 'Debes enviar un token de autenticación' })
+            return response.status(401).json({ error: 'Debes enviar un token de autenticación' })
         }
 
         let token = ''
@@ -14,7 +14,7 @@ export const authVerification = (request, response, next) => {
             token = request.headers.authorization.split(' ')[1]
 
         } else {
-            return response.json({ error: 'El formato del token es incorrecto' })
+            return response.status(401).json({ error: 'El formato del token es incorrecto' })
         }
 
 
@@ -25,7 +25,7 @@ export const authVerification = (request, response, next) => {
         next()
 
     } catch (e) {
-        return response.json(e)
+        return response.status(500).json(e)
     }
 }
 

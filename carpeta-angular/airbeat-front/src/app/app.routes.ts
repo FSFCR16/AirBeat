@@ -9,21 +9,22 @@ import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { AlbumComponent } from './components/album/album.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
+import { guardAdmin, guardGuard } from './guards/guard.guard';
 
 
 
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
-    {path: "search", component: BuscadorPageComponent},
-    {path: "search/historial", component: BuscadorPageComponent},
-    {path: 'search/:cancion', component: BuscadorPageComponent},
-    {path: "playlist/:id", component: PlaylistPageComponent},
+    {path: "search", component: BuscadorPageComponent, canActivate: [guardGuard]},
+    {path: "search/historial", component: BuscadorPageComponent, canActivate: [guardGuard]},
+    {path: 'search/:cancion', component: BuscadorPageComponent, canActivate: [guardGuard]},
+    {path: "playlist/:id", component: PlaylistPageComponent, canActivate: [guardGuard]},
     {path: "admin", component: VistaAdminPageComponent},
-    {path: "home", component: VistaPrincipalPageComponent},
-    {path: "user", component: VistaUsuarioPageComponent},
-    {path: "album",component: AlbumComponent},
-    {path: "album",component: AlbumPageComponent},
-    {path:"perfil", component: PerfilComponent},
-    {path: "**", component: VistaPrincipalPageComponent},
+    {path: "home", component: VistaPrincipalPageComponent, canActivate: [guardGuard]},
+    {path: "user", component: VistaUsuarioPageComponent, canActivate: [guardGuard]},
+    {path: "album",component: AlbumComponent, canActivate: [guardGuard]},
+    {path: "album",component: AlbumPageComponent, canActivate: [guardGuard]},
+    {path:"perfil", component: PerfilComponent, canActivate: [guardGuard]},
+    {path: "**", component: VistaPrincipalPageComponent, canActivate: [guardGuard]},
 ];
