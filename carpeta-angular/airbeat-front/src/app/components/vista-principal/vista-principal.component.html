@@ -15,7 +15,7 @@
         <article class="text_opciones__recientes">
             <h4 style="cursor: default;">Top Canciones</h4>
         </article>
-        <article class="cont__cardsdos">
+        <article class="cont__cards">
             @for(i of historial; track i._id  ){
                 <section class="cards">
                     <img style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{i.songImage[0].img_url_300}}" alt="">
@@ -29,11 +29,11 @@
         </article>
     </section>
     @if(mostrarAlbums){
-    <section class="cont__recientes">
+    <section class="cont__recientes" style="padding-top: 2vh;">
         <article class="text_opciones__recientes">
             <h4 style="cursor: default;">Albumes</h4>
         </article>
-        <article class="cont__cardsdos" style="overflow-x: scroll;">
+        <article class="cont__cards" style="overflow-x: scroll;">
             @for(i of albums; track i._id){
                 <section class="cards">
                     <img style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{i.img_urls.img_url_300}}" alt="">
@@ -47,7 +47,7 @@
         </article>
     </section>
     }
-        <section class="cont__recientes" style="padding-top: 7vh;">
+        <section class="cont__recientes" style="padding-top: 2vh;">
             <article class="text_opciones__recientes">
                 <h4 style="cursor: default;">Busquedas recientes</h4>
             </article>
@@ -65,5 +65,5 @@
                 }
             </article>
         </section>
-
+        <section style="height: 5vh;"></section>
 </section>

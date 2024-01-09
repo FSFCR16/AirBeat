@@ -1,4 +1,4 @@
-<section class="search-cont overflow-y-scroll">
+<section class="search-cont overflow-y-scroll" style="margin-bottom: 50vh;">
   <header class="cont__header">
     <article class="cont__arrows">
       <section class="cont__btn">
@@ -18,38 +18,43 @@
     </article>
     <article class="cont__user" routerLink="../perfil">
       <button class="btn__in" style="background-color:#393785;">
-          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+          <path fill="#ffffff"
+            d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z" />
+        </svg>
       </button>
       <p style="color: #ffffff;">{{ usuario.name }}</p>
-  </article>
+    </article>
   </header>
   @if(valorInput === ""){
   <section class="cont__recientes">
     <article class="text_opciones__recientes">
       <h4 style="cursor: default;">Busquedas recientes</h4>
       @if(mostrarAlbums){
-        <p  class="mostartodo" style="cursor: pointer;" routerLink="historial">Mostrar todo</p>
+      <p class="mostartodo" style="cursor: pointer;" routerLink="historial">Mostrar todo</p>
       }
     </article>
-    <article class="cont__cardsdos">
+    <article class="cont__cards">
       @for(i of historial; track i._id ){
       <section class="cards" #cartaDiv>
         <img
           style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
           src="{{i.songImage[0].img_url_300}}" alt="">
         <article class="text__card">
-          <p style="font-size: 19px; font-weight: bold;">{{i.songName}}</p>
+          <p style="font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">{{i.songName}}</p>
           <p style="font-size:14px ;">{{i.songArtist}}</p>
         </article>
-        <button (click)="borrarDelHistorial(i._id)" class="position-absolute top-0 end-0 rounded-circle borral__Historial"><i class="fa-solid fa-xmark"
+        <button (click)="borrarDelHistorial(i._id)"
+          class="position-absolute top-0 end-0 rounded-circle borral__Historial"><i class="fa-solid fa-xmark"
             style="color: #ffffff;"></i></button>
-        <button  #btnPlay (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)"
+        <button #btnPlay (click)="ultimoClick(i.cancionId)" (click)="cargarCancion(i)"
           class="btn__play btn__historial boton"><svg xmlns="http://www.w3.org/2000/svg" height="22px" width="17px"
             viewBox="0 0 384 512">
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
               d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-            </svg></button>
+          </svg></button>
       </section>
       }
     </article>
@@ -73,7 +78,7 @@
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
               d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-            </svg></button>
+          </svg></button>
       </section>
 
       }@else if(tipo === "Cancion") {
@@ -96,7 +101,7 @@
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
               d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-            </svg></button>
+          </svg></button>
       </section>
       }@else if(tipo === "Artista"){
       <section class="card__resultado">
@@ -111,7 +116,7 @@
             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path fill="#ffffff"
               d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-            </svg></button>
+          </svg></button>
       </section>
       }
     </article>
@@ -134,8 +139,8 @@
             </article>
           </section>
           <section>{{can.duration_ms}}</section>
-          <button (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" #btnSecundarias class="btn__secundarias"><i
-              class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+          <button (click)="saveHistorial(can._id)" (click)="cargarCancion(can)" #btnSecundarias
+            class="btn__secundarias"><i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
         </article>
         }
       </section>
@@ -145,24 +150,30 @@
   }
   }
   @if(mostrarAlbums){
-    <section class="cont__recientes" style="padding-top: 7vh;">
-        <article class="text_opciones__recientes">
-            <h4 style="cursor: default;">Albumes</h4>
+  <section class="cont__recientes" style="padding-top: 10vh;">
+    <article class="text_opciones__recientes">
+      <h4 style="cursor: default;">Albumes</h4>
+    </article>
+    <article class="cont__cards" style="overflow-x: scroll;">
+      @for(i of albums; track i._id){
+      <section class="cards">
+        <img
+          style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+          src="{{i.img_urls.img_url_300}}" alt="">
+        <article class="text__card">
+          <p
+            style="font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">
+            {{i.album.name_album}}</p>
+          <p style="font-size:14px ;">{{i.artist}}</p>
         </article>
-        <article class="cont__cardsdos" style="overflow-x: scroll;">
-            @for(i of albums; track i._id){
-                <section class="cards">
-                    <img style="height: 100%; width:100%; border-radius: 10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" src="{{i.img_urls.img_url_300}}" alt="">
-                    <article class="text__card">
-                        <p style="font-size: 19px; font-weight: bold; width: 11rem; white-space: nowrap; overflow:hidden ; text-overflow: ellipsis;">{{i.album.name_album}}</p>
-                        <p style="font-size:14px ;">{{i.artist}}</p>
-                    </article>
-                
-                </section>
-            }
-        </article>
-    </section>
-    }
 
+      </section>
+      }
+    </article>
+  </section>
+  }
 
+  <footer style="margin-bottom: 30vh;">
+
+  </footer>
 </section>

@@ -108,21 +108,25 @@ p{
 .mostartodo:hover{
     text-decoration: underline;
 }
-.cont__cardsdos{
+.cont__cards{
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
     background-color: #393785;
     border-radius: 8px;
-    height: 35vh;
+    height: 40vh;
     width: 75vw;
 }
-.cont__cards{
-    display: grid;
-    grid-template-columns: repeat(6, 16.7%);
-    background-color: #393785;
-    border-radius: 8px;
-}
+.cont__cards::-webkit-scrollbar {
+    width:1vh;
+    height: 1vh;
+  }
+  
+  .cont__cards::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #191753;
+  }
+
 .cont-albums{
     grid-template-columns: repeat(7, 16.7%);
     height: 18.6rem;
