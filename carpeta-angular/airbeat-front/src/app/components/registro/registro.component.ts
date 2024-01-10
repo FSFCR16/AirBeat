@@ -3,19 +3,23 @@ import { CommonModule } from '@angular/common';
 import { InputsComponent } from './inputs/inputs.component';
 import { CreateUserService } from '../../services/create-user.service';
 import { User } from '../../services/create-user.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorComponent } from '../error/error.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [CommonModule, InputsComponent, FormsModule],
+  imports: [CommonModule, InputsComponent, FormsModule, ErrorComponent,ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
-  @ViewChild("infoRegistro") infoRegistro!: ElementRef
 
+
+  @ViewChild("infoRegistro") infoRegistro!: ElementRef
+  alertgeneral: boolean = false;
   usuario: User = {
     email: "",
     name: "",
@@ -25,19 +29,35 @@ export class RegistroComponent {
     confirmPass: "",
   }
 
-  constructor(private usuarioService:CreateUserService,private router:Router){}
+  registroForm: FormGroup; // Define el formulario
 
-  async usuarioCrear(){
-    const respuesta= await this.usuarioService.crearUsuario(this.usuario).subscribe({
-      next: (token)=> {
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: CreateUserService,
+    private router: Router
+  ) {
+    // Inicializa el formulario con validadores
+    this.registroForm = this.fb.group({
+      name: ['', Validators.required as any],
+      lastname: [''],
+      telefono: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPass: ['']
+    });
+  }
+
+  async usuarioCrear() {
+    const respuesta = await this.usuarioService.crearUsuario(this.usuario).subscribe({
+      next: (token) => {
         console.log('Usuario creado exitosamente:', this.usuario);
         // Puedes realizar acciones adicionales después de crear el usuario
         this.usuarioService.saveToken(token)
         this.router.navigate(['/home']);
       },
-      error:(error)=> {
+      error: (error) => {
         console.error('Error al crear usuario:', error);
-        // Maneja errores según tus necesidades
+        this.alertgeneral = true;
       }
     }
 
@@ -46,5 +66,11 @@ export class RegistroComponent {
 
   infoR(): ElementRef {
     return this.infoRegistro
+  }
+
+  recargarPagina() {
+   
+    // location.reload(); es para volcer al inicio de la pagina
+    window.location.reload();
   }
 }

@@ -1,18 +1,20 @@
 import { Component,ElementRef,OnInit, QueryList, Renderer2, ViewChildren} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BucadorServiciosService, songs } from '../../services/bucador.servicios.service';
+import { ErrorComponent } from '../error/error.component';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-album',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ErrorComponent],
   templateUrl: './album.component.html',
   styleUrl: './album.component.css'
 })
 export class AlbumComponent implements OnInit {
   tracks:songs[]=[]
   imgAlb:string=""
+  alerta:boolean=false
   name:string = ""
   numeroCarta: number = 1;
   @ViewChildren('cartaDiv') cartas!: QueryList<ElementRef>;
@@ -32,8 +34,17 @@ export class AlbumComponent implements OnInit {
         this.name= data[0].album.name_album
         this.imgAlb=data[0].img_urls.img_url_300
       },
-      error:(error)=>{
-        console.log(error)
+      error: (error) => {
+        if (error.status === 404) {
+          this.alerta = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alerta = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alerta = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }

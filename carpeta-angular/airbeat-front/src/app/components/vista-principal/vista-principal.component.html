@@ -1,4 +1,5 @@
-<section class="search-cont">
+<section  *ngIf="!alertgeneral" class="search-cont overflow-y-scroll">
+
     <section class="cont__recientes">
         <article class="text_opciones__recientes">
             <h4 style="cursor: default;">Top Canciones</h4>
@@ -61,3 +62,4 @@
         </section>
         <section style="height: 5vh;"></section>
 </section>
+<app-error *ngIf="alertgeneral"></app-error>

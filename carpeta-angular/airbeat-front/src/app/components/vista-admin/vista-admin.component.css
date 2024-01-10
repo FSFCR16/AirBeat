@@ -117,11 +117,11 @@ p {
 
 .contenedor {
   display: grid;
-  margin-top: 7px;
   grid-template-rows: 15.8% auto;
   row-gap: 3px;
+  margin-top: 7px;
   height: 86.5vh;
-  width: 100%;
+  width: 99.3%;
   background-color: #001c43;
 }
 
@@ -143,6 +143,7 @@ p {
   width: 100%;
   padding: 25px;
   height: 100%;
+  overflow-y: hidden;
   grid-template-rows: 17% auto;
   overflow-x: hidden;
   
@@ -162,7 +163,7 @@ p {
   grid-template-columns: repeat(5, 1fr);  
   grid-gap: 10px;
   grid-auto-flow: row dense;
-  overflow-y: scroll;
+  overflow-y: hidden;
   height:100%;
   overflow-x: hidden;
 }

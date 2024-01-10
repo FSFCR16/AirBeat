@@ -7,6 +7,7 @@ import { User } from '../../services/create-user.service';
 import { FormControl, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
 import { response } from 'express';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -60,6 +61,7 @@ export class PerfilComponent implements OnInit {
     );
   }
 
+  
   editarUsuario() {
     this.formularioDesactivado = !this.formularioDesactivado;
     if (this.formularioDesactivado) {
@@ -75,7 +77,6 @@ export class PerfilComponent implements OnInit {
         console.log(user);
         this.alert = true;
         window.location.reload();
-      
         setTimeout(()=>{this.alert = false;},1900);
       },
       error: (error) => {

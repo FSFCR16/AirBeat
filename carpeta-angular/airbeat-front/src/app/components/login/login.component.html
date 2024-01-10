@@ -1,6 +1,6 @@
-<section class="body">
+<section  class="body">
     <main class="contenedor">
-        <section class="login">
+        <section *ngIf="!alertgeneral"  class="login">
             <article class="iniciar-sesion">
                 <button class="boton-iniciar btn-iniciar" (click)="inicioColor()" #btniniciar>Iniciar Sesion</button>
                 <button class="boton-iniciar btn-registrar" (click)="registroColor()" #btnregistrar>Registrate</button>
@@ -34,25 +34,89 @@
                         <hr>
                     </article>
                 </section>
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;" action="">
+                <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;"
+                    action="">
                     <div class="label-c" style="display: flex; flex-direction: column; row-gap: 10px">
                         <label for="email">
                             Email
                         </label>
-                        <input formControlName="email" id="email" name="email" placeholder="Email">
+                        <input formControlName="email" id="email" name="email" placeholder="Email" required error="El Email es obligatorio ">
                         <label for="password">
                             Contraseña
                         </label>
+<<<<<<< HEAD
+                        <input formControlName="password" id="password" name="password" placeholder="Contraseña" required>
+=======
                         <input formControlName="password" id="password" name="password" type="password" placeholder="Contraseña">
+>>>>>>> 89fad0760c4bb43ec217c0b5a6f49501e6341a93
                     </div>
                     <article
                         style="display: grid; justify-content: center; gap: 15px; margin-top: 15px; margin-bottom: 30px; width: 100%; text-align: center;">
                         <a class="a-pass" href="">¿Olvidaste tu contraseña?</a>
                         <button type="submit" class="btn-submit">Iniciar Sesion</button>
                     </article>
-                </form>
+                </form> -->
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;" action="">
+                    <div class="label-c" style="display: flex; flex-direction: column; row-gap: 10px">
+                      <label for="email">
+                        Email
+                      </label>
+                      <input formControlName="email" id="email" name="email" placeholder="Email" required>
+                      <div  *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+                        <p style="color: orange; font-size: 12px;">El Email es obligatorio.</p> 
+                      </div>
+                  
+                      <label for="password">
+                        Contraseña
+                      </label>
+                      <input formControlName="password" id="password" name="password" placeholder="Contraseña" required>
+                      <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+                        <p style="color: orange; font-size: 12px;">La contraseña  es obligatoria.</p> 
+                      </div>
+                    </div>
+                  
+                    <article style="display: grid; justify-content: center; gap: 15px; margin-top: 15px; margin-bottom: 30px; width: 100%; text-align: center;">
+                      <a class="a-pass" href="">¿Olvidaste tu contraseña?</a>
+                      <button type="submit" class="btn-submit">Iniciar Sesión</button>
+                    </article>
+                  </form>
+                  
             </article>
+            
         </section>
+        <div *ngIf="alertgeneral" style="display:flex; flex-direction:column; background-color: #fdfdfd; height: 73vh;">
+            <section style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center;">
+                    <svg style="height: 20vh; width: auto; color: #000000; margin: 8px;" xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708m-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+                    </svg>
+                    <h5 style="color: #000000;">Oh no, parece que algo no marcha bien</h5>
+                    <div class="container mt-4">
+                        <ul style="color: #000000;">
+                            <li class="list-group-item">Contactanos para obtener más información:<a
+                                    href="mailto:support@airbeat.com">support-airbeat</a></li>
+                            <li class="list-group-item">Por favor revisa tu conexión a Internet</li>
+                            <li class="list-group-item">Intenta recarga la página</li>
+                        </ul>
+        
+                    </div>
+                    <button href="#" style="justify-content: center; align-items: center; border: none;
+                    outline: none;
+                    border-radius: 8px;
+                    width: 50%;
+                    height: 4vh;
+                    color: #fff;
+                    font-size: 18px;
+                    transform: .3s ease;
+                    margin: 2px;
+                    background-color: #00bfff;" (click)="recargarPagina()">Recargar</button>
+                </div>
+            </section>
+        </div>
         <section class="logo-c" style="background:linear-gradient(to bottom right, #372A8C, #1f073a ,  #001c43); ">
             <img src="../../../assets/img/image_airbeatBlanco.png" style="width: 85%; position: relative; top: 30px;">
             <article class="parrafo" style="color: white; font-size: 18px;">
@@ -79,5 +143,8 @@
                 </ul>
             </article>
         </section>
+        
     </main>
+   
 </section>
+

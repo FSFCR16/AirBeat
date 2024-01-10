@@ -9,11 +9,12 @@ import { busqueda } from '../../services/bucador.servicios.service';
 import { Subscription } from 'rxjs';
 import { usuarioService } from '../../services/vistaperfil.service';
 import { error } from 'console';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-vista-principal',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,RouterLink],
+  imports: [CommonModule, RouterOutlet,RouterLink,ErrorComponent],
   templateUrl: './vista-principal.component.html',
   styleUrl: './vista-principal.component.css'
 })
@@ -50,7 +51,16 @@ export class VistaPrincipalComponent implements OnInit, AfterViewInit {
         this.albums= data.albums
       },
       error: (error)=>{
-        console.log(error)
+        if (error.status === 404) {
+          this.alertgeneral = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alertgeneral = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alertgeneral = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
     this.buscador.traerHistorial().subscribe({
@@ -101,7 +111,16 @@ export class VistaPrincipalComponent implements OnInit, AfterViewInit {
         console.log(data)
       },
       error:(error)=>{
-        console.log(error)
+        if (error.status === 404) {
+          this.alertgeneral = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alertgeneral = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alertgeneral = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }
@@ -113,7 +132,16 @@ export class VistaPrincipalComponent implements OnInit, AfterViewInit {
         console.log("Eliminado correctamente: ", data)
       },
       error:(error)=>{
-        console.log(error)
+        if (error.status === 404) {
+          this.alertgeneral = true;
+          console.error('Usuario no encontrado 404:', error);
+        } else if (error.status === 500) {
+          this.alertgeneral = true;
+          console.error('Error del servidor 500:', error);
+        } else {
+          this.alertgeneral = true;
+          console.error('Error al obtener usuario:', error);
+        }
       }
     })
   }
