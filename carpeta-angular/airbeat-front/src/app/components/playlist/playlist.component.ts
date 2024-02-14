@@ -5,6 +5,9 @@ import { Router, RouterOutlet } from '@angular/router';
 import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
+import { Store, select } from '@ngrx/store';
+import { addSong } from '../../Store/playlist.action';
+import { AppState } from '../../app.state';
 //import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
@@ -15,6 +18,7 @@ import { ErrorComponent } from '../error/error.component';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit, AfterViewInit {
+  songs: songs[] = []
   cancion_track: string = ""
   nombreNuevo: string = ""
   btnOprimido: boolean =false
@@ -29,7 +33,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   @ViewChildren('secundarias') secun!: QueryList<ElementRef>;
   @ViewChildren('btnSecundarias') btnSecun!: QueryList<ElementRef>;
 
-  constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2) { }
+  constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2, private store:Store<AppState>, private storeDos:Store) { }
   ngOnInit() {
     const id= this.router.url.split("/").filter((elemento)=>{
       return elemento !== ""
@@ -57,6 +61,12 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       error:(error)=>{
         console.log(error)
       }
+    })
+
+    this.store.pipe(select("songslist")).subscribe((song: songs[]) => {
+      console.log(song)
+      this.songs = song
+      console.log(this.songs)
     })
   }
 
@@ -118,7 +128,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     })
   }
 
-  anadirCancion(id:string){
+  /*anadirCancion(id:string){
     const idPlaylist= this.router.url.split("/").filter((elemento)=>{
       return elemento !== ""
     })[1]
@@ -131,7 +141,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         console.log(error)
       }
     })
-  }
+  } */
 
   eliminarCancion(idSong:string){
     const idPlaylist= this.router.url.split("/").filter((elemento)=>{
@@ -153,6 +163,15 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   cargarCancion(url: any): void {
     this.buscador.guardarInformacion(url);
   }
+
+
+
+  addSong(song:songs){
+    console.log(song)
+    this.storeDos.dispatch(addSong({song: song}))
+  }
 }
+
+
 
 

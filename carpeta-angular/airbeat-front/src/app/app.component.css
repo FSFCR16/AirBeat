@@ -7,7 +7,6 @@
     column-gap: 5px;
     background: #001c43;
     overflow-x: hidden;
-<<<<<<< HEAD
 }
 .search-cont{
     background-color:rgb(38, 36, 115);
@@ -95,9 +94,7 @@
 
 .cont__user:hover{
     background-color: #1f1e47;
-=======
     overflow-y: hidden;
->>>>>>> f06e9fef847188228e1d2a9fb4f436e86437d89f
 }
 .contendor__navbar{
     width: auto;
@@ -120,43 +117,43 @@
         height: 86.5vh;
     }
     .navegacion__inicio {
-      row-gap: 5px;
+    row-gap: 5px;
     }
-  }
+}
 
 
-  @media screen and (min-width: 1200px) and (max-width:  1400px) {
+@media screen and (min-width: 1200px) and (max-width:  1400px) {
 
     .cont__gen{
         grid-template-columns: 24vw 76vw;
     }
 
 
-  }
+}
 
 
-  @media screen and (min-width: 1000px) and (max-width:  1200px) {
+@media screen and (min-width: 1000px) and (max-width:  1200px) {
 
     .cont__gen{
         grid-template-columns: 28vw 72vw;
     }
 
 
-  }
+}
 
-  @media screen and (min-width: 768px) and (max-width:  1000px) {
+@media screen and (min-width: 768px) and (max-width:  1000px) {
 
     .cont__gen{
         grid-template-columns: 32vw auto;
     }
-  }
-  @media screen and (min-width: 300px) and (max-width:  768px) {
+}
+@media screen and (min-width: 300px) and (max-width:  768px) {
 
     .cont__gen{
-      padding-left: 6px;
-      grid-template-columns: 8vw auto;
+    padding-left: 6px;
+    grid-template-columns: 8vw auto;
     }
-  }
+}
 
 
 

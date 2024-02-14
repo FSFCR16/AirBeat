@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { jwtDecode } from 'jwt-decode'
 import { Router } from '@angular/router';
 export interface User {
   email: string,
@@ -85,26 +84,4 @@ export class CreateUserService {
   }
 
 
-  decode() {
-    const token: any = localStorage.getItem("key")
-    const decod: payLoad = jwtDecode(token)
-    console.log(decod)
-    if (decod._id) {
-      return true
-    } else {
-      this.router.navigate(["/login-page"])
-      return false
-    }
-  }
-
-  admin(){
-    const token: any = localStorage.getItem("key")
-    const decod: payLoad = jwtDecode(token)
-    console.log(decod)
-    if (decod.role === "admin") {
-      return true
-    } else {
-      return false
-    }
-  }
 }

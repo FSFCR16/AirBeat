@@ -9,26 +9,13 @@ import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { AlbumComponent } from './components/album/album.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ViewbetaComponent } from './pages/viewbeta/viewbeta.component';
-import { guardAdmin, guardGuard } from './guards/guard.guard';
+
 
 
 
 export const routes: Routes = [
     {path: "Init", component: ViewbetaComponent},
     {path: "login-page", component: LoginPageComponent},
-<<<<<<< HEAD
-    {path: "search", component: BuscadorPageComponent, canActivate: [guardGuard]},
-    {path: "search/historial", component: BuscadorPageComponent, canActivate: [guardGuard]},
-    {path: 'search/:cancion', component: BuscadorPageComponent, canActivate: [guardGuard]},
-    {path: "playlist/:id", component: PlaylistPageComponent, canActivate: [guardGuard]},
-    {path: "admin", component: VistaAdminPageComponent},
-    {path: "home", component: VistaPrincipalPageComponent, canActivate: [guardGuard]},
-    {path: "user", component: VistaUsuarioPageComponent, canActivate: [guardGuard]},
-    {path: "album",component: AlbumComponent, canActivate: [guardGuard]},
-    {path: "album",component: AlbumPageComponent, canActivate: [guardGuard]},
-    {path:"perfil", component: PerfilComponent, canActivate: [guardGuard]},
-    {path: "**", component: VistaPrincipalPageComponent, canActivate: [guardGuard]},
-=======
     {path: "search", component: BuscadorPageComponent, children:[
         {path: "historial", component: BuscadorPageComponent},
         {path: ':cancion', component: BuscadorPageComponent},
@@ -41,5 +28,4 @@ export const routes: Routes = [
     {path:"perfil", component: PerfilComponent},
     {path: "**", component: VistaPrincipalPageComponent},
 
->>>>>>> f06e9fef847188228e1d2a9fb4f436e86437d89f
 ];
