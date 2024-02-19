@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { json } from 'stream/consumers';
 import { User } from './create-user.service';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { PlaylistResponse } from '../Store/playlist.reducer';
 
 
 export interface songs{
@@ -28,11 +29,6 @@ export interface songs{
   preview_url: string,
   release_date: Date,
   _id?: any
-}
-
-interface PlaylistResponse {
-  userId: string;
-  songs: []; // Tipo de datos de las canciones (puede ser más específico)
 }
 
 export interface busqueda{
@@ -83,14 +79,15 @@ export class BucadorServiciosService {
     return this.http.get<songs[]>(`${this.url}songs/search/album/${nombre}`,{headers})
   }
 
-  traerCanciones():Observable<PlaylistResponse>{
+  traerCanciones():Observable<PlaylistResponse[]>{
     const token = localStorage.getItem("key")
 
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
       "authorization": `key ${token}`
     });
-    return this.http.get<PlaylistResponse>(`${this.url}update/getPlaylist`, {headers})
+
+    return this.http.get<PlaylistResponse[]>(`${this.url}update/getPlaylist`, {headers})
   }
 
   catchSongs(general: string):Observable<any>{
@@ -177,13 +174,13 @@ export class BucadorServiciosService {
     return this.http.get<songs>(`${this.url}songs/getsongsforname/${backtrack}`, { headers })
 
   }
-  crearPlaylist(): Observable<songs> {
+  crearPlaylist(): Observable<PlaylistResponse> {
     const token = localStorage.getItem("key")
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
       "authorization": `key ${token}`      
     });
-    return this.http.post<songs>(`${this.url}update/createPlylist`,{}, { headers })
+    return this.http.post<PlaylistResponse>(`${this.url}update/createPlylist`,{}, { headers })
 
     }
 

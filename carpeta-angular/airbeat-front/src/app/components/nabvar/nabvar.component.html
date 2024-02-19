@@ -126,7 +126,9 @@
           }
           @if (valorInput === cancion.namePlaylist) {
           <section class="contendor__card">
-            <img style="height: 50px; width: 50px; border-radius: 7px;" src="{{cancion.songs[0].img_urls.img_url_300}}"
+            <img 
+              style="height: 50px; width: 50px; border-radius: 7px;" 
+              src="{{cancion.songs.length > 0 && cancion.songs[0].img_urls ? cancion.songs[0].img_urls.img_url_300 : ''}}"
               alt="">
             <article class="text__cont">
               <p style="font-weight: bold;">{{cancion.namePlaylist}}</p>

@@ -46,12 +46,12 @@
               </div>
             </div>
             <p></p>
-            <button id="botonAgregar" (click)="addSong(song)">Agregar Canción</button>
+            <button id="botonAgregar">Agregar Canción</button>
           </div>
           }
           }@else {
           @for(song of cancionesPredeterminadas; track song._id){
-          <div class="cont_carta" *ngFor="let song of songs">
+          <div class="cont_carta">
             <div class="img_carta">
               <img style="height: 40px; width: 40px; border-radius: 3px;" src="{{song.img_urls.img_url_64}}" alt="">
               <div class="nombre_cancion">
@@ -62,7 +62,7 @@
               </div>
             </div>
             <p></p>
-            <button id="botonAgregar" (click)="addSong(song)">Agregar </button>
+            <button id="botonAgregar">Agregar </button>
           </div>
           }
 
@@ -84,7 +84,7 @@
         }
       </div>
       <div class="canciones_playlist">
-        <div class="cont_carta cont_carta_dos" *ngFor="let song of songs; let i = index" #secundarias>
+        <div class="cont_carta cont_carta_dos" *ngFor="let song of songs ; let i = index" #secundarias>
           <div class="img_carta align-items-center">
             <div>
               <h6>{{i + 1}}.</h6>

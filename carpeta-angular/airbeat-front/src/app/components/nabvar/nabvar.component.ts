@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BucadorServiciosService } from '../../services/bucador.servicios.service';
 import { RouterLink, RouterOutlet, RouterLinkActive, Router } from '@angular/router';
+import { PlaylistResponse } from '../../Store/playlist.reducer';
+import { Store, select } from '@ngrx/store';
+import { setPlaylists, traerPlaylist } from '../../Store/playlist.action';
+import { AppState } from '../../app.state';
+
 
 @Component({
   selector: 'app-nabvar',
@@ -11,24 +16,38 @@ import { RouterLink, RouterOutlet, RouterLinkActive, Router } from '@angular/rou
   styleUrl: './nabvar.component.css'
 })
 export class NabvarComponent implements OnInit {
-  datos:any[]=[]
-  valorInput: string | undefined;
-  idPlaylist: string = ""
-  idSong: string=""
+  datos:PlaylistResponse[] = []
+  valorInput:string | undefined;
+  idPlaylist:string = ""
+  idSong:string= ""
 
-  constructor(private buscador: BucadorServiciosService, private router: Router) { }
+  playlist: PlaylistResponse = {
+    namePlaylist: "mi primera playlist",
+    songs: []
+  }
+
+
+  constructor(
+    private buscador: BucadorServiciosService, 
+    private router: Router, 
+    private store:Store<AppState>,
+  ) { }
 
   ngOnInit(): void {
-    this.buscador.traerCanciones().subscribe({
-      next: (data:any) => {
-        this.datos= data
-        console.log(this.datos)
+    this.store.pipe(select("playlists")).subscribe((playlistState: PlaylistResponse[]) => {
+      console.log(playlistState)
+      this.datos = playlistState
+      console.log(this.datos)
+    })
 
+    this.buscador.traerCanciones().subscribe({
+      next: (data:PlaylistResponse[]) => {
+        this.store.dispatch(traerPlaylist({playlists:data}))
       },
       error: (error) => {
         console.log(error);
       },
-    });
+    })
   }
 
   async irAlaPlaylist(id: string) {
@@ -47,16 +66,16 @@ export class NabvarComponent implements OnInit {
 
   crearPlaylistBtn(){
     this.buscador.crearPlaylist().subscribe({
-      next: async (data:any) => {
-        console.log(data); 
-        this.idPlaylist = data._id
-
-        try {
+      next: (playlists:PlaylistResponse) => {
+        this.store.dispatch(setPlaylists({playlists:playlists}))
+        this.idPlaylist = playlists._id
+        
+        /*try {
           await this.router.navigate(['playlist', this.idPlaylist]);
           window.location.reload();
         } catch (error) {
           console.error('Error al navegar:', error);
-        }
+        }*/
       },
       error: (error) => {
         console.log(error);
@@ -109,7 +128,11 @@ export class NabvarComponent implements OnInit {
   handleButtonClick(event: Event) {
     event.stopPropagation(); 
     console.log('Clic en el botón');
-   
+  
   }
 
+
+  agregarPlaylist(playlists:PlaylistResponse){
+    this.store.dispatch(setPlaylists({playlists:playlists}))
+  }
 }

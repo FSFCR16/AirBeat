@@ -6,7 +6,7 @@ import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
 import { Store, select } from '@ngrx/store';
-import { addSong } from '../../Store/playlist.action';
+/*import { addSong } from '../../Store/playlist.action'; */
 import { AppState } from '../../app.state';
 //import { BrowserModule } from '@angular/platform-browser';
 
@@ -33,7 +33,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   @ViewChildren('secundarias') secun!: QueryList<ElementRef>;
   @ViewChildren('btnSecundarias') btnSecun!: QueryList<ElementRef>;
 
-  constructor(private buscador: BucadorServiciosService, private router: Router, private renderer:Renderer2, private store:Store<AppState>, private storeDos:Store) { }
+  constructor(
+    private buscador: BucadorServiciosService, 
+    private router: Router, 
+    private renderer:Renderer2, 
+    private store:Store<AppState>) { }
   ngOnInit() {
     const id= this.router.url.split("/").filter((elemento)=>{
       return elemento !== ""
@@ -41,6 +45,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   
     this.buscador.traerPlylist(id).subscribe({
       next: (data:any) => {
+        console.log(data._id)
         this.infoplaylist = data[0]
         this.cacniones_playlist = data[0].songs
         this.img = data[0].songs[0].img_urls.img_url_300
@@ -52,7 +57,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       }
     });
 
-
     this.buscador.traerCancionAleatorias().subscribe({
       next:(data:any)=>{
         this.cancionesPredeterminadas= data
@@ -63,11 +67,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       }
     })
 
-    this.store.pipe(select("songslist")).subscribe((song: songs[]) => {
+    /*this.store.pipe(select("songslist")).subscribe((song: songs[]) => {
       console.log(song)
       this.songs = song
       console.log(this.songs)
-    })
+    })*/
   }
 
   ngAfterViewInit() {
@@ -166,10 +170,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
 
 
-  addSong(song:songs){
+  /*addSong(song:songs){
     console.log(song)
     this.storeDos.dispatch(addSong({song: song}))
-  }
+  }*/
 }
 
 

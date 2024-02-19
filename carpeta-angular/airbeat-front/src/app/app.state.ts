@@ -1,5 +1,6 @@
-import { songs } from "./services/bucador.servicios.service";
+import { PlaylistResponse } from "./Store/playlist.reducer";
 
 export interface AppState {
-    readonly songslist: songs[]
+    readonly playlists: PlaylistResponse[]
 }
+
