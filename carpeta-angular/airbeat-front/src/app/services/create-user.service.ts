@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 export interface User {
   email: string,
   name: string,
@@ -22,7 +24,7 @@ export interface payLoad {
 export class CreateUserService {
   token = "key"
   data: boolean = false
-  private apiUrl = 'http://127.0.0.1:3000/user';
+  private apiUrl = `http://${environment.URL}:3000/user`;
 
   constructor(private http: HttpClient, private router: Router) {
   }

@@ -6,6 +6,7 @@ import { json } from 'stream/consumers';
 import { User } from './create-user.service';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { PlaylistResponse } from '../Store/playlist.reducer';
+import { environment } from '../../environments/environment.development';
 
 
 export interface songs{
@@ -65,7 +66,7 @@ export class BucadorServiciosService {
       }
     });
   }
-  private url = 'http://127.0.0.1:3000/'
+  private url = `http://${environment.URL}:3000/`
   private informacionCompartidaSubject = new Subject<any>();
   private _vistaBuscador = new BehaviorSubject<string>('');
 

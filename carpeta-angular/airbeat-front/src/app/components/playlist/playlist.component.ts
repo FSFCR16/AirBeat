@@ -168,12 +168,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     this.buscador.guardarInformacion(url);
   }
 
-
-
-  /*addSong(song:songs){
-    console.log(song)
-    this.storeDos.dispatch(addSong({song: song}))
-  }*/
 }
 
 

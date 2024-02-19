@@ -27,16 +27,16 @@ const localStorageInfo = localStorage.getItem(play_list)
 
 export const getPlaylistReducer = createReducer(
     initState,
-    on(traerPlaylist, (_oldState, {playlists}) =>{
-        const newState = [..._oldState,...playlists]
+    on(traerPlaylist, (_oldState, { playlists }) => {
+        const newState = [..._oldState, ...playlists]
         console.log(newState)
         return newState
     }),
 
-    on (setPlaylists, (_oldState, {playlists}) =>{
+    on(setPlaylists, (_oldState, { playlists }) => {
         console.log(_oldState)
         const newState = [..._oldState, playlists]
         return newState
-    })
+    }),
 )
 

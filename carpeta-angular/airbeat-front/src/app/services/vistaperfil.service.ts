@@ -2,14 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './create-user.service';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class usuarioService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'http://127.0.0.1:3000/user'
+  private apiUrl = `http://${environment.URL}:3000/user`
 
   obtenerUsuario(): Observable<any> {
     const token = localStorage.getItem('key');
