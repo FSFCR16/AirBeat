@@ -62,7 +62,7 @@
               </div>
             </div>
             <p></p>
-            <button id="botonAgregar">Agregar </button>
+            <button id="botonAgregar" (click)="anadirCancion(song._id)">Agregar </button>
           </div>
           }
 
@@ -84,7 +84,7 @@
         }
       </div>
       <div class="canciones_playlist">
-        <div class="cont_carta cont_carta_dos" *ngFor="let song of songs ; let i = index" #secundarias>
+        <div class="cont_carta cont_carta_dos" *ngFor="let song of cacniones_playlist ; let i = index" #secundarias>
           <div class="img_carta align-items-center">
             <div>
               <h6>{{i + 1}}.</h6>

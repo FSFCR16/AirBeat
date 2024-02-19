@@ -132,7 +132,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     })
   }
 
-  /*anadirCancion(id:string){
+  anadirCancion(id:string){
     const idPlaylist= this.router.url.split("/").filter((elemento)=>{
       return elemento !== ""
     })[1]
@@ -145,7 +145,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         console.log(error)
       }
     })
-  } */
+  } 
 
   eliminarCancion(idSong:string){
     const idPlaylist= this.router.url.split("/").filter((elemento)=>{
